@@ -16,7 +16,7 @@ EKTA یک اطلس مهندسی رابطه‌مند، چندلایه و مبتن
 | شاخه اصلی | `main` |
 | منشور و چشم‌انداز | **APPROVED — 2026-11-23** |
 | نوع محصول | Engineering Knowledge Operating Environment |
-| وضعیت توسعه | Foundation / knowledge architecture |
+| وضعیت توسعه | Runtime v0.2 — Search & Explore Workbench |
 | مجوز مخزن | هنوز انتخاب نشده است |
 
 ---
