@@ -82,6 +82,42 @@ class RuntimeApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("EKTA", response.text)
 
+    def test_hashtag_search_matches_concept_name_and_taxonomy(self):
+        by_name = self.atlas.search("#runtime")
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in by_name["results"]))
+        by_domain = self.atlas.search("#software-engineering")
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in by_domain["results"]))
+
+    def test_fielded_query_filters_concepts(self):
+        result = self.atlas.search("domain:software-engineering layer:platform-runtime")
+        self.assertTrue(result["results"])
+        self.assertTrue(all("software-engineering" in item.get("domains", []) for item in result["results"]))
+
+    def test_search_returns_explainable_match_metadata(self):
+        result = self.atlas.search("runtime")
+        item = next(item for item in result["results"] if item["id"] == "EKTA-CON-000001")
+        self.assertGreater(item["score"], 0)
+        self.assertTrue(item["matched_fields"])
+        self.assertTrue(item["snippet"])
+
+    def test_repository_document_search_and_safe_detail(self):
+        result = self.atlas.search("knowledge lifecycle kind:document")
+        self.assertTrue(any(item["source_file"] == "docs/END_TO_END_LIFECYCLE.md" for item in result["results"]))
+        document = next(item for item in result["results"] if item["source_file"] == "docs/END_TO_END_LIFECYCLE.md")
+        detail = self.atlas.get_document(document["id"])
+        self.assertIn("Traceability chain", detail["content"])
+        self.assertIsNone(self.atlas.get_document("EKTA-DOC-not-a-valid-id"))
+
+    def test_search_supports_status_and_kind_filters(self):
+        result = self.atlas.search("runtime status:PROPOSED kind:concept")
+        self.assertTrue(result["results"])
+        self.assertTrue(all(item["kind"] == "concept" and item["status"] == "PROPOSED" for item in result["results"]))
+
+    def test_facets_include_tags_and_taxonomy_values(self):
+        facets = self.atlas.facets()
+        self.assertIn("software-engineering", [item["id"] for item in facets["domains"]])
+        self.assertIn("runtime", facets["tags"])
+
 
 if __name__ == "__main__":
     unittest.main()
