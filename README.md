@@ -410,3 +410,10 @@ Multiple words are AND-matched. Query fields can be combined, for example:
 ### Taxonomy clarification
 
 EKTA now separates **26 top-level Engineering Territories** from **25 operational domain tags**. Territories are the navigation/portfolio layer; operational domains are more granular classification values. The explicit mapping is in [taxonomy/territories.yml](taxonomy/territories.yml), and domain identifiers remain in [taxonomy/domains.yml](taxonomy/domains.yml). This removes the earlier 22-vs-26 ambiguity without treating the two lists as interchangeable.
+
+
+## Integrated Project Documentation & Lifecycle Architecture (UPDS)
+
+EKTA now has a proposed, bounded integration architecture for the **Universal Project Documentation System (UPDS)**. UPDS is a reusable subsystem for project documents, requirements, decisions, governance, memory, traceability, evidence and lifecycle records. It is integrated across all four EKTA workspaces while preserving EKTA's canonical knowledge model and the ability to extract UPDS later.
+
+Start here: [UPDS Integration Index](docs/INTEGRATION/UPDS_INTEGRATION_INDEX.md). The integration is currently **PROPOSED** and documentation-baseline only; runtime services, schemas, validators and UI integration are not yet implemented.
