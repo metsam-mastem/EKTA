@@ -22,3 +22,9 @@ This is a documentation and architecture integration baseline. UPDS runtime serv
 
 ## Recovery
 Read README.md, docs/PROJECT_CHARTER.md, docs/GOVERNANCE.md, docs/MASTER_HANDOFF.md, docs/PROJECT_STATE.md, docs/INTEGRATION/UPDS_INTEGRATION_INDEX.md, docs/CONTEXT_CONTINUITY.md, docs/ACTIVE_WORK.md and docs/OPEN_ISSUES.md. Chat history is optional.
+
+
+## Follow-on implementation increment
+- Added UPDS JSON Schema, validation primitives, repository validator, sample record and unit tests.
+- Added UPDS validation to GitHub Actions.
+- These files are committed to the integration branch; test execution is pending CI. Runtime APIs, UI, graph integration and automatic project generation remain future work.
