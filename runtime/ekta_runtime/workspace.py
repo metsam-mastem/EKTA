@@ -27,7 +27,7 @@ BACKUP_FILES = (
 )
 MAX_IMPORT_BYTES = 1024 * 1024
 MAX_RESTORE_BYTES = 20 * 1024 * 1024
-ID_PATTERN = re.compile(r"^EKTA-CON-\\d{6}$")
+ID_PATTERN = re.compile(r"^EKTA-CON-\d{6}$")
 
 
 class WorkspaceError(ValueError):
