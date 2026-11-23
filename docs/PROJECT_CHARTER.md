@@ -2,7 +2,7 @@
 
 **ID:** EKTA-GOV-CHARTER-001  
 **Version:** 0.1.0  
-**Status:** Proposed baseline  
+**Status:** APPROVED  
 **Canonical repository:** https://github.com/metsam-mastem/EKTA
 
 ## Purpose and problem
@@ -61,3 +61,12 @@ GitHub is canonical source of truth. Repository is public: never commit secrets 
 
 ## Governance
 Maintainer approval is required for scope changes, license selection, major taxonomy changes, and project-wide architecture. Use RFCs and ADRs for consequential changes. The charter remains proposed until explicitly approved.
+
+
+## Approval record
+
+**Decision:** APPROVED  
+**Date:** 2026-11-23  
+**Authority:** Explicit user confirmation in the project conversation.
+
+The approval applies to the current charter and product vision. It does not automatically approve a repository license, implementation stack, hosting provider, or any feature not specified in the charter. The license remains undecided until a separate decision is recorded.
