@@ -1,0 +1,71 @@
+import json
+import unittest
+from pathlib import Path
+
+from upds_validation import validate_records
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class UPDSValidationTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.schema = json.loads((ROOT / "schemas" / "upds-document.schema.json").read_text(encoding="utf-8"))
+
+    def test_accepts_valid_document_record(self):
+        record = {
+            "id": "EKTA-DOC-000001",
+            "title": "UPDS document universe",
+            "artifact_type": "document_catalog",
+            "family": "documentation",
+            "level": "L1",
+            "domain": "systems-engineering",
+            "project_id": "EKTA",
+            "status": "PROPOSED",
+            "version": "0.1.0",
+            "owner": "project-owner",
+            "classification": "internal",
+            "applicability": "REQUIRED"
+        }
+        self.assertEqual(validate_records([record], self.schema), [])
+
+    def test_rejects_missing_required_metadata(self):
+        self.assertTrue(validate_records([{"id": "EKTA-DOC-000001"}], self.schema))
+
+    def test_rejects_invalid_status(self):
+        record = {
+            "id": "EKTA-DOC-000001",
+            "title": "Example",
+            "artifact_type": "specification",
+            "family": "architecture",
+            "level": "L2",
+            "domain": "systems-engineering",
+            "project_id": "EKTA",
+            "status": "DONE",
+            "version": "0.1.0",
+            "owner": "owner",
+            "classification": "internal",
+            "applicability": "REQUIRED"
+        }
+        self.assertTrue(validate_records([record], self.schema))
+
+    def test_detects_duplicate_ids(self):
+        record = {
+            "id": "EKTA-DOC-000001",
+            "title": "Example",
+            "artifact_type": "specification",
+            "family": "architecture",
+            "level": "L2",
+            "domain": "systems-engineering",
+            "project_id": "EKTA",
+            "status": "PROPOSED",
+            "version": "0.1.0",
+            "owner": "owner",
+            "classification": "internal",
+            "applicability": "REQUIRED"
+        }
+        self.assertTrue(any("duplicate" in e.lower() for e in validate_records([record, record], self.schema)))
+
+
+if __name__ == "__main__":
+    unittest.main()
