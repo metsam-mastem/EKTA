@@ -33,9 +33,9 @@
 - Baseline before documentation work: d66d8b13b8d24200af91f07c51b2df01ec131bcd
 - Current repository handoff must be refreshed from the live main HEAD before any new implementation.
 - Scope: Persian-first user documentation, setup, installation, manual, input/ingestion boundaries, recovery, troubleshooting, and AI/developer onboarding.
-- Product baseline: Runtime 0.2; read-only local web application.
+- Product baseline: Search/Explore Runtime 0.2 plus Operational Workspace 0.4; canonical knowledge remains Git-native and read-only from the UI.
 - Runtime facts: Python 3.11+, FastAPI/Uvicorn, PyYAML, JSON Schema; local default 127.0.0.1:8000; selected Markdown/YAML/JSON indexing; deterministic lexical search.
-- Known limitations: no UI upload/edit, semantic/AI search, auth/multi-user, public deployment hardening, Android package, or full Decision/Execution Labs.
+- Known limitations: import is text-only staging (not canonical ingestion); editor creates local drafts only; restore only stages validated ZIPs; no semantic/AI search, auth/multi-user, public deployment hardening, Android package, or full Decision/Execution Labs.
 - License remains undecided.
 - Graph coverage remains incomplete; never present graph export as a complete ontology.
 - PR #3 (integration/upds-documentation-architecture) is a separate open proposal. Its integration decision is PROPOSED pending explicit owner review; do not treat UPDS integration as approved or merged based only on the branch.
@@ -52,8 +52,8 @@
 - Import formats: Markdown/YAML/JSON text, max 1 MiB. Drafts remain outside `encyclopedia/concepts/`.
 - Backup uses an explicit project path allowlist and excludes `.git`, environments, caches and secret files. Restore only validates and stores the ZIP; it never extracts or overwrites project files.
 - Canonical Git knowledge remains protected; no automated promotion, Git commit/push, authentication, or public deployment hardening.
-- Added `tests/test_workspace.py`; CI must be checked against the final PR head before merge.
-- Detailed user and security docs: `docs/WORKSPACE_GUIDE.md`, `docs/SECURITY_AND_STAGING_MODEL.md`.
+- Added `tests/test_workspace.py`; GitHub Actions run #146 on final PR head `37d8e892aa9cf9210c43231f5ffcf9464f67bcb7` completed SUCCESS (docs validation, unit/runtime tests, frontend validation, graph export).
+- Detailed user and security docs: `docs/WORKSPACE_GUIDE.md`, `docs/SECURITY_AND_STAGING_MODEL.md`.\n- Post-merge documentation line-break cleanup and explorer navigation/API table refinements were committed directly to main; the latest main HEAD must be read before the next code change.
 
 ## Session handoff template
 ### Objective
