@@ -36,4 +36,4 @@
 - Added `schemas/upds-document.schema.json`, `tools/upds_validation.py`, `tools/validate_upds.py`, a sample canonical UPDS record and unit tests.
 - CI workflow now includes the UPDS record validator and integration branch push pattern.
 - Runtime registry/API/UI and cross-graph integration remain NOT IMPLEMENTED.
-- Local tests and latest CI result: pending; do not claim pass until Actions completes on current HEAD.
+- GitHub Actions run 45124354424 passed on commit d7b1fed9e52ba10a792ab18bbfd7fae6dc44e781: documentation validation, UPDS record validation, unittest suite, frontend validation and graph export all succeeded.
