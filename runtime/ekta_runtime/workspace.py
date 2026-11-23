@@ -27,7 +27,7 @@ BACKUP_FILES = (
 )
 MAX_IMPORT_BYTES = 1024 * 1024
 MAX_RESTORE_BYTES = 20 * 1024 * 1024
-ID_PATTERN = re.compile(r"^[A-Z][A-Z0-9-]{2,63}$")
+ID_PATTERN = re.compile(r"^EKTA-CON-\\d{6}$")
 
 
 class WorkspaceError(ValueError):
@@ -142,10 +142,13 @@ class Workspace:
         self._ensure_dirs()
         metadata = {
             "id": record_id, "canonical_name": name, "status": "PROPOSED",
-            "revision": "0.1.0-draft", "domains": payload.get("domains", []),
-            "layers": payload.get("layers", []), "knowledge_types": payload.get("knowledge_types", ["CONCEPT"]),
-            "aliases": payload.get("aliases", []),
+            "revision": "0.1.0-draft",
         }
+        for key, default in (("domains", []), ("layers", []), ("knowledge_types", ["CONCEPT"]), ("aliases", [])):
+            values = payload.get(key, default)
+            if not isinstance(values, list) or len(values) > 30 or any(not isinstance(value, str) or len(value) > 100 for value in values):
+                raise WorkspaceError(f"فیلد {key} باید فهرست متنی با حداکثر ۳۰ مقدار باشد")
+            metadata[key] = [value.strip() for value in values if value.strip()]
         rendered = "---\n" + yaml.safe_dump(metadata, allow_unicode=True, sort_keys=False) + "---\n\n" + body + "\n"
         target = self.draft_root / f"{record_id}.md"
         target.write_text(rendered, encoding="utf-8")
