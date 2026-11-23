@@ -2,7 +2,7 @@
 
 **Product target:** EKTA Engineering Knowledge Workbench  
 **Planning baseline:** 2026-11-23  
-**Current implementation branch:** runtime/v0.1-foundation  
+**Current implementation branch:** workbench/v0.2-explorer  
 **Delivery principle:** ship verified vertical slices; never label a phase complete because its plan or documentation exists.
 
 ## Product definition of done — v1.0
@@ -23,7 +23,7 @@ EKTA v1.0 is a usable, local-first engineering knowledge workbench when a user c
 ## Delivery stages
 
 ### Stage 0 — Runtime foundation (v0.1)
-Status: VALIDATED on feature branch at commit 56ba5f443dacfbc5236f459c7fa08196e488d2c2. The CI run passed 17 tests, schema/documentation validation, and graph export.
+Status: VALIDATED and merged to main at commit 0d53a9131dad1aeca4c909493871b2ad7b41a225. Its final feature-branch CI passed 17 tests, schema/documentation validation, and graph export.
 
 Deliverables:
 - Python 3.11+ package and local launch scripts.
@@ -41,7 +41,7 @@ Exit gate:
 - Local setup instructions work on Windows and Linux/macOS.
 
 ### Stage 1 — Knowledge integrity (v0.2)
-Status: IN PROGRESS. The canonical 26-territory navigation registry is present and validated against operational domain IDs; the operational domain registry contains 25 entries. The concept JSON Schema and taxonomy validator remain active. Remaining work includes broader record schemas, canonical relationship target IDs, graph integrity enforcement, and territory coverage for currently unrepresented areas.
+Status: IN PROGRESS. The canonical 26-territory navigation registry and 25 operational domain tags are published and CI-validated, with explicit territory-to-domain mappings. The concept JSON Schema, duplicate-ID check, taxonomy and territory mapping validation, and local link validation are active. Remaining work includes broader record schemas, a canonical ID registry, canonical relationship target IDs, and graph integrity enforcement.
 
 Deliverables:
 - Machine-readable JSON Schema for concepts, sources, techniques, decisions, and workflows.
@@ -57,7 +57,7 @@ Exit gate:
 - CI blocks invalid records and graph regressions.
 
 ### Stage 2 — Discovery and retrieval (v0.3)
-Status: IN PROGRESS. A deterministic lexical search baseline now indexes concepts and selected repository Markdown/YAML/JSON documents; supports free text, exact phrases, hashtags, field selectors, ranking, snippets, pagination, and facets. Persian/Arabic character normalization is included. Relevance benchmarking, richer bilingual synonyms, and source freshness tracking remain outstanding.
+Status: IN PROGRESS. A deterministic lexical search baseline indexes concepts and selected repository Markdown/YAML/JSON documents; supports free text, exact phrases, hashtags, field selectors, ranking, snippets, pagination, and facets. Persian/Arabic character normalization is included. CI covers the query and API behavior. Relevance benchmarking, richer bilingual synonyms, and source freshness tracking remain outstanding.
 
 Deliverables:
 - Exact, prefix, alias, and full-text search.
@@ -71,7 +71,7 @@ Exit gate:
 - Every result links to its canonical record and source evidence.
 
 ### Stage 3 — Interactive Encyclopedia and graph (v0.4)
-Status: IN PROGRESS. The first Persian RTL responsive explorer is implemented with search, taxonomy filters, tag chips, result cards, concept/document detail views, metadata, and graph relationship panels. A full interactive graph canvas, keyboard-focused navigation review, and visual browser QA remain outstanding.
+Status: IN PROGRESS. The first Persian RTL responsive explorer is implemented with search, 26-territory and domain filters, layer/type/status filters, tag chips, result cards, concept/document detail views, metadata, and graph relationship panels. CI verifies HTML structure, required controls, and JavaScript syntax. A full interactive graph canvas, end-to-end browser interaction tests, keyboard-focused navigation review, and visual browser QA remain outstanding.
 
 Deliverables:
 - Full concept reader with cross-links and revision history.
