@@ -36,16 +36,12 @@ def validate() -> list[str]:
         schema, format_checker=jsonschema.FormatChecker()
     )
 
+    domain_items = load_yaml_file(ROOT / "taxonomy" / "domains.yml").get("domains", [])
+    layer_items = load_yaml_file(ROOT / "taxonomy" / "layers.yml").get("layers", [])
     taxonomy = {
-        "domains": set(load_yaml_file(ROOT / "taxonomy" / "domains.yml").get("domains", [])),
-        "layers": set(load_yaml_file(ROOT / "taxonomy" / "layers.yml").get("layers", [])),
+        "domains": {item["id"] for item in domain_items if isinstance(item, dict) and "id" in item},
+        "layers": {item["id"] for item in layer_items if isinstance(item, dict) and "id" in item},
         "knowledge_types": set(load_yaml_file(ROOT / "taxonomy" / "knowledge-types.yml").get("knowledge_types", [])),
-    }
-    taxonomy["domains"] = {
-        item["id"] for item in taxonomy["domains"] if isinstance(item, dict) and "id" in item
-    }
-    taxonomy["layers"] = {
-        item["id"] for item in taxonomy["layers"] if isinstance(item, dict) and "id" in item
     }
 
     for path in sorted(CONCEPT_DIR.glob("*.md")):
