@@ -167,3 +167,10 @@ if WORKSPACE_PAGE.exists():
     @app.get("/workspace", include_in_schema=False)
     def workspace_home():
         return FileResponse(WORKSPACE_PAGE)
+
+@app.get("/api/v1/workspace/backups/{filename}", tags=["workspace"])
+def workspace_download_backup(filename: str):
+    target = (workspace.backup_root / filename).resolve()
+    if target.parent != workspace.backup_root.resolve() or target.suffix != ".zip" or not target.is_file():
+        raise HTTPException(status_code=404, detail="Backup not found")
+    return FileResponse(target, filename=target.name, media_type="application/zip")
