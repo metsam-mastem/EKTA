@@ -48,3 +48,9 @@
 - Added allowlisted ZIP backup export and safe restore preview staging; no automatic overwrite.
 - Added a Markdown documentation center.
 - Added API tests and user/security documentation for the new workflows.
+
+### Workspace verification hardening
+
+- Enforced the canonical `EKTA-CON-######` draft ID format and blocked collisions with existing canonical concept IDs.
+- Added metadata bounds, malformed YAML rejection, restore traversal regression coverage, and workspace UI JavaScript/structure validation.
+- Replaced HTML string interpolation in documentation listing and backup-link rendering with DOM text nodes.
