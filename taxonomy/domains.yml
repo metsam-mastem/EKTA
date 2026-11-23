@@ -1,0 +1,24 @@
+schema_version: 1
+domains:
+  - {id: software-engineering, label: Software Engineering, status: proposed}
+  - {id: computer-engineering, label: Computer Engineering and Architecture, status: proposed}
+  - {id: operating-systems-platforms, label: Operating Systems and Platform Engineering, status: proposed}
+  - {id: data-engineering, label: Data Engineering and Database Systems, status: proposed}
+  - {id: networking-telecommunications, label: Networking and Telecommunications, status: proposed}
+  - {id: electrical-electronic, label: Electrical and Electronic Engineering, status: proposed}
+  - {id: semiconductor-ic, label: Semiconductor and Integrated Circuit Engineering, status: proposed}
+  - {id: embedded-firmware, label: Embedded Systems and Firmware, status: proposed}
+  - {id: mechanical-engineering, label: Mechanical Engineering, status: proposed}
+  - {id: materials-manufacturing, label: Materials Science and Manufacturing, status: proposed}
+  - {id: systems-engineering, label: Systems Engineering and Systems Architecture, status: proposed}
+  - {id: control-automation, label: Control Engineering and Automation, status: proposed}
+  - {id: robotics-mechatronics, label: Robotics and Mechatronics, status: proposed}
+  - {id: ai-ml-systems, label: AI and Machine Learning Systems, status: proposed}
+  - {id: security-privacy, label: Cybersecurity and Privacy Engineering, status: proposed}
+  - {id: safety-reliability, label: Safety, Reliability, and Resilience Engineering, status: proposed}
+  - {id: human-factors-ux, label: Human Factors, UX, UI, and HMI, status: proposed}
+  - {id: devops-sre, label: DevOps, SRE, and Operations Engineering, status: proposed}
+  - {id: product-project-engineering, label: Product and Project Engineering, status: proposed}
+  - {id: energy-power, label: Energy and Power Systems, status: proposed}
+  - {id: aerospace-automotive-transport, label: Aerospace, Automotive, and Transportation Systems, status: proposed}
+  - {id: media-graphics-simulation, label: Media, Graphics, Simulation, and Game Engineering, status: proposed}
