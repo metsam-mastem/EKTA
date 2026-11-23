@@ -33,7 +33,7 @@ EKTA/
 ├── scripts/               # local launch scripts
 ├── templates/             # canonical record templates
 ├── tools/                 # validators and graph builder
-├── tests/                 # runtime, API and repository tests
+├── tests/                 # runtime, workspace API and repository tests
 └── .github/workflows/     # CI gates
 ```
 
