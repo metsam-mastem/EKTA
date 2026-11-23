@@ -30,6 +30,36 @@ def overview() -> dict:
     return repository.overview()
 
 
+@app.get("/api/v1/search", tags=["search"])
+def search(
+    q: str = Query(default="", max_length=500),
+    domain: str | None = None,
+    layer: str | None = None,
+    knowledge_type: str | None = None,
+    status: str | None = None,
+    kind: str | None = None,
+    limit: int = Query(default=30, ge=1, le=100),
+    offset: int = Query(default=0, ge=0),
+) -> dict:
+    return repository.search(
+        q, domain=domain, layer=layer, knowledge_type=knowledge_type,
+        status=status, kind=kind, limit=limit, offset=offset,
+    )
+
+
+@app.get("/api/v1/facets", tags=["search"])
+def facets() -> dict:
+    return repository.facets()
+
+
+@app.get("/api/v1/documents/{document_id}", tags=["documents"])
+def document(document_id: str) -> dict:
+    item = repository.get_document(document_id)
+    if item is None:
+        raise HTTPException(status_code=404, detail="Document not found")
+    return item
+
+
 @app.get("/api/v1/concepts", tags=["concepts"])
 def concepts(
     q: str | None = Query(default=None, max_length=200),
