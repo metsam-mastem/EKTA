@@ -19,7 +19,7 @@ jobs:
         run: python -m pip install -e ".[dev]"
       - name: Validate documentation
         run: python tools/validate_docs.py
-      - name: Run unit and runtime tests
+      - name: Validate UPDS document records\n        run: python tools/validate_upds.py\n      - name: Run unit and runtime tests
         run: python -m unittest discover -s tests -v
       - name: Validate explorer HTML and JavaScript
         run: python tools/validate_frontend.py
