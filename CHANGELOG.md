@@ -26,3 +26,13 @@
 - Established the EKTA charter, governance, taxonomy, knowledge architecture, lifecycle, source registers, templates, and master handoff.
 - Approved the charter and product vision on 2026-11-23.
 - License remains undecided; no downstream reuse permission should be inferred from repository visibility.
+
+
+## 2026-11-23 — UPDS integration proposal
+
+- Added a proposed federated integration architecture for UPDS within EKTA.
+- Added the universal project document-family catalog, crosswalk, memory continuity protocol, document template standard and phased roadmap.
+- Added repository-native project state, decision, work, issue, constraint, evidence and session handoff registers.
+- Added integration links to README, master handoff, context continuity and repository map.
+- No existing taxonomy, IDs, schemas, runtime code or content intentionally removed.
+- Runtime integration and automated validation remain NOT RUN / NOT IMPLEMENTED.
