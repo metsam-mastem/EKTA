@@ -72,7 +72,8 @@ EKTA سه محور طبقه‌بندی مستقل دارد؛ در کنار آن�
 
 | محور | پرسش | نمونه |
 |---|---|---|
-| **Engineering Territory** | در کدام قلمرو کلان و مسیر ناوبری قرار داریم؟ | ۲۶ قلمرو مصوب در `taxonomy/territories.yml` |\n| **Engineering Domain** | کدام حوزه تخصصی دانش را توصیف می‌کند؟ | Software، Hardware، Systems، Robotics؛ ۲۵ شناسه عملیاتی در `taxonomy/domains.yml` |
+| **Engineering Territory** | در کدام قلمرو کلان و مسیر ناوبری قرار داریم؟ | ۲۶ قلمرو مصوب در `taxonomy/territories.yml` |
+| **Engineering Domain** | کدام حوزه تخصصی دانش را توصیف می‌کند؟ | Software، Hardware، Systems، Robotics؛ ۲۵ شناسه عملیاتی در `taxonomy/domains.yml` |
 | **Engineering Layer** | مفهوم در کدام لایه سیستم قرار دارد؟ | Physical، Firmware، OS، Platform، Application، Workflow |
 | **Knowledge / Technique Type** | با چه نوع دانشی روبه‌رو هستیم؟ | Concept، Architecture، Mechanism، Algorithm، Pattern، Method، Standard، Tool |
 
@@ -349,7 +350,9 @@ The primary implementation strategy is Git-native and schema-driven first, follo
 
 برای استفاده از EKTA نیازی به مشاهده مکالمه‌های قبلی یا استفاده از ChatGPT نیست. مخزن GitHub منبع حقیقت پروژه است.
 
-**از اینجا شروع کنید:** [فهرست مستندات کاربر](docs/USER_DOCUMENTATION_INDEX.md)  \n**میزکار عملیاتی:** [راه‌اندازی، خودآزمایی، ورود دانش، پیش‌نویس، پشتیبان و مستندات](http://127.0.0.1:8000/workspace)  \n**راهنمای میزکار:** [WORKSPACE_GUIDE.md](docs/WORKSPACE_GUIDE.md) و [مدل امنیت و مرحله‌بندی](docs/SECURITY_AND_STAGING_MODEL.md)
+**از اینجا شروع کنید:** [فهرست مستندات کاربر](docs/USER_DOCUMENTATION_INDEX.md)  
+**میزکار عملیاتی:** [راه‌اندازی، خودآزمایی، ورود دانش، پیش‌نویس، پشتیبان و مستندات](http://127.0.0.1:8000/workspace)  
+**راهنمای میزکار:** [WORKSPACE_GUIDE.md](docs/WORKSPACE_GUIDE.md) و [مدل امنیت و مرحله‌بندی](docs/SECURITY_AND_STAGING_MODEL.md)
 
 - [معرفی پروژه: چیستی، چرایی، معماری و کاربردها](docs/PROJECT_OVERVIEW.md)
 - [User Setup — آماده‌سازی پیش از نصب](docs/USER_SETUP.md)
@@ -368,7 +371,11 @@ The primary implementation strategy is Git-native and schema-driven first, follo
 
 **محدودیت نسخه 0.2:** رابط فعلی read-only است. آپلود فایل، ویرایش مستقیم شناسنامه، جست‌وجوی معنایی/AI، حساب کاربری، بسته Android و استقرار عمومی در این نسخه وجود ندارد. برای جزئیات به User Manual و Input Guide مراجعه کنید.
 
-## Operational Workspace (v0.4)\n\nThe local workspace at `/workspace` provides first-run onboarding, repository self-test, Markdown/YAML/JSON intake staging, Git-separated concept drafts, ZIP backup export, safe restore preview staging, and a Markdown documentation center. It does not write canonical knowledge or automatically restore files. See [Workspace Guide](docs/WORKSPACE_GUIDE.md).\n\n## Search and Explore Workbench (v0.2)
+## Operational Workspace (v0.4)
+
+The local workspace at `/workspace` provides first-run onboarding, repository self-test, Markdown/YAML/JSON intake staging, Git-separated concept drafts, ZIP backup export, safe restore preview staging, and a Markdown documentation center. It does not write canonical knowledge or automatically restore files. See [Workspace Guide](docs/WORKSPACE_GUIDE.md).
+
+## Search and Explore Workbench (v0.2)
 
 The local runtime now provides a unified discovery surface across concept identity records and indexed project documents. The browser experience is Persian-first and right-to-left, while IDs, taxonomy keys, source paths, and technical terms retain their original forms.
 
