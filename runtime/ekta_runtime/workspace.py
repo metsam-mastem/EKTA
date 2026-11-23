@@ -96,12 +96,18 @@ class Workspace:
         parsed: Any = None
         validation = "متن دریافت شد؛ هنوز وارد دانشنامه canonical نشده است."
         if suffix in {".yaml", ".yml"}:
-            parsed = yaml.safe_load(content)
+            try:
+                parsed = yaml.safe_load(content)
+            except yaml.YAMLError as exc:
+                raise WorkspaceError(f"YAML نامعتبر است: {exc}") from exc
             if parsed is not None and not isinstance(parsed, (dict, list)):
                 raise WorkspaceError("ساختار YAML باید mapping یا list باشد")
             validation = "YAML با safe_load قابل‌خواندن است."
         elif suffix == ".json":
-            parsed = json.loads(content)
+            try:
+                parsed = json.loads(content)
+            except json.JSONDecodeError as exc:
+                raise WorkspaceError(f"JSON نامعتبر است: {exc}") from exc
             if not isinstance(parsed, (dict, list)):
                 raise WorkspaceError("ساختار JSON باید object یا array باشد")
             validation = "JSON معتبر است."
@@ -144,7 +150,7 @@ class Workspace:
 
     def create_backup(self) -> dict[str, Any]:
         self._ensure_dirs()
-        timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
         target = self.backup_root / f"ekta-backup-{timestamp}.zip"
         included = []
         with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED) as archive:
