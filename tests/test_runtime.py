@@ -52,6 +52,7 @@ class RuntimeApiTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.client = TestClient(app)
+        cls.atlas = AtlasRepository(ROOT)
 
     def test_health_endpoint(self):
         response = self.client.get("/health")
@@ -76,6 +77,22 @@ class RuntimeApiTests(unittest.TestCase):
         graph = self.client.get("/api/v1/graph")
         self.assertEqual(graph.status_code, 200)
         self.assertGreater(graph.json()["summary"]["edge_count"], 0)
+
+    def test_unified_search_and_facets_endpoints(self):
+        result = self.client.get("/api/v1/search", params={"q": "#runtime"})
+        self.assertEqual(result.status_code, 200)
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in result.json()["results"]))
+        facets = self.client.get("/api/v1/facets")
+        self.assertEqual(facets.status_code, 200)
+        self.assertIn("tags", facets.json())
+
+    def test_document_detail_endpoint_is_id_scoped(self):
+        search = self.client.get("/api/v1/search", params={"q": "knowledge lifecycle kind:document"}).json()
+        item = next(item for item in search["results"] if item["source_file"] == "docs/END_TO_END_LIFECYCLE.md")
+        detail = self.client.get("/api/v1/documents/" + item["id"])
+        self.assertEqual(detail.status_code, 200)
+        self.assertIn("Traceability chain", detail.json()["content"])
+        self.assertEqual(self.client.get("/api/v1/documents/EKTA-DOC-invalid").status_code, 404)
 
     def test_browser_explorer_is_served(self):
         response = self.client.get("/")
