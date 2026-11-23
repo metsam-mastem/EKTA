@@ -2,7 +2,7 @@ name: EKTA validation
 
 on:
   push:
-    branches: [main, "runtime/**"]
+    branches: [main, "runtime/**", "workbench/**", "knowledge/**", "taxonomy/**"]
   pull_request:
   workflow_dispatch:
 
