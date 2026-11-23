@@ -9,14 +9,16 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from .repository import AtlasRepository
+from .workspace import Workspace, WorkspaceError
 
 DEFAULT_ROOT = Path(os.environ.get("EKTA_ROOT", Path(__file__).resolve().parents[2]))
 repository = AtlasRepository(DEFAULT_ROOT)
+workspace = Workspace(DEFAULT_ROOT)
 
 app = FastAPI(
     title="EKTA Knowledge Runtime",
     version="0.2.0",
-    description="Search and read-only API over EKTA's canonical Git-native knowledge base.",
+    description="Local-first EKTA workbench with safe staged workspace operations.",
 )
 
 
@@ -106,3 +108,62 @@ if WEB_ROOT.exists():
     @app.get("/", include_in_schema=False)
     def home():
         return FileResponse(WEB_ROOT / "index.html")
+
+
+@app.get("/api/v1/workspace/self-test", tags=["workspace"])
+def workspace_self_test() -> dict:
+    return workspace.self_test()
+
+
+@app.get("/api/v1/workspace/docs", tags=["workspace"])
+def workspace_docs() -> dict:
+    return workspace.documentation_index()
+
+
+@app.get("/api/v1/workspace/docs/{document_path:path}", tags=["workspace"])
+def workspace_doc_content(document_path: str) -> dict:
+    target = (DEFAULT_ROOT / document_path).resolve()
+    docs_root = (DEFAULT_ROOT / "docs").resolve()
+    if docs_root not in target.parents or target.suffix.lower() != ".md" or not target.is_file():
+        raise HTTPException(status_code=404, detail="Documentation file not found")
+    return {"path": target.relative_to(DEFAULT_ROOT).as_posix(), "content": target.read_text(encoding="utf-8")}
+
+
+@app.post("/api/v1/workspace/import/preview", tags=["workspace"])
+def workspace_import_preview(payload: dict) -> dict:
+    try:
+        return workspace.stage_import(str(payload.get("filename", "")), str(payload.get("content", "")))
+    except OverflowError as exc:
+        raise HTTPException(status_code=413, detail=str(exc)) from exc
+    except (WorkspaceError, ValueError) as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/api/v1/workspace/drafts", status_code=201, tags=["workspace"])
+def workspace_save_draft(payload: dict) -> dict:
+    try:
+        return workspace.save_draft(payload)
+    except WorkspaceError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/api/v1/workspace/backup", tags=["workspace"])
+def workspace_backup() -> dict:
+    return workspace.create_backup()
+
+
+@app.post("/api/v1/workspace/restore/preview", tags=["workspace"])
+def workspace_restore_preview(payload: dict) -> dict:
+    try:
+        return workspace.stage_restore(str(payload.get("filename", "")), str(payload.get("archive_base64", "")))
+    except OverflowError as exc:
+        raise HTTPException(status_code=413, detail=str(exc)) from exc
+    except WorkspaceError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+WORKSPACE_PAGE = WEB_ROOT / "workspace.html"
+if WORKSPACE_PAGE.exists():
+    @app.get("/workspace", include_in_schema=False)
+    def workspace_home():
+        return FileResponse(WORKSPACE_PAGE)
