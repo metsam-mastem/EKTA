@@ -1,6 +1,6 @@
 # EKTA Vision, Product Story, and Platform Evolution
 
-**Status:** Proposed product direction; not an approved implementation commitment.
+**Status:** APPROVED PRODUCT DIRECTION (2026-11-23). Approval confirms the vision and staged direction, not an implementation commitment.
 
 ## The story
 
