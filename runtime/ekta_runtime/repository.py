@@ -10,6 +10,7 @@ from .graph import build_graph
 from .search import (
     SearchPlan,
     _snippet,
+    WORD_PATTERN,
     load_documents,
     normalize,
     parse_query,
@@ -91,6 +92,13 @@ class AtlasRepository:
         ) if slug(value))
         tags.update(slug(self.domain_labels.get(value, value)) for value in domains)
         tags.update(slug(self.layer_labels.get(value, value)) for value in layers)
+        tag_sources = (record.canonical_name, *aliases, *domains, *layers, *types)
+        stop_tags = {"the", "and", "for", "with", "from", "into"}
+        for tag_source in tag_sources:
+            tags.update(
+                slug(word) for word in WORD_PATTERN.findall(tag_source)
+                if len(word) > 2 and slug(word) not in stop_tags
+            )
         territories = sorted({
             territory_id
             for domain_id in domains
