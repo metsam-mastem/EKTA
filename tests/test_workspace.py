@@ -1,6 +1,5 @@
 import base64
 import sys
-import tempfile
 import unittest
 import zipfile
 from io import BytesIO
