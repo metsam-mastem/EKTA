@@ -337,7 +337,7 @@ function renderDetail(){
   const item=state.selected;if(!item)return;
   const isConcept=item.kind==="concept";
   const title=isConcept?item.canonical_name:item.title;
-  const tags=[...(item.domains||[]),...(item.layers||[]),...(item.knowledge_types||[]),...(item.tags||[])];
+  const tags=[...(item.territory_labels||[]),...(item.domains||[]),...(item.layers||[]),...(item.knowledge_types||[]),...(item.tags||[])];
   const typeHtml='<span class="kind-pill">'+escapeHtml(kindLabel(item.kind))+'</span>'+
     (item.status?'<span class="status-pill">'+escapeHtml(item.status)+'</span>':'');
   const metaHtml=tags.slice(0,20).map(tag=>'<button type="button" class="meta-chip" data-tag="'+escapeHtml(String(tag).toLowerCase().replace(/\s+/g,"-"))+'">#'+escapeHtml(tag)+'</button>').join("");
