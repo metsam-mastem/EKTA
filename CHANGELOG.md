@@ -14,3 +14,12 @@
 ### Not yet implemented
 - Automated validators, graph builder, CI workflow, site, and interactive search.
 - Full encyclopedia and complete source corpus.
+
+
+## Unreleased — Runtime bootstrap
+
+- Added a local-first Python runtime package and FastAPI read-only endpoints.
+- Added canonical concept loading, taxonomy access, and typed relationship extraction.
+- Added a minimal browser concept explorer and CLI graph export.
+- Added runtime repository tests and expanded CI to install and verify the runtime.
+- Added runtime architecture and stack decision records.
