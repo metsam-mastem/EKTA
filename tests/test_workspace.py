@@ -44,6 +44,12 @@ class WorkspaceApiTests(unittest.TestCase):
         huge = self.client.post("/api/v1/workspace/import/preview", json={"filename":"x.md","content":"x"*(1024*1024+1)})
         self.assertEqual(huge.status_code, 413)
 
+    def test_import_rejects_malformed_yaml(self):
+        response = self.client.post("/api/v1/workspace/import/preview", json={
+            "filename":"broken.yaml","content":"key: [unterminated"
+        })
+        self.assertEqual(response.status_code, 400)
+
     def test_editor_saves_a_draft_outside_canonical_encyclopedia(self):
         response = self.client.post("/api/v1/workspace/drafts", json={
             "id":"EKTA-CON-900001","canonical_name":"Draft concept","body":"## Definition\nDraft only"
@@ -51,6 +57,16 @@ class WorkspaceApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json()["status"], "draft")
         self.assertFalse((ROOT / "encyclopedia" / "concepts" / "EKTA-CON-900001.md").exists())
+
+    def test_editor_rejects_noncanonical_id_and_existing_canonical_id(self):
+        invalid = self.client.post("/api/v1/workspace/drafts", json={
+            "id":"NEW-CONCEPT","canonical_name":"Invalid","body":"Draft"
+        })
+        self.assertEqual(invalid.status_code, 400)
+        duplicate = self.client.post("/api/v1/workspace/drafts", json={
+            "id":"EKTA-CON-000001","canonical_name":"Runtime duplicate","body":"Draft"
+        })
+        self.assertEqual(duplicate.status_code, 409)
 
     def test_backup_is_created_and_restore_only_stages_archive(self):
         backup = self.client.post("/api/v1/workspace/backup")
@@ -65,6 +81,15 @@ class WorkspaceApiTests(unittest.TestCase):
         self.assertEqual(restore.status_code, 200)
         self.assertEqual(restore.json()["status"], "staged")
         self.assertNotEqual((ROOT / "README.md").read_text(encoding="utf-8"), "# safe")
+
+    def test_restore_rejects_path_traversal_archive(self):
+        archive = BytesIO()
+        with zipfile.ZipFile(archive, "w") as zf:
+            zf.writestr("EKTA/../../README.md", "# unsafe")
+        response = self.client.post("/api/v1/workspace/restore/preview", json={
+            "filename":"unsafe.zip","archive_base64":base64.b64encode(archive.getvalue()).decode()
+        })
+        self.assertEqual(response.status_code, 400)
 
 
 if __name__ == "__main__":
