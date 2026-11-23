@@ -26,16 +26,21 @@
 ## Current repository handoff — 2026-11-23
 
 - Canonical repository: https://github.com/metsam-mastem/EKTA
-- Default branch before this documentation change: main
-- Baseline main commit: d66d8b13b8d24200af91f07c51b2df01ec131bcd
-- Documentation work branch: docs/user-independence-v0.3
+- Default branch: main
+- Documentation branch: docs/user-independence-v0.3
+- Documentation PR: #4, merged
+- Documentation merge commit: 82c2e8a58f7c8449a440822183d30a8fdf81a73f
+- Baseline before documentation work: d66d8b13b8d24200af91f07c51b2df01ec131bcd
+- Current repository handoff must be refreshed from the live main HEAD before any new implementation.
 - Scope: Persian-first user documentation, setup, installation, manual, input/ingestion boundaries, recovery, troubleshooting, and AI/developer onboarding.
 - Product baseline: Runtime 0.2; read-only local web application.
 - Runtime facts: Python 3.11+, FastAPI/Uvicorn, PyYAML, JSON Schema; local default 127.0.0.1:8000; selected Markdown/YAML/JSON indexing; deterministic lexical search.
 - Known limitations: no UI upload/edit, semantic/AI search, auth/multi-user, public deployment hardening, Android package, or full Decision/Execution Labs.
 - License remains undecided.
 - Graph coverage remains incomplete; never present graph export as a complete ontology.
-- Validation must be run on the final documentation branch and after merge on main.
+- PR #3 (integration/upds-documentation-architecture) is a separate open proposal. Its integration decision is PROPOSED pending explicit owner review; do not treat UPDS integration as approved or merged based only on the branch.
+- Validation passed on documentation PR head d1463eefe9e7ceb17c8fdf39b862a2a10c04e12c: docs validation, 29 tests, frontend structural/JavaScript validation, and graph export. Post-merge CI on main is tracked separately.
+- For a chat-independent continuation, this file plus README, Project Overview, Implementation Plan, Roadmap, Changelog, and current GitHub PR/Actions state are sufficient starting points.
 
 ## Session handoff template
 ### Objective
