@@ -119,11 +119,18 @@ def load_documents(root: Path) -> list[DocumentRecord]:
         for part in relative.parts[:-1]:
             if part not in {".", ""}:
                 tag_values.add(slug(part))
+        tag_sources = [path.stem, *headings[:12]]
         tag_values.add(slug(path.stem))
         for heading in headings[:12]:
             heading_slug = slug(heading)
             if heading_slug:
                 tag_values.add(heading_slug)
+        stop_tags = {"ekta", "the", "and", "for", "with", "from", "into", "overview"}
+        for tag_source in tag_sources:
+            tag_values.update(
+                slug(word) for word in WORD_PATTERN.findall(tag_source)
+                if len(word) > 2 and slug(word) not in stop_tags
+            )
         for line in content.splitlines():
             if line.lstrip().startswith("#"):
                 continue
