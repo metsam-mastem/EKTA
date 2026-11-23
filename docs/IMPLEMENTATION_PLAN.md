@@ -46,7 +46,7 @@ Exit gate:
 - Local setup instructions work on Windows and Linux/macOS.
 - A new user can follow the documentation without relying on chat history; usability onboarding still requires a separate user test.
 
-### Stage 1 — Knowledge integrity (v0.2)
+### Operational Workspace slice — v0.4\nStatus: IMPLEMENTED IN PR #5; CI validation pending.\n\nDeliverables in this slice:\n- First-run onboarding flow and self-test API/UI.\n- Markdown/YAML/JSON import staging with size limits and safe parsing.\n- Draft editor storing proposed concept records outside canonical encyclopedia.\n- ZIP backup export over an explicit allowlist and restore preview staging with traversal/symlink checks.\n- Markdown documentation center with scoped reads under docs/.\n\nSafety boundary: no direct canonical writes, Git operations, archive extraction, authentication, or network exposure hardening. See `docs/WORKSPACE_GUIDE.md` and `docs/SECURITY_AND_STAGING_MODEL.md`.\n\n### Stage 1 — Knowledge integrity (v0.2)
 Status: IN PROGRESS. The canonical 26-territory navigation registry and 25 operational domain tags are published and CI-validated, with explicit territory-to-domain mappings. The concept JSON Schema, duplicate-ID check, taxonomy and territory mapping validation, and local link validation are active. Remaining work includes broader record schemas, a canonical ID registry, canonical relationship target IDs, and graph integrity enforcement.
 
 Deliverables:
@@ -155,6 +155,6 @@ Do not add a graph database, cloud database, authentication, multi-user editing,
 
 - The taxonomy model now distinguishes 26 approved top-level engineering territories from 25 operational domain tags. Some territory mappings or content areas remain intentionally empty until supported by canonical records.
 - Current graph extraction finds 29 relationship statements in seven concept records, but only two currently resolve to known concepts. The unresolved and invalid-predicate edges are intentionally exposed.
-- The runtime remains read-only and does not yet implement full editing, Decision Lab, Execution Lab, or all four workspaces.
+- Canonical knowledge remains read-only through the runtime. Workspace 0.4 adds local import staging and draft files outside canonical paths; promotion and direct canonical editing are not implemented. Decision Lab, Execution Lab, and all four complete workspaces remain incomplete.
 - License selection remains undecided and is a v1.0 release gate.
 - A live hosted preview has not been provisioned; the current evidence is GitHub Actions CI and automated API tests.
