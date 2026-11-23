@@ -38,11 +38,27 @@ def validate() -> list[str]:
 
     domain_items = load_yaml_file(ROOT / "taxonomy" / "domains.yml").get("domains", [])
     layer_items = load_yaml_file(ROOT / "taxonomy" / "layers.yml").get("layers", [])
+    territory_items = load_yaml_file(ROOT / "taxonomy" / "territories.yml").get("territories", [])
     taxonomy = {
         "domains": {item["id"] for item in domain_items if isinstance(item, dict) and "id" in item},
         "layers": {item["id"] for item in layer_items if isinstance(item, dict) and "id" in item},
         "knowledge_types": set(load_yaml_file(ROOT / "taxonomy" / "knowledge-types.yml").get("knowledge_types", [])),
     }
+
+    if len(territory_items) != 26:
+        errors.append(f"taxonomy/territories.yml: expected exactly 26 approved territories, found {len(territory_items)}")
+    seen_territories: set[str] = set()
+    for territory in territory_items:
+        if not isinstance(territory, dict) or not territory.get("id"):
+            errors.append("taxonomy/territories.yml: each territory must have a stable id")
+            continue
+        territory_id = territory["id"]
+        if territory_id in seen_territories:
+            errors.append(f"taxonomy/territories.yml: duplicate territory ID {territory_id}")
+        seen_territories.add(territory_id)
+        for domain_id in territory.get("domain_ids", []):
+            if domain_id not in taxonomy["domains"]:
+                errors.append(f"taxonomy/territories.yml: {territory_id} references unknown domain {domain_id}")
 
     for path in sorted(CONCEPT_DIR.glob("*.md")):
         text = path.read_text(encoding="utf-8")
