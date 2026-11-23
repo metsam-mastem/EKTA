@@ -26,6 +26,7 @@ class AtlasRepository:
         self.documents_by_id = {document.id: document for document in self.documents}
 
         self._domains = load_yaml_file(self.root / "taxonomy" / "domains.yml")
+        self._territories = load_yaml_file(self.root / "taxonomy" / "territories.yml")
         self._layers = load_yaml_file(self.root / "taxonomy" / "layers.yml")
         self._knowledge_types = load_yaml_file(self.root / "taxonomy" / "knowledge-types.yml")
         relation_doc = load_yaml_file(self.root / "taxonomy" / "relations.yml")
@@ -42,6 +43,17 @@ class AtlasRepository:
             for item in self._layers.get("layers", [])
             if isinstance(item, dict) and item.get("id")
         }
+        self.territory_labels = {
+            item["id"]: item.get("label", item["id"])
+            for item in self._territories.get("territories", [])
+            if isinstance(item, dict) and item.get("id")
+        }
+        self.domain_to_territories: dict[str, set[str]] = {}
+        for territory in self._territories.get("territories", []):
+            if not isinstance(territory, dict):
+                continue
+            for domain_id in territory.get("domain_ids", []):
+                self.domain_to_territories.setdefault(domain_id, set()).add(territory["id"])
 
     def list_concepts(
         self,
@@ -79,6 +91,13 @@ class AtlasRepository:
         ) if slug(value))
         tags.update(slug(self.domain_labels.get(value, value)) for value in domains)
         tags.update(slug(self.layer_labels.get(value, value)) for value in layers)
+        territories = sorted({
+            territory_id
+            for domain_id in domains
+            for territory_id in self.domain_to_territories.get(domain_id, set())
+        })
+        territory_labels = [self.territory_labels.get(value, value) for value in territories]
+        tags.update(slug(value) for value in (*territories, *territory_labels))
         headings = [
             line.lstrip("#").strip()
             for line in record.body.splitlines()
@@ -95,6 +114,8 @@ class AtlasRepository:
             "domain_labels": [self.domain_labels.get(value, value) for value in domains],
             "layers": layers,
             "layer_labels": [self.layer_labels.get(value, value) for value in layers],
+            "territories": territories,
+            "territory_labels": territory_labels,
             "knowledge_types": types,
             "aliases": aliases,
             "tags": sorted(tags),
@@ -150,6 +171,8 @@ class AtlasRepository:
             candidates = item.get("domains", []) + item.get("domain_labels", [])
         elif field == "layer":
             candidates = item.get("layers", []) + item.get("layer_labels", [])
+        elif field == "territory":
+            candidates = item.get("territories", []) + item.get("territory_labels", [])
         elif field == "type":
             candidates = item.get("knowledge_types", [])
         elif field == "status":
@@ -194,6 +217,7 @@ class AtlasRepository:
         knowledge_type: str | None = None,
         status: str | None = None,
         kind: str | None = None,
+        territory: str | None = None,
         limit: int = 30,
         offset: int = 0,
     ) -> dict[str, Any]:
@@ -201,7 +225,7 @@ class AtlasRepository:
         extra_filters = {
             key: value for key, value in {
                 "domain": domain, "layer": layer, "type": knowledge_type,
-                "status": status, "kind": kind,
+                "status": status, "kind": kind, "territory": territory,
             }.items() if value
         }
         all_filters: dict[str, tuple[str, ...]] = dict(plan.filters)
@@ -327,6 +351,12 @@ class AtlasRepository:
                 for item in self._layers.get("layers", [])
                 if isinstance(item, dict) and item.get("id")
             ],
+            "territories": [
+                {"id": item["id"], "label": item.get("label", item["id"]),
+                 "count": sum(domain_counts[domain_id] for domain_id in item.get("domain_ids", []))}
+                for item in self._territories.get("territories", [])
+                if isinstance(item, dict) and item.get("id")
+            ],
             "knowledge_types": [
                 {"id": value, "label": value.replace("-", " ").title(), "count": type_counts[value]}
                 for value in self._knowledge_types.get("knowledge_types", [])
@@ -354,6 +384,11 @@ class AtlasRepository:
             "status": record.status,
             "revision": record.revision,
             "domains": list(record.domains),
+            "territories": sorted({
+                territory_id
+                for domain_id in record.domains
+                for territory_id in getattr(self, "domain_to_territories", {}).get(domain_id, set())
+            }),
             "layers": list(record.layers),
             "knowledge_types": list(record.knowledge_types),
             "aliases": list(record.aliases),
@@ -368,6 +403,7 @@ class AtlasRepository:
     def taxonomy(self) -> dict[str, Any]:
         return {
             "domains": self._domains,
+            "territories": self._territories,
             "layers": self._layers,
             "knowledge_types": self._knowledge_types,
             "relations": sorted(self.relations),
@@ -383,6 +419,7 @@ class AtlasRepository:
             "document_count": len(self.documents),
             "searchable_item_count": len(self.records) + len(self.documents),
             "domain_count": len(self._domains.get("domains", [])),
+            "territory_count": len(self._territories.get("territories", [])),
             "layer_count": len(self._layers.get("layers", [])),
             "relation_vocabulary_count": len(self.relations),
             "graph": graph_summary,
