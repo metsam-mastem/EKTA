@@ -1,0 +1,32 @@
+schema_version: 1
+knowledge_types:
+  - concept
+  - principle
+  - architecture
+  - component
+  - interface
+  - pattern
+  - anti-pattern
+  - technique
+  - method
+  - algorithm
+  - data-structure
+  - process
+  - workflow
+  - standard
+  - specification
+  - tool
+  - framework
+  - platform
+  - metric
+  - model
+  - failure-mode
+  - hazard
+  - research
+  - evidence
+  - decision
+  - test
+  - playbook
+  - checklist
+  - implementation
+  - example
