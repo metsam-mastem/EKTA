@@ -1,30 +1,28 @@
 # Changelog
 
-## Unreleased — 2026-11-23
-### Added
-- Initial EKTA charter, guide, governance, repository map, and continuity protocol.
-- Three-axis taxonomy: engineering domain, layer, and knowledge type.
-- Knowledge architecture and typed relationship vocabulary.
-- Concept, source, decision, and status schemas.
-- End-to-end lifecycle, quality/evidence policy, and roadmap.
-- Research register, source evaluation, standards index, and open-source watchlist.
-- Universal engineering stack and cross-layer/domain/graph maps.
-- Reusable concept, technique, research, ADR, and playbook templates.
+## 0.2.0 — Search and Explore Workbench
 
-### Not yet implemented
-- Automated validators, graph builder, CI workflow, site, and interactive search.
-- Full encyclopedia and complete source corpus.
+- Added unified deterministic search across concept identities and selected repository Markdown/YAML/JSON records.
+- Added free-text AND matching, exact phrases, hashtags, field selectors, ranking, snippets, result pagination, and search facets.
+- Added scoped document IDs and a document-detail API; arbitrary filesystem-path reads are not exposed.
+- Added Persian/Arabic character normalization and a Persian-first RTL browser explorer.
+- Added identity-card detail tabs for content, relationships, and metadata; added territory/domain/layer/type/status/source filters.
+- Formalized the 26 top-level engineering territories separately from 25 operational domain tags.
+- Added a repeatable knowledge intake workflow, work-item template, and pull-request review checklist.
+- Extended CI validation to enforce 26 unique territories and valid territory-to-domain mappings.
+- Added search parser, territory filter, API, document detail, and RTL shell tests.
 
+## 0.1.0 — Runtime foundation
 
-## Unreleased — Runtime bootstrap
-
-- Added a local-first Python runtime package and FastAPI read-only endpoints.
+- Added Python local-first runtime package and FastAPI read-only endpoints.
 - Added canonical concept loading, taxonomy access, and typed relationship extraction.
-- Added a minimal browser concept explorer and CLI graph export.
-- Added runtime repository tests and expanded CI to install and verify the runtime.
-- Added runtime architecture and stack decision records.
+- Added the initial browser concept explorer and CLI graph export.
+- Added JSON Schema for canonical concept front matter and schema/taxonomy validation.
+- Added automated API, runtime, schema, and repository tests.
+- Added runtime architecture and implementation planning documents.
 
-- Added a machine-readable JSON Schema for canonical concept front matter.
-- Extended validation to check schema conformance and taxonomy identifiers.
-- Normalized YAML date values before schema validation and API serialization.
-- Expanded automated coverage to 17 tests, including API and schema checks.
+## Repository bootstrap — 2026-11-23
+
+- Established the EKTA charter, governance, taxonomy, knowledge architecture, lifecycle, source registers, templates, and master handoff.
+- Approved the charter and product vision on 2026-11-23.
+- License remains undecided; no downstream reuse permission should be inferred from repository visibility.
