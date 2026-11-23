@@ -365,3 +365,13 @@ See [Runtime Architecture](docs/RUNTIME_ARCHITECTURE.md) and
 It does not yet include editing, persistent user data, semantic search, authentication,
 AI integrations, offline packaging, or production deployment. Relationship quality
 also depends on the canonical concept records and is reported rather than hidden.
+
+
+### Run locally
+
+- Windows PowerShell: `powershell -ExecutionPolicy Bypass -File scripts/start.ps1`
+- Linux/macOS: `sh scripts/start.sh`
+
+Then open `http://127.0.0.1:8000`. API documentation is available at `/docs`.
+
+See the [staged implementation plan](docs/IMPLEMENTATION_PLAN.md) for the v1.0 definition of done and remaining delivery gates.
