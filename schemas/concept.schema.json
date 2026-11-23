@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/metsam-mastem/EKTA/blob/main/schemas/concept.schema.json",
+  "title": "EKTA Canonical Concept Record",
+  "description": "Validation contract for YAML front matter in canonical EKTA concept Markdown files.",
+  "type": "object",
+  "required": [
+    "id",
+    "canonical_name",
+    "status",
+    "revision",
+    "created",
+    "updated",
+    "domains",
+    "layers",
+    "knowledge_types",
+    "aliases",
+    "confidence",
+    "sources"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^EKTA-[A-Z]+-\\d{6}$"
+    },
+    "canonical_name": {
+      "type": "string",
+      "minLength": 2
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "PROPOSED",
+        "RESEARCHED",
+        "VERIFIED",
+        "IMPLEMENTED",
+        "VALIDATED",
+        "NOT_RUN",
+        "BLOCKED",
+        "DEPRECATED"
+      ]
+    },
+    "revision": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "created": {
+      "type": "string",
+      "format": "date"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "knowledge_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "required": [
+              "url"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "title": {
+                "type": "string"
+              },
+              "source_type": {
+                "type": "string"
+              },
+              "accessed": {
+                "type": "string",
+                "format": "date"
+              },
+              "license": {
+                "type": "string"
+              },
+              "relevance": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": true
+}
