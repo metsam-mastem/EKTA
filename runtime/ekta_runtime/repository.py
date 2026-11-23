@@ -330,12 +330,14 @@ class AtlasRepository:
         type_counts: Counter[str] = Counter()
         status_counts: Counter[str] = Counter()
         tag_counts: Counter[str] = Counter()
+        territory_counts: Counter[str] = Counter()
         for record in self.records:
             domain_counts.update(record.domains)
             layer_counts.update(record.layers)
             type_counts.update(record.knowledge_types)
             status_counts.update([record.status])
             field_data = self._concept_fields(record)
+            territory_counts.update(set(field_data["territories"]))
             tag_counts.update(set(field_data["tags"]))
         for document in self.documents:
             tag_counts.update(set(document.tags))
@@ -353,7 +355,7 @@ class AtlasRepository:
             ],
             "territories": [
                 {"id": item["id"], "label": item.get("label", item["id"]),
-                 "count": sum(domain_counts[domain_id] for domain_id in item.get("domain_ids", []))}
+                 "count": territory_counts[item["id"]]}
                 for item in self._territories.get("territories", [])
                 if isinstance(item, dict) and item.get("id")
             ],
@@ -376,8 +378,7 @@ class AtlasRepository:
         result["relationships"] = self.relationships_for(concept_id)
         return result
 
-    @staticmethod
-    def serialize_concept(record: Any, include_body: bool) -> dict[str, Any]:
+    def serialize_concept(self, record: Any, include_body: bool) -> dict[str, Any]:
         result = {
             "id": record.id,
             "canonical_name": record.canonical_name,
