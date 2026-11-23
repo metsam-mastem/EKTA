@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101820">
+  <title>EKTA · Engineering Knowledge Atlas</title>
+  <style>
+    :root{color-scheme:dark;--bg:#101820;--panel:#182631;--line:#2b414e;--text:#e8f0f4;--muted:#9eb0ba;--accent:#7dd3c7}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,sans-serif}
+    header{padding:28px max(22px,calc((100vw - 1180px)/2));border-bottom:1px solid var(--line);background:#14212b}
+    h1{margin:0;font-size:clamp(24px,4vw,38px)}header p{margin:6px 0 0;color:var(--muted)}
+    main{max-width:1180px;margin:24px auto;padding:0 18px}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+    .stat,.panel,.item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+    .stat strong{display:block;font-size:25px;color:var(--accent)}.stat span,.muted{color:var(--muted)}
+    .toolbar{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap}input,select{background:#0d171e;border:1px solid var(--line);color:var(--text);padding:11px 12px;border-radius:8px;min-width:180px}
+    #query{flex:1}.layout{display:grid;grid-template-columns:minmax(260px,1fr) minmax(0,1.5fr);gap:14px}
+    #results{display:grid;gap:8px;align-content:start}.item{cursor:pointer;text-align:left;color:inherit;width:100%}.item:hover,.item[aria-current=true]{border-color:var(--accent)}
+    .item b{display:block}.item small{color:var(--muted)}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#c5d7df}
+    @media(max-width:760px){.layout{grid-template-columns:1fr}.toolbar input{min-width:100%}}
+  </style>
+</head>
+<body>
+<header><h1>EKTA</h1><p>Engineering Knowledge &amp; Techniques Atlas · Local-first knowledge runtime</p></header>
+<main>
+  <section class="stats" id="stats" aria-live="polite"><div class="stat">Loading atlas…</div></section>
+  <div class="toolbar">
+    <input id="query" type="search" placeholder="Search concepts, aliases, definitions…" aria-label="Search concepts">
+    <select id="status" aria-label="Filter by status"><option value="">All statuses</option><option>PROPOSED</option><option>RESEARCHED</option><option>VERIFIED</option><option>IMPLEMENTED</option><option>VALIDATED</option></select>
+  </div>
+  <section class="layout">
+    <div><h2>Concepts</h2><div id="results" aria-live="polite"></div></div>
+    <article class="panel" id="detail"><h2>Knowledge record</h2><p class="muted">Select a concept to inspect its canonical record.</p></article>
+  </section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+async function loadOverview(){const d=await fetch('/api/v1/overview').then(r=>r.json());$('#stats').innerHTML=[
+['Concepts',d.concept_count],['Domains',d.domain_count],['Layers',d.layer_count],['Graph edges',d.graph.edge_count],['Resolved edges',d.graph.resolved_edge_count]
+].map(([k,v])=>'<div class="stat"><strong>'+v+'</strong><span>'+k+'</span></div>').join('')}
+async function loadConcepts(){const p=new URLSearchParams();if($('#query').value)p.set('q',$('#query').value);if($('#status').value)p.set('status',$('#status').value);
+const d=await fetch('/api/v1/concepts?'+p).then(r=>r.json());$('#results').innerHTML=d.items.map(x=>'<button class="item" data-id="'+x.id+'"><b>'+x.canonical_name+'</b><small>'+x.id+' · '+x.status+'</small></button>').join('')||'<p class="muted">No matching concepts.</p>';
+document.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>loadDetail(b.dataset.id)))}
+async function loadDetail(id){const d=await fetch('/api/v1/concepts/'+encodeURIComponent(id)).then(r=>r.json());$('#detail').innerHTML='<h2>'+d.canonical_name+'</h2><p class="muted">'+d.id+' · '+d.status+' · revision '+d.revision+'</p><p><b>Domains:</b> '+d.domains.join(', ')+'</p><p><b>Layers:</b> '+d.layers.join(', ')+'</p><pre></pre>';$('#detail pre').textContent=d.body}
+$('#query').addEventListener('input',loadConcepts);$('#status').addEventListener('change',loadConcepts);
+Promise.all([loadOverview(),loadConcepts()]).catch(e=>{$('#stats').textContent='Runtime error: '+e.message});
+</script>
+</body>
+</html>
