@@ -58,3 +58,18 @@ The repository has been bootstrapped with initial governance, architecture, taxo
 
 ## License
 No license has been selected. Public visibility does not itself grant reuse rights. See [LICENSE-STATUS.md](LICENSE-STATUS.md) and ADR-0001.
+
+
+## Charter approval — 2026-11-23
+
+**Decision: APPROVED.** The user explicitly approved the current EKTA project charter and product vision in the conversation on 2026-11-23. The charter's previous `Proposed baseline` status is superseded by this approval. This approval confirms the mission, scope, four workspaces, and knowledge-system direction; it does not select a license, implementation stack, hosting provider, or unapproved feature.
+
+See [the approved Project Charter](docs/PROJECT_CHARTER.md) and [the Vision and Product Story](docs/VISION_AND_PRODUCT_STORY.md).
+
+## Origin conversation archive
+
+The user requested a word-for-word archive of the three immediately preceding EKTA assistant messages, preserving original wording, order, headings, lists, diagrams, images, vectors, architecture maps, and folder trees.
+
+**Exact-transcript status: BLOCKED / SOURCE NOT RECOVERED.** The conversation context currently available for this repository operation contains summaries and selected structural facts, not the full literal text or original image/diagram assets. No reconstructed text is represented as a verbatim transcript, and no replacement diagram is represented as an original image. The exact messages and original assets must be supplied or recovered before an immutable archive can be created.
+
+The available structural outline is already represented by the project documentation: four workspaces, three taxonomy axes, the 21-territory initial map discussed in the conversation, concept-record architecture, and repository directory map. See [Master Taxonomy](taxonomy/MASTER_TAXONOMY.md), [Repository Map](docs/REPOSITORY_MAP.md), and [Knowledge Architecture](docs/KNOWLEDGE_ARCHITECTURE.md).
