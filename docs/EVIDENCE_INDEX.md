@@ -9,3 +9,5 @@
 | UPDS-EVD-0002 | Integration branch automated tests | NOT RUN | NOT_RUN |
 
 A file's existence is evidence of a repository change, not evidence that its behavior is correct.
+
+| UPDS-EVD-0003 | Full EKTA CI validation including UPDS schema validator and unit tests | [GitHub Actions run 45124354424](https://github.com/metsam-mastem/EKTA/actions/runs/45124354424), commit d7b1fed9e52ba10a792ab18bbfd7fae6dc44e781 | VERIFIED — SUCCESS |
