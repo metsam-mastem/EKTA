@@ -343,3 +343,35 @@ The primary implementation strategy is Git-native and schema-driven first, follo
 **Project status:** Charter and product vision approved on 2026-11-23  
 **License:** Undecided  
 **Current source of truth:** Git history and the files present in this repository
+
+
+## Runtime bootstrap
+
+EKTA now has an initial local-first runtime implementation on the feature branch
+[runtime/v0.1-foundation](https://github.com/metsam-mastem/EKTA/tree/runtime/v0.1-foundation).
+
+The v0.1 bootstrap adds:
+- a Python 3.11+ runtime package using FastAPI and safe YAML parsing;
+- read-only APIs for health, overview, concepts, taxonomy, and graph data;
+- relationship extraction with explicit unresolved/invalid edge states;
+- a lightweight browser-based concept explorer;
+- a CLI for atlas inventory and graph export;
+- automated runtime tests and CI installation/verification steps.
+
+See [Runtime Architecture](docs/RUNTIME_ARCHITECTURE.md) and
+[ADR-0002](decision-lab/ADR/ADR-0002-runtime-stack.md).
+
+**Current limitation:** this is a read-only bootstrap, not the completed EKTA workbench.
+It does not yet include editing, persistent user data, semantic search, authentication,
+AI integrations, offline packaging, or production deployment. Relationship quality
+also depends on the canonical concept records and is reported rather than hidden.
+
+
+### Run locally
+
+- Windows PowerShell: `powershell -ExecutionPolicy Bypass -File scripts/start.ps1`
+- Linux/macOS: `sh scripts/start.sh`
+
+Then open `http://127.0.0.1:8000`. API documentation is available at `/docs`.
+
+See the [staged implementation plan](docs/IMPLEMENTATION_PLAN.md) for the v1.0 definition of done and remaining delivery gates.

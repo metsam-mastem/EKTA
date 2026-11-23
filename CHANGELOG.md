@@ -14,3 +14,17 @@
 ### Not yet implemented
 - Automated validators, graph builder, CI workflow, site, and interactive search.
 - Full encyclopedia and complete source corpus.
+
+
+## Unreleased — Runtime bootstrap
+
+- Added a local-first Python runtime package and FastAPI read-only endpoints.
+- Added canonical concept loading, taxonomy access, and typed relationship extraction.
+- Added a minimal browser concept explorer and CLI graph export.
+- Added runtime repository tests and expanded CI to install and verify the runtime.
+- Added runtime architecture and stack decision records.
+
+- Added a machine-readable JSON Schema for canonical concept front matter.
+- Extended validation to check schema conformance and taxonomy identifiers.
+- Normalized YAML date values before schema validation and API serialization.
+- Expanded automated coverage to 17 tests, including API and schema checks.
