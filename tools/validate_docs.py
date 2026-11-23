@@ -8,8 +8,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CONCEPT_DIR = ROOT / "encyclopedia" / "concepts"
-ID_RE = re.compile(r"^id:\\s*(EKTA-[A-Z]+-\\d{6})\\s*$", re.M)
-STATUS_RE = re.compile(r"^status:\\s*(DRAFT|PROPOSED|RESEARCHED|VERIFIED|IMPLEMENTED|VALIDATED|DEPRECATED|BLOCKED|NOT_RUN)\\s*$", re.M)
+ID_RE = re.compile(r"^id:\s*(EKTA-[A-Z]+-\d{6})\s*$", re.M)
+STATUS_RE = re.compile(r"^status:\s*(DRAFT|PROPOSED|RESEARCHED|VERIFIED|IMPLEMENTED|VALIDATED|DEPRECATED|BLOCKED|NOT_RUN)\s*$", re.M)
 REQUIRED_HEADING_GROUPS = (
     ("## Definition",),
     ("## Scope", "## Scope and disambiguation"),
@@ -37,13 +37,13 @@ def validate() -> list[str]:
         for alternatives in REQUIRED_HEADING_GROUPS:
             if not any(heading in text for heading in alternatives):
                 errors.append(f"{path.relative_to(ROOT)}: missing one of {alternatives}")
-        if not text.startswith("---\\n"):
+        if not text.startswith("---\n"):
             errors.append(f"{path.relative_to(ROOT)}: missing YAML front matter")
     for path in ROOT.rglob("*.md"):
         if ".git" in path.parts:
             continue
         text = path.read_text(encoding="utf-8")
-        for target in re.findall(r"\\]\\(([^)]+)\\)", text):
+        for target in re.findall(r"\]\(([^)]+)\)", text):
             if target.startswith(("http://", "https://", "mailto:", "#")):
                 continue
             relative = target.split("#", 1)[0]
@@ -55,6 +55,6 @@ def validate() -> list[str]:
 if __name__ == "__main__":
     problems = validate()
     if problems:
-        print("\\n".join(f"ERROR: {p}" for p in problems))
+        print("\n".join(f"ERROR: {p}" for p in problems))
         sys.exit(1)
     print("PASS: EKTA documentation checks passed")
