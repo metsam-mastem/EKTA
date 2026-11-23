@@ -26,3 +26,16 @@
 - Established the EKTA charter, governance, taxonomy, knowledge architecture, lifecycle, source registers, templates, and master handoff.
 - Approved the charter and product vision on 2026-11-23.
 - License remains undecided; no downstream reuse permission should be inferred from repository visibility.
+
+## 0.3.0 — Independent user and continuity documentation
+
+- Added a central Persian-first user documentation index.
+- Added project overview covering what EKTA is, why it exists, product spaces, lifecycle, taxonomy, architecture, use cases, current features, and explicit non-features.
+- Added user setup and platform installation instructions for Windows, Linux, and macOS based on the actual launch scripts and dependencies.
+- Added a comprehensive workbench manual for search, hashtags, exact phrases, field selectors, filters, result cards, identity records, documents, and read-only API.
+- Added an input guide separating search query input from canonical knowledge contribution and documenting supported file types and ingestion limitations.
+- Added independence and recovery protocol so project context is preserved in Git rather than chat history.
+- Added troubleshooting and AI/developer onboarding procedures.
+- Updated README navigation, repository map, and context continuity handoff.
+- Documented that deleting a ChatGPT conversation does not delete GitHub repository content, while uncommitted chat-only decisions may be lost.
+- Explicitly documented current non-features: no UI upload/edit, semantic/AI search, authentication, multi-user cloud, Android package, or production public deployment.
