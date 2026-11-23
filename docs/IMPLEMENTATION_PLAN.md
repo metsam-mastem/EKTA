@@ -2,7 +2,7 @@
 
 **Product target:** EKTA Engineering Knowledge Workbench  
 **Planning baseline:** 2026-11-23  
-**Current implementation branch:** workbench/v0.2-explorer  
+**Current implementation branch:** docs/user-independence-v0.3  
 **Delivery principle:** ship verified vertical slices; never label a phase complete because its plan or documentation exists.
 
 ## Product definition of done — v1.0
@@ -22,7 +22,7 @@ EKTA v1.0 is a usable, local-first engineering knowledge workbench when a user c
 
 ## Delivery stages
 
-### Stage 0 — Runtime foundation (v0.1)
+### Stage 0 — Runtime foundation and independent onboarding (v0.1–v0.3)
 Status: VALIDATED and merged to main at commit 0d53a9131dad1aeca4c909493871b2ad7b41a225. Its final feature-branch CI passed 17 tests, schema/documentation validation, and graph export.
 
 Deliverables:
@@ -35,10 +35,16 @@ Deliverables:
 - Unit and API smoke tests.
 - CI validation and graph export.
 
+Additional documentation deliverables (v0.3):
+- Independent Persian-first user documentation index, project overview, setup, installation, manual, and input guide.
+- Chat-independence and recovery protocol, troubleshooting, and agent/developer onboarding.
+- README navigation and repository continuity updated to point to canonical user documentation.
+
 Exit gate:
 - All automated tests pass on the exact release candidate commit.
 - Runtime API and browser root are exercised by tests.
 - Local setup instructions work on Windows and Linux/macOS.
+- A new user can follow the documentation without relying on chat history; usability onboarding still requires a separate user test.
 
 ### Stage 1 — Knowledge integrity (v0.2)
 Status: IN PROGRESS. The canonical 26-territory navigation registry and 25 operational domain tags are published and CI-validated, with explicit territory-to-domain mappings. The concept JSON Schema, duplicate-ID check, taxonomy and territory mapping validation, and local link validation are active. Remaining work includes broader record schemas, a canonical ID registry, canonical relationship target IDs, and graph integrity enforcement.
