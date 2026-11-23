@@ -45,3 +45,17 @@ Mark missing facts UNKNOWN. Do not guess. Conflicts between sources and decision
 
 ## Memory hierarchy
 Approved repository artifacts > accepted ADRs > verified sources and test evidence > issues/PRs > conversation summaries > unverified suggestions.
+
+
+## UPDS integration resumption
+
+For work on the UPDS integration, read in this order:
+1. `docs/INTEGRATION/UPDS_INTEGRATION_INDEX.md`
+2. `docs/INTEGRATION/UPDS_EKTA_INTEGRATION_DECISION.md` (PROPOSED until owner approval)
+3. `docs/INTEGRATION/UPDS_EKTA_SYSTEM_ARCHITECTURE.md`
+4. `docs/INTEGRATION/UPDS_DOCUMENT_UNIVERSE.md`
+5. `docs/INTEGRATION/UPDS_EKTA_CROSSWALK.md`
+6. `docs/INTEGRATION/UPDS_PROJECT_MEMORY_AND_CHAT_INDEPENDENCE.md`
+7. `docs/PROJECT_STATE.md`, `docs/ACTIVE_WORK.md`, `docs/OPEN_ISSUES.md`, `docs/EVIDENCE_INDEX.md`, `docs/SESSION_HANDOFF.md`
+
+The integration branch is `integration/upds-documentation-architecture`. Its current work is documentation-only. Do not claim runtime integration or passing tests until the branch CI evidence exists.
