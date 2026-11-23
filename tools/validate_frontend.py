@@ -12,10 +12,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_HTML = ROOT / "runtime" / "web" / "index.html"
+WORKSPACE_HTML = ROOT / "runtime" / "web" / "workspace.html"
 REQUIRED_IDS = {
     "query", "search-button", "result-list", "detail-view",
     "territory-filter", "domain-filter", "layer-filter", "type-filter",
     "status-filter", "kind-filter", "tag-cloud", "load-more",
+}
+WORKSPACE_REQUIRED_IDS = {
+    "onboarding", "health", "import", "editor", "backup", "docs",
+    "start-check", "run-health", "import-file", "import-content", "stage-import",
+    "draft-id", "draft-name", "draft-domains", "draft-layers", "draft-body",
+    "save-draft", "make-backup", "backup-result", "restore-file",
+    "stage-restore", "docs-list", "doc-view",
 }
 
 
@@ -50,7 +58,7 @@ class ExplorerParser(HTMLParser):
             self.scripts[-1] += data
 
 
-def validate_frontend(path: Path = DEFAULT_HTML, require_node: bool = True) -> list[str]:
+def validate_frontend(path: Path = DEFAULT_HTML, require_node: bool = True, required_ids: set[str] | None = None) -> list[str]:
     errors: list[str] = []
     if not path.is_file():
         return [f"Explorer HTML not found: {path}"]
@@ -66,7 +74,7 @@ def validate_frontend(path: Path = DEFAULT_HTML, require_node: bool = True) -> l
         errors.append("Explorer root must declare lang='fa' and dir='rtl'")
     if parser.duplicates:
         errors.append("Duplicate HTML IDs: " + ", ".join(sorted(parser.duplicates)))
-    missing = REQUIRED_IDS - parser.ids
+    missing = (REQUIRED_IDS if required_ids is None and path.name == "index.html" else WORKSPACE_REQUIRED_IDS if required_ids is None else required_ids) - parser.ids
     if missing:
         errors.append("Missing required explorer elements: " + ", ".join(sorted(missing)))
     if not parser.scripts or not any(script.strip() for script in parser.scripts):
@@ -103,12 +111,17 @@ def main() -> int:
     parser.add_argument("--html", type=Path, default=DEFAULT_HTML)
     parser.add_argument("--allow-missing-node", action="store_true")
     args = parser.parse_args()
-    errors = validate_frontend(args.html, require_node=not args.allow_missing_node)
+    targets = [(args.html, REQUIRED_IDS)]
+    if args.html == DEFAULT_HTML:
+        targets.append((WORKSPACE_HTML, WORKSPACE_REQUIRED_IDS))
+    errors = []
+    for path, required in targets:
+        errors.extend(f"{path.relative_to(ROOT)}: {error}" for error in validate_frontend(path, require_node=not args.allow_missing_node, required_ids=required))
     if errors:
         for error in errors:
             print(f"ERROR: {error}")
         return 1
-    print("PASS: explorer HTML structure, RTL contract, required controls, and JavaScript syntax")
+    print("PASS: explorer and operational workspace HTML, RTL contract, required controls, and JavaScript syntax")
     return 0
 
 
