@@ -388,8 +388,16 @@ class AtlasRepository:
             "territories": sorted({
                 territory_id
                 for domain_id in record.domains
-                for territory_id in getattr(self, "domain_to_territories", {}).get(domain_id, set())
+                for territory_id in self.domain_to_territories.get(domain_id, set())
             }),
+            "territory_labels": [
+                self.territory_labels[territory_id]
+                for territory_id in sorted({
+                    territory_id
+                    for domain_id in record.domains
+                    for territory_id in self.domain_to_territories.get(domain_id, set())
+                })
+            ],
             "layers": list(record.layers),
             "knowledge_types": list(record.knowledge_types),
             "aliases": list(record.aliases),
