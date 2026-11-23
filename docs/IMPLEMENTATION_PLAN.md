@@ -23,7 +23,7 @@ EKTA v1.0 is a usable, local-first engineering knowledge workbench when a user c
 ## Delivery stages
 
 ### Stage 0 — Runtime foundation (v0.1)
-Status: implementation and CI verification on feature branch.
+Status: VALIDATED on feature branch at commit 56ba5f443dacfbc5236f459c7fa08196e488d2c2. The CI run passed 17 tests, schema/documentation validation, and graph export.
 
 Deliverables:
 - Python 3.11+ package and local launch scripts.
@@ -41,7 +41,7 @@ Exit gate:
 - Local setup instructions work on Windows and Linux/macOS.
 
 ### Stage 1 — Knowledge integrity (v0.2)
-Status: NOT STARTED.
+Status: IN PROGRESS. The concept JSON Schema is present, current concept front matter validates, and the repository validator checks domain/layer/type references. Remaining work includes broader record schemas and graph integrity enforcement.
 
 Deliverables:
 - Machine-readable JSON Schema for concepts, sources, techniques, decisions, and workflows.
@@ -147,7 +147,7 @@ Do not add a graph database, cloud database, authentication, multi-user editing,
 
 ## Current known gaps
 
-- The repository taxonomy currently contains 22 domain records while the approved product map describes 26 top-level territories; reconcile the canonical registry before Stage 1 is complete.
+- The repository taxonomy currently contains 22 domain records while the approved product map describes 26 top-level territories; reconcile the canonical registry before Stage 1 is complete. The current concept schema and taxonomy validator are only the first Stage 1 increment.
 - Current graph extraction finds 29 relationship statements in seven concept records, but only two currently resolve to known concepts. The unresolved and invalid-predicate edges are intentionally exposed.
 - The first runtime is read-only and does not yet implement the full four-workspace product.
 - License selection remains undecided and is a v1.0 release gate.
