@@ -375,3 +375,38 @@ also depends on the canonical concept records and is reported rather than hidden
 Then open `http://127.0.0.1:8000`. API documentation is available at `/docs`.
 
 See the [staged implementation plan](docs/IMPLEMENTATION_PLAN.md) for the v1.0 definition of done and remaining delivery gates.
+
+
+## Search and Explore Workbench (v0.2)
+
+The local runtime now provides a unified discovery surface across concept identity records and indexed project documents. The browser experience is Persian-first and right-to-left, while IDs, taxonomy keys, source paths, and technical terms retain their original forms.
+
+### Search syntax
+
+| Input | Purpose |
+|---|---|
+| `runtime engine` | Search all terms across names, aliases, headings, and content |
+| `#runtime` | Match a hashtag derived from concept names, aliases, taxonomy, headings, and content tags |
+| `"workflow runtime"` | Search an exact phrase |
+| `territory:software-engineering` | Filter by one of the 26 approved top-level territories |
+| `domain:software-engineering` | Filter by operational engineering domain |
+| `layer:platform-runtime` | Filter by engineering layer |
+| `type:concept` | Filter by knowledge type |
+| `status:PROPOSED` | Filter by record maturity status |
+| `kind:document` | Filter by result kind: concept, document, taxonomy, or schema |
+| `id:EKTA-CON-000001` | Look up a stable record ID |
+
+Multiple words are AND-matched. Query fields can be combined, for example:
+`runtime territory:software-engineering layer:platform-runtime status:PROPOSED`.
+
+### Discovery API
+
+- `GET /api/v1/search?q=...` — unified, ranked results and snippets.
+- `GET /api/v1/facets` — territory, domain, layer, type, status, and tag facets.
+- `GET /api/v1/concepts/{id}` — full concept identity card and graph relationships.
+- `GET /api/v1/documents/{id}` — scoped full document content by generated stable document ID.
+- `GET /api/v1/taxonomy` — canonical taxonomy registries.
+
+### Taxonomy clarification
+
+EKTA now separates **26 top-level Engineering Territories** from **25 operational domain tags**. Territories are the navigation/portfolio layer; operational domains are more granular classification values. The explicit mapping is in [taxonomy/territories.yml](taxonomy/territories.yml), and domain identifiers remain in [taxonomy/domains.yml](taxonomy/domains.yml). This removes the earlier 22-vs-26 ambiguity without treating the two lists as interchangeable.
