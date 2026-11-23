@@ -38,13 +38,16 @@ This is a versioned implementation choice, not a permanent platform lock-in. A d
 ## 4. Service contracts
 
 - GET /health — process health and runtime version.
-- GET /api/v1/overview — inventory counts and graph resolution summary.
-- GET /api/v1/concepts — concept list with q, domain, layer, and status filters.
-- GET /api/v1/concepts/{id} — one canonical concept record.
-- GET /api/v1/taxonomy — domain, layer, knowledge-type, and relation registries.
+- GET /api/v1/overview — inventory counts, territory/domain/layer counts, and graph summary.
+- GET /api/v1/search — ranked unified search with text, hashtag, exact phrase, and field selectors.
+- GET /api/v1/facets — territory, domain, layer, type, status, and tag facets.
+- GET /api/v1/concepts — backward-compatible concept list endpoint with basic filters.
+- GET /api/v1/concepts/{id} — full concept identity record and incoming/outgoing graph relationships.
+- GET /api/v1/documents/{id} — full indexed document by a generated stable document ID.
+- GET /api/v1/taxonomy — 26 territories, operational domains, layers, knowledge types, and relation registry.
 - GET /api/v1/graph — graph nodes and typed edges; optional resolved_only and predicate filters.
 
-All endpoints are read-only in v0.1. Unknown concept IDs return HTTP 404. Query results must preserve stable concept IDs and source-file paths.
+All endpoints remain read-only in v0.2. Unknown concept or document IDs return HTTP 404. Query results preserve stable content IDs and source-file paths. The document endpoint is ID-scoped and does not accept arbitrary filesystem paths.
 
 ## 5. Search and discovery contract
 
