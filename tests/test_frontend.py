@@ -13,6 +13,10 @@ class ExplorerFrontendTests(unittest.TestCase):
         errors = validate_frontend(ROOT / "runtime" / "web" / "index.html", require_node=False)
         self.assertEqual(errors, [])
 
+    def test_operational_workspace_has_required_controls_and_valid_javascript(self):
+        errors = validate_frontend(ROOT / "runtime" / "web" / "workspace.html", require_node=False)
+        self.assertEqual(errors, [])
+
 
 if __name__ == "__main__":
     unittest.main()
