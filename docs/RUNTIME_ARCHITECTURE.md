@@ -1,7 +1,7 @@
 # EKTA Runtime Architecture
 
 **Runtime:** EKTA Knowledge Runtime  
-**Initial version:** 0.1.0  
+**Initial version:** 0.2.0  
 **Implementation status:** Bootstrap implementation in progress  
 **Canonical source:** Git-native Markdown and YAML in this repository
 
@@ -9,7 +9,7 @@
 
 The EKTA runtime loads the canonical knowledge corpus and exposes it through deterministic services and interfaces. It is not a second source of truth. Generated graph indexes, API responses, search results, and future visualizations are derived from canonical repository content.
 
-The initial runtime is intentionally read-only. It must never silently rewrite source records or promote their evidence status.
+The initial runtime is intentionally read-only. Version 0.2 adds unified search across concepts and repository documents, explainable result ranking, hashtag and fielded query parsing, territory/domain facets, and safe document lookup. It must never silently rewrite source records or promote their evidence status.
 
 ## 2. Runtime boundaries
 
@@ -46,7 +46,13 @@ This is a versioned implementation choice, not a permanent platform lock-in. A d
 
 All endpoints are read-only in v0.1. Unknown concept IDs return HTTP 404. Query results must preserve stable concept IDs and source-file paths.
 
-## 5. Relationship resolution
+## 5. Search and discovery contract
+
+The unified search endpoint is `GET /api/v1/search`. It searches canonical concept records and approved repository documents (Markdown, YAML, and JSON under the indexed content roots). The query supports free text, exact quoted phrases, hashtags, and field selectors: `id:`, `territory:`, `domain:`, `layer:`, `type:`, `status:`, `kind:`, and `tag:`. Multiple free-text terms are AND-matched. Results expose score, matched fields, a context snippet, stable content ID, type, and source path. Filters and facets are served from `/api/v1/facets`; full document content is retrieved only through its generated stable document ID.
+
+Hashtags are derived from canonical names, aliases, taxonomy IDs/labels, headings, and content folder paths. This makes `#runtime` useful without requiring every record to have manually maintained tags. Explicit record tags and keywords are also indexed. Search normalization handles Persian/Arabic Yeh and Kaf variants. This is deterministic lexical search, not semantic or AI search.
+
+## 6. Relationship resolution
 
 The graph builder reads the Relationships section from concept records. It validates predicates against taxonomy/relations.yml, then resolves targets by stable ID, canonical name, or alias.
 
@@ -60,7 +66,7 @@ Each edge retains:
 
 Unresolved targets and invalid predicates remain visible as quality findings; they are not silently dropped or treated as verified edges. The current concept corpus contains provisional and incomplete relationships, so a non-zero unresolved count is expected during bootstrap.
 
-## 6. Security and integrity
+## 7. Security and integrity
 
 - YAML is loaded with safe_load; no arbitrary object constructors are permitted.
 - The initial API exposes repository content only and has no write, shell, or arbitrary file-read endpoint.
@@ -69,7 +75,7 @@ Unresolved targets and invalid predicates remain visible as quality findings; th
 - All derived outputs must be reproducible from a known repository revision.
 - Third-party standards and source material remain subject to their own rights and license terms.
 
-## 7. Local operation
+## 8. Local operation
 
 From the repository root:
 
@@ -98,7 +104,7 @@ Tests:
 python -m unittest discover -s tests -v
 ```
 
-## 8. Release gates
+## 9. Release gates
 
 The runtime is not considered release-ready until:
 1. content parsing and taxonomy validation are covered by tests;
@@ -109,6 +115,6 @@ The runtime is not considered release-ready until:
 6. documentation and license status are accurate;
 7. source revision and generator version are recorded in exported artifacts.
 
-## 9. Explicit non-goals for v0.1
+## 10. Explicit non-goals for v0.1
 
 Authentication, multi-user editing, database persistence, semantic embeddings, AI agents, external provider integrations, cloud deployment, and automatic content ingestion are not included in the read-only bootstrap. They require separate threat, cost, governance, and acceptance reviews.
