@@ -53,7 +53,8 @@
 - Backup uses an explicit project path allowlist and excludes `.git`, environments, caches and secret files. Restore only validates and stores the ZIP; it never extracts or overwrites project files.
 - Canonical Git knowledge remains protected; no automated promotion, Git commit/push, authentication, or public deployment hardening.
 - Added `tests/test_workspace.py`; GitHub Actions run #146 on final PR head `37d8e892aa9cf9210c43231f5ffcf9464f67bcb7` completed SUCCESS (docs validation, unit/runtime tests, frontend validation, graph export).
-- Detailed user and security docs: `docs/WORKSPACE_GUIDE.md`, `docs/SECURITY_AND_STAGING_MODEL.md`.\n- Post-merge documentation line-break cleanup and explorer navigation/API table refinements were committed directly to main; the latest main HEAD must be read before the next code change.
+- Detailed user and security docs: `docs/WORKSPACE_GUIDE.md`, `docs/SECURITY_AND_STAGING_MODEL.md`.
+- Post-merge documentation line-break cleanup and explorer navigation/API table refinements were committed directly to main; the latest main HEAD must be read before the next code change.
 
 ## Session handoff template
 ### Objective
