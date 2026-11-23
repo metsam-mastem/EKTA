@@ -28,3 +28,10 @@ Read README.md, docs/PROJECT_CHARTER.md, docs/GOVERNANCE.md, docs/MASTER_HANDOFF
 - Added UPDS JSON Schema, validation primitives, repository validator, sample record and unit tests.
 - Added UPDS validation to GitHub Actions.
 - These files are committed to the integration branch; test execution is pending CI. Runtime APIs, UI, graph integration and automatic project generation remain future work.
+
+
+## Verification evidence update
+- GitHub Actions run: https://github.com/metsam-mastem/EKTA/actions/runs/45124354424
+- Commit: `d7b1fed9e52ba10a792ab18bbfd7fae6dc44e781`
+- Result: SUCCESS — dependency installation, documentation validation, UPDS document validation, unittest suite, frontend validation and graph export all completed successfully.
+- This verifies the current branch at that commit. It does not verify future runtime registry/API/UI features that are not yet implemented.
