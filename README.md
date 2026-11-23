@@ -345,37 +345,28 @@ The primary implementation strategy is Git-native and schema-driven first, follo
 **Current source of truth:** Git history and the files present in this repository
 
 
-## Runtime bootstrap
+## شروع مستقل و مستندات کاربر
 
-EKTA now has an initial local-first runtime implementation on the feature branch
-[runtime/v0.1-foundation](https://github.com/metsam-mastem/EKTA/tree/runtime/v0.1-foundation).
+برای استفاده از EKTA نیازی به مشاهده مکالمه‌های قبلی یا استفاده از ChatGPT نیست. مخزن GitHub منبع حقیقت پروژه است.
 
-The v0.1 bootstrap adds:
-- a Python 3.11+ runtime package using FastAPI and safe YAML parsing;
-- read-only APIs for health, overview, concepts, taxonomy, and graph data;
-- relationship extraction with explicit unresolved/invalid edge states;
-- a lightweight browser-based concept explorer;
-- a CLI for atlas inventory and graph export;
-- automated runtime tests and CI installation/verification steps.
+**از اینجا شروع کنید:** [فهرست مستندات کاربر](docs/USER_DOCUMENTATION_INDEX.md)
 
-See [Runtime Architecture](docs/RUNTIME_ARCHITECTURE.md) and
-[ADR-0002](decision-lab/ADR/ADR-0002-runtime-stack.md).
+- [معرفی پروژه: چیستی، چرایی، معماری و کاربردها](docs/PROJECT_OVERVIEW.md)
+- [User Setup — آماده‌سازی پیش از نصب](docs/USER_SETUP.md)
+- [User Installation — نصب و راه‌اندازی](docs/USER_INSTALLATION.md)
+- [User Manual — راهنمای جامع کاربری](docs/USER_MANUAL.md)
+- [Input Guide — انواع ورودی و روش افزودن دانش](docs/INPUT_GUIDE.md)
+- [Independence & Recovery — استقلال از چت و بازیابی](docs/INDEPENDENCE_AND_RECOVERY.md)
+- [Troubleshooting — عیب‌یابی](docs/TROUBLESHOOTING.md)
+- [Agent Onboarding — ادامه مستقل توسط توسعه‌دهنده یا AI](docs/AGENT_ONBOARDING.md)
 
-**Current limitation:** this is a read-only bootstrap, not the completed EKTA workbench.
-It does not yet include editing, persistent user data, semantic search, authentication,
-AI integrations, offline packaging, or production deployment. Relationship quality
-also depends on the canonical concept records and is reported rather than hidden.
-
-
-### Run locally
-
+اجرای محلی:
 - Windows PowerShell: `powershell -ExecutionPolicy Bypass -File scripts/start.ps1`
 - Linux/macOS: `sh scripts/start.sh`
 
-Then open `http://127.0.0.1:8000`. API documentation is available at `/docs`.
+سپس http://127.0.0.1:8000 را باز کنید. مستندات API در /docs قرار دارد.
 
-See the [staged implementation plan](docs/IMPLEMENTATION_PLAN.md) for the v1.0 definition of done and remaining delivery gates.
-
+**محدودیت نسخه 0.2:** رابط فعلی read-only است. آپلود فایل، ویرایش مستقیم شناسنامه، جست‌وجوی معنایی/AI، حساب کاربری، بسته Android و استقرار عمومی در این نسخه وجود ندارد. برای جزئیات به User Manual و Input Guide مراجعه کنید.
 
 ## Search and Explore Workbench (v0.2)
 
