@@ -42,7 +42,7 @@
 - Validation passed on documentation PR head d1463eefe9e7ceb17c8fdf39b862a2a10c04e12c: docs validation, 29 tests, frontend structural/JavaScript validation, and graph export. Post-merge CI on main is tracked separately.
 - For a chat-independent continuation, this file plus README, Project Overview, Implementation Plan, Roadmap, Changelog, and current GitHub PR/Actions state are sufficient starting points.
 
-## Session handoff template
+## Operational Workspace v0.4 — PR #5\n\n- Branch: `workbench/operational-suite-v0.4`\n- PR: https://github.com/metsam-mastem/EKTA/pull/5\n- Scope: onboarding wizard, first-run self-test, import staging, draft editor, backup/restore preview, documentation center.\n- New runtime module: `runtime/ekta_runtime/workspace.py`; new UI: `runtime/web/workspace.html`; API routes under `/api/v1/workspace/`.\n- Local staging root: `.ekta/workspace/`; `.ekta/` is gitignored.\n- Import formats: Markdown/YAML/JSON text, max 1 MiB. Drafts remain outside `encyclopedia/concepts/`.\n- Backup uses an explicit project path allowlist and excludes `.git`, environments, caches and secret files. Restore only validates and stores the ZIP; it never extracts or overwrites project files.\n- Canonical Git knowledge remains protected; no automated promotion, Git commit/push, authentication, or public deployment hardening.\n- Added `tests/test_workspace.py`; CI must be checked against the final PR head before merge.\n- Detailed user and security docs: `docs/WORKSPACE_GUIDE.md`, `docs/SECURITY_AND_STAGING_MODEL.md`.\n\n## Session handoff template
 ### Objective
 ### Confirmed decisions
 ### Repository revision
