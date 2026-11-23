@@ -141,6 +141,8 @@ def workspace_import_preview(payload: dict) -> dict:
 
 @app.post("/api/v1/workspace/drafts", status_code=201, tags=["workspace"])
 def workspace_save_draft(payload: dict) -> dict:
+    if str(payload.get("id", "")).strip() in repository.by_id:
+        raise HTTPException(status_code=409, detail="این شناسه از قبل در دانشنامه canonical وجود دارد")
     try:
         return workspace.save_draft(payload)
     except WorkspaceError as exc:
