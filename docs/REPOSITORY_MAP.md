@@ -50,3 +50,20 @@ EKTA/
 
 ## Naming
 Use stable IDs in canonical filenames, e.g. EKTA-CON-000001-runtime.md. IDs are immutable and never recycled. Use lowercase kebab-case for scripts and assets. Do not silently rename a stable ID.
+
+
+## UPDS integration additions
+
+```text
+docs/
+├── INTEGRATION/          # UPDS decision, architecture, catalog, crosswalk, memory, templates, roadmap
+├── PROJECT_STATE.md
+├── DECISION_REGISTER.md
+├── ACTIVE_WORK.md
+├── OPEN_ISSUES.md
+├── CONSTRAINTS_AND_ASSUMPTIONS.md
+├── EVIDENCE_INDEX.md
+└── SESSION_HANDOFF.md
+```
+
+These additions are proposed integration documentation and repository-native continuity registers. See [UPDS Integration Index](INTEGRATION/UPDS_INTEGRATION_INDEX.md).
