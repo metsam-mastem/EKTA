@@ -89,7 +89,6 @@ The repository remains the source of truth. A user interface must be a derived c
 EKTA is initially a knowledge system, not a general-purpose workflow runtime, CAD suite, IDE, or replacement for standards bodies. It may document and connect such systems, and later provide integrations, but each expansion requires a use case, architecture decision, and acceptance criteria.
 
 ## Open decisions
-- Final project charter approval.
 - Repository license and separate code/documentation licensing.
 - First web documentation stack.
 - Whether to adopt MkDocs Material or another static documentation generator.
