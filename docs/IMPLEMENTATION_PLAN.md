@@ -46,7 +46,19 @@ Exit gate:
 - Local setup instructions work on Windows and Linux/macOS.
 - A new user can follow the documentation without relying on chat history; usability onboarding still requires a separate user test.
 
-### Operational Workspace slice — v0.4\nStatus: IMPLEMENTED IN PR #5; CI validation pending.\n\nDeliverables in this slice:\n- First-run onboarding flow and self-test API/UI.\n- Markdown/YAML/JSON import staging with size limits and safe parsing.\n- Draft editor storing proposed concept records outside canonical encyclopedia.\n- ZIP backup export over an explicit allowlist and restore preview staging with traversal/symlink checks.\n- Markdown documentation center with scoped reads under docs/.\n\nSafety boundary: no direct canonical writes, Git operations, archive extraction, authentication, or network exposure hardening. See `docs/WORKSPACE_GUIDE.md` and `docs/SECURITY_AND_STAGING_MODEL.md`.\n\n### Stage 1 — Knowledge integrity (v0.2)
+### Operational Workspace slice — v0.4
+Status: IMPLEMENTED IN PR #5; CI validation pending.
+
+Deliverables in this slice:
+- First-run onboarding flow and self-test API/UI.
+- Markdown/YAML/JSON import staging with size limits and safe parsing.
+- Draft editor storing proposed concept records outside canonical encyclopedia.
+- ZIP backup export over an explicit allowlist and restore preview staging with traversal/symlink checks.
+- Markdown documentation center with scoped reads under docs/.
+
+Safety boundary: no direct canonical writes, Git operations, archive extraction, authentication, or network exposure hardening. See `docs/WORKSPACE_GUIDE.md` and `docs/SECURITY_AND_STAGING_MODEL.md`.
+
+### Stage 1 — Knowledge integrity (v0.2)
 Status: IN PROGRESS. The canonical 26-territory navigation registry and 25 operational domain tags are published and CI-validated, with explicit territory-to-domain mappings. The concept JSON Schema, duplicate-ID check, taxonomy and territory mapping validation, and local link validation are active. Remaining work includes broader record schemas, a canonical ID registry, canonical relationship target IDs, and graph integrity enforcement.
 
 Deliverables:
