@@ -1,37 +1,36 @@
 # Session Handoff
 **Date:** 2026-11-23  
-**Branch:** integration/upds-documentation-architecture
+**Branch:** integration/upds-documentation-architecture  
+**PR:** https://github.com/metsam-mastem/EKTA/pull/3
 
 ## Objective
-Evaluate and integrate the Universal Project Documentation System (UPDS) with EKTA without loss and make the project independent of chat history.
+Integrate UPDS as a bounded subsystem of EKTA, preserve existing knowledge and make project continuity independent of chat history.
 
-## Completed in this branch
-- Added integration decision, architecture, complete document-family catalog, crosswalk, memory/continuity protocol, template standard, roadmap and index under docs/INTEGRATION/.
-- Added project state, decision, active work, issue, constraint and evidence registers.
+## Current branch additions
+- UPDS architecture, decision, document catalog, crosswalk, template standard, memory protocol, roadmap and index.
+- Project state, decision, active work, issue, constraint, evidence and handoff registers.
+- UPDS base JSON Schema, validator, repository validation script, sample record and unit tests.
+- User documentation hub plus What Is EKTA, Setup, Installation, User Manual, Administration and Recovery/Continuity guides.
+- README and CI updates from earlier branch commits.
 
-## Important distinction
-This is a documentation and architecture integration baseline. UPDS runtime services, schemas, automated validation, UI and graph integration have not been implemented or tested.
+## Architecture status
+UPDS integration remains PROPOSED pending owner review. The branch is additive; main has not been changed. Do not merge or change license without explicit approval.
 
-## Next actions
-1. Review docs/INTEGRATION/UPDS_EKTA_INTEGRATION_DECISION.md.
-2. Approve/revise integration boundaries.
-3. Add schema and failing tests for UPDS records.
-4. Implement validator and run existing test/CI commands.
-5. Update master handoff and repository map.
-6. Open a PR only after local/CI validation evidence is available.
+## Verified evidence
+GitHub Actions run 45124354424 passed at commit d7b1fed9e52ba10a792ab18bbfd7fae6dc44e781. This does not validate commits added afterward. Latest HEAD CI must be checked before claiming branch validation.
 
-## Recovery
-Read README.md, docs/PROJECT_CHARTER.md, docs/GOVERNANCE.md, docs/MASTER_HANDOFF.md, docs/PROJECT_STATE.md, docs/INTEGRATION/UPDS_INTEGRATION_INDEX.md, docs/CONTEXT_CONTINUITY.md, docs/ACTIVE_WORK.md and docs/OPEN_ISSUES.md. Chat history is optional.
+## Remaining work
+1. Verify latest PR head and its Actions runs.
+2. Execute a clean-clone recovery drill without opening chat or consulting personal memory.
+3. Add tests for required continuity registers, internal links and document metadata.
+4. Define complete UPDS artifact, status dimensions, typed relations and traceability contracts.
+5. Implement registry service/API with TDD.
+6. Integrate document/requirement/decision/component/test/evidence nodes with EKTA graph.
+7. Build dashboard and project starter after contracts stabilize.
+8. Review proposed integration ADR with owner.
 
+## Recovery entry point
+Start at README.md, then PROJECT_CHARTER, GOVERNANCE, PROJECT_STATE, MASTER_HANDOFF, INTEGRATION/UPDS_INTEGRATION_INDEX, ACTIVE_WORK, OPEN_ISSUES, DECISION_REGISTER, CONSTRAINTS_AND_ASSUMPTIONS, EVIDENCE_INDEX and this handoff. Chat history is optional and non-canonical.
 
-## Follow-on implementation increment
-- Added UPDS JSON Schema, validation primitives, repository validator, sample record and unit tests.
-- Added UPDS validation to GitHub Actions.
-- These files are committed to the integration branch; test execution is pending CI. Runtime APIs, UI, graph integration and automatic project generation remain future work.
-
-
-## Verification evidence update
-- GitHub Actions run: https://github.com/metsam-mastem/EKTA/actions/runs/45124354424
-- Commit: `d7b1fed9e52ba10a792ab18bbfd7fae6dc44e781`
-- Result: SUCCESS — dependency installation, documentation validation, UPDS document validation, unittest suite, frontend validation and graph export all completed successfully.
-- This verifies the current branch at that commit. It does not verify future runtime registry/API/UI features that are not yet implemented.
+## Explicit non-completion
+User guides are committed as documentation, not independently tested on all operating systems. Full registry/API, traceability engine, dashboard, generator, clean-clone recovery and backup restoration are NOT RUN or NOT IMPLEMENTED. No latest-HEAD CI pass is asserted here.
