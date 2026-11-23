@@ -60,7 +60,7 @@ Charter and governance; master taxonomy; concept, technique, architecture, stand
 GitHub is canonical source of truth. Repository is public: never commit secrets or private data. License is undecided. Standards may be copyrighted or paywalled: record metadata and summaries, not protected text. External source status must be rechecked at use time.
 
 ## Governance
-Maintainer approval is required for scope changes, license selection, major taxonomy changes, and project-wide architecture. Use RFCs and ADRs for consequential changes. The charter remains proposed until explicitly approved.
+Maintainer approval is required for scope changes, license selection, major taxonomy changes, and project-wide architecture. Use RFCs and ADRs for consequential changes. The charter is approved as of 2026-11-23; subsequent changes require a recorded decision.
 
 
 ## Approval record
