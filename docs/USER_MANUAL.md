@@ -174,7 +174,13 @@ id:EKTA-CON-000001
 | GET /api/v1/concepts/{id} | جزئیات مفهوم |
 | GET /api/v1/documents/{id} | جزئیات سند با شناسه مشتق‌شده |
 | GET /api/v1/taxonomy | رجیستری‌های طبقه‌بندی |
-| GET /api/v1/graph | گراف و روابط |\n| GET /api/v1/workspace/self-test | خودآزمایی محیط |\n| GET /api/v1/workspace/docs | فهرست مستندات |\n| POST /api/v1/workspace/import/preview | مرحله‌بندی ورودی متنی |\n| POST /api/v1/workspace/drafts | ذخیره پیش‌نویس خارج از canonical |\n| POST /api/v1/workspace/backup | ساخت پشتیبان ZIP |\n| POST /api/v1/workspace/restore/preview | اعتبارسنجی و مرحله‌بندی ZIP بازیابی |
+| GET /api/v1/graph | گراف و روابط |
+| GET /api/v1/workspace/self-test | خودآزمایی محیط |
+| GET /api/v1/workspace/docs | فهرست مستندات |
+| POST /api/v1/workspace/import/preview | مرحله‌بندی ورودی متنی |
+| POST /api/v1/workspace/drafts | ذخیره پیش‌نویس خارج از canonical |
+| POST /api/v1/workspace/backup | ساخت پشتیبان ZIP |
+| POST /api/v1/workspace/restore/preview | اعتبارسنجی و مرحله‌بندی ZIP بازیابی |
 
 مستندات تعاملی در /docs قرار دارد. APIهای کاوشگر GET و read-only هستند؛ مسیرهای Workspace برای staging، draft و backup از POST استفاده می‌کنند و همچنان از تغییر canonical جلوگیری می‌کنند.
 
