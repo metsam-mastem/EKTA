@@ -167,7 +167,8 @@
     <aside class="panel">
       <div class="panel-head"><h2>تصفیه و پیمایش</h2><small>فیلترها</small></div>
       <div class="panel-body">
-        <div class="filter-group"><label for="domain-filter">قلمرو مهندسی</label><select id="domain-filter"><option value="">همه قلمروها</option></select></div>
+        <div class="filter-group"><label for="territory-filter">قلمرو کلان مهندسی (۲۶گانه)</label><select id="territory-filter"><option value="">همه قلمروهای کلان</option></select></div>
+        <div class="filter-group"><label for="domain-filter">حوزه تخصصی</label><select id="domain-filter"><option value="">همه حوزه‌ها</option></select></div>
         <div class="filter-group"><label for="layer-filter">لایه مهندسی</label><select id="layer-filter"><option value="">همه لایه‌ها</option></select></div>
         <div class="filter-group"><label for="type-filter">نوع دانش</label><select id="type-filter"><option value="">همه انواع دانش</option></select></div>
         <div class="filter-group"><label for="status-filter">وضعیت محتوا</label><select id="status-filter"><option value="">همه وضعیت‌ها</option></select></div>
@@ -220,10 +221,11 @@ async function loadShell(){
   $("#health-label").textContent="هسته دانش متصل است";
   $("#health-dot").style.background="var(--accent)";
   $("#metrics").innerHTML=[
-    ["concept_count","مفهوم‌ها"],["document_count","اسناد قابل جست‌وجو"],["domain_count","قلمروها"],["layer_count","لایه‌ها"]
+    ["concept_count","شناسنامه مفهوم"],["document_count","اسناد و منابع"],["territory_count","قلمروهای کلان"],["domain_count","حوزه‌های تخصصی"],["layer_count","لایه‌های مهندسی"]
   ].map(([key,label])=>'<div class="metric"><strong>'+Number(overview[key]||0)+'</strong><span>'+label+'</span></div>').join('')+
   '<div class="metric"><strong>'+Number(overview.graph?.edge_count||0)+'</strong><span>روابط گراف</span></div>';
-  $("#domain-filter").innerHTML=optionMarkup(facets.domains,"همه قلمروها");
+  $("#territory-filter").innerHTML=optionMarkup(facets.territories,"همه قلمروهای کلان");
+  $("#domain-filter").innerHTML=optionMarkup(facets.domains,"همه حوزه‌ها");
   $("#layer-filter").innerHTML=optionMarkup(facets.layers,"همه لایه‌ها");
   $("#type-filter").innerHTML=optionMarkup(facets.knowledge_types,"همه انواع دانش");
   $("#status-filter").innerHTML=optionMarkup(facets.statuses,"همه وضعیت‌ها");
@@ -234,7 +236,7 @@ async function loadShell(){
 }
 function currentParams(){
   const params=new URLSearchParams({q:state.query,limit:String(state.limit),offset:String(state.offset)});
-  const filters=[["domain-filter","domain"],["layer-filter","layer"],["type-filter","knowledge_type"],["status-filter","status"],["kind-filter","kind"]];
+  const filters=[["territory-filter","territory"],["domain-filter","domain"],["layer-filter","layer"],["type-filter","knowledge_type"],["status-filter","status"],["kind-filter","kind"]];
   for(const [element,key] of filters){const value=$("#"+element).value;if(value)params.set(key,value)}
   return params;
 }
@@ -244,7 +246,7 @@ function useTag(tag){
   runSearch(true);
 }
 function clearSelectFilters(){
-  ["domain-filter","layer-filter","type-filter","status-filter","kind-filter"].forEach(id=>$("#"+id).value="");
+  ["territory-filter","domain-filter","layer-filter","type-filter","status-filter","kind-filter"].forEach(id=>$("#"+id).value="");
 }
 function runSearch(reset=true){
   if(reset){state.offset=0;state.results=[]}
@@ -286,16 +288,6 @@ function renderResults(reset){
   }).join("");
   if(reset)$("#result-list").innerHTML=html;
   else $("#result-list").insertAdjacentHTML("beforeend",html);
-  $("#result-list").querySelectorAll("[data-result-id]").forEach(card=>{
-    card.addEventListener("click",event=>{
-      if(event.target.closest("[data-tag]"))return;
-      openResult(card.dataset.resultId,card.dataset.resultKind);
-    });
-    card.addEventListener("keydown",event=>{
-      if(event.key==="Enter"||event.key===" "){event.preventDefault();openResult(card.dataset.resultId,card.dataset.resultKind)}
-    });
-  });
-  $("#result-list").querySelectorAll("[data-tag]").forEach(button=>button.addEventListener("click",()=>useTag(button.dataset.tag)));
 }
 async function openResult(id,kind){
   $("#detail-view").innerHTML='<div class="notice">در حال بازکردن شناسنامه…</div>';
@@ -393,11 +385,22 @@ function renderDetailTab(item,tab){
 function clearAll(){
   $query.value="";clearSelectFilters();runSearch(true);
 }
+
+$("#result-list").addEventListener("click",event=>{
+  const tag=event.target.closest("[data-tag]");
+  if(tag){useTag(tag.dataset.tag);return}
+  const card=event.target.closest("[data-result-id]");
+  if(card)openResult(card.dataset.resultId,card.dataset.resultKind);
+});
+$("#result-list").addEventListener("keydown",event=>{
+  const card=event.target.closest("[data-result-id]");
+  if(card&&(event.key==="Enter"||event.key===" ")){event.preventDefault();openResult(card.dataset.resultId,card.dataset.resultKind)}
+});
 $("#search-button").addEventListener("click",()=>runSearch(true));
 $query.addEventListener("keydown",event=>{if(event.key==="Enter")runSearch(true)});
 let debounce;
 $query.addEventListener("input",()=>{clearTimeout(debounce);debounce=setTimeout(()=>runSearch(true),260)});
-["domain-filter","layer-filter","type-filter","status-filter","kind-filter"].forEach(id=>$("#"+id).addEventListener("change",()=>runSearch(true)));
+["territory-filter","domain-filter","layer-filter","type-filter","status-filter","kind-filter"].forEach(id=>$("#"+id).addEventListener("change",()=>runSearch(true)));
 $("#clear-filters").addEventListener("click",()=>{clearSelectFilters();runSearch(true)});
 $("#show-all").addEventListener("click",clearAll);
 $("#load-more").addEventListener("click",()=>{state.offset+=state.limit;runSearch(false)});
