@@ -52,9 +52,9 @@
 - Import formats: Markdown/YAML/JSON text, max 1 MiB. Drafts remain outside `encyclopedia/concepts/`.
 - Backup uses an explicit project path allowlist and excludes `.git`, environments, caches and secret files. Restore only validates and stores the ZIP; it never extracts or overwrites project files.
 - Canonical Git knowledge remains protected; no automated promotion, Git commit/push, authentication, or public deployment hardening.
-- Added `tests/test_workspace.py`; GitHub Actions run #146 on final PR head `37d8e892aa9cf9210c43231f5ffcf9464f67bcb7` completed SUCCESS (docs validation, unit/runtime tests, frontend validation, graph export).
+- Added `tests/test_workspace.py`; GitHub Actions run #146 on PR #5 head `37d8e892aa9cf9210c43231f5ffcf9464f67bcb7` completed SUCCESS (docs validation, unit/runtime tests, frontend validation, graph export).
 - Detailed user and security docs: `docs/WORKSPACE_GUIDE.md`, `docs/SECURITY_AND_STAGING_MODEL.md`.
-- Post-merge documentation line-break cleanup and explorer navigation/API table refinements were committed directly to main; the latest main HEAD must be read before the next code change.
+- PR #6 (`workbench/verification-hardening-v0.4`) merged as `883451d022eee25b5d59c21cf5f4aaa391a7a396`; CI run #176 on head `99c5870d14f3659d3a71147f9a97b49d1bf7064c` completed SUCCESS. It adds strict concept ID validation, duplicate-ID protection, bounded draft metadata, malformed YAML and restore traversal tests, and workspace frontend syntax/structure checks.\n- Post-merge documentation line-break cleanup, explorer navigation/API table refinements, setup/installation updates, and UI hardening were committed directly to main; the latest main HEAD must be read before the next code change.
 
 ## Session handoff template
 ### Objective
