@@ -27,6 +27,9 @@ Encapsulate specialized processing behavior behind a reusable interface.
 ## Role and mechanism
 Accept requests or inputs, apply domain-specific logic, coordinate internal components, and produce results or state changes.
 
+## Mechanism
+An engine accepts a request or input, evaluates domain-specific rules and algorithms, coordinates internal components, and returns a result or controlled state change. The exact execution model is specific to the engine family.
+
 ## Inputs and outputs
 Vary by engine family; each concrete engine record must specify request contract, state, outputs, and error semantics.
 
