@@ -33,7 +33,7 @@ class WorkspaceApiTests(unittest.TestCase):
     def test_import_preview_is_staged_and_never_writes_canonical_content(self):
         response = self.client.post("/api/v1/workspace/import/preview", json={
             "filename": "sample.md",
-            "content": "---\\nid: SAMPLE\\n---\\n# Sample\\nBody",
+            "content": "---\nid: SAMPLE\n---\n# Sample\nBody",
         })
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["status"], "staged")
@@ -47,7 +47,7 @@ class WorkspaceApiTests(unittest.TestCase):
 
     def test_editor_saves_a_draft_outside_canonical_encyclopedia(self):
         response = self.client.post("/api/v1/workspace/drafts", json={
-            "id":"EKTA-CON-900001","canonical_name":"Draft concept","body":"## Definition\\nDraft only"
+            "id":"EKTA-CON-900001","canonical_name":"Draft concept","body":"## Definition\nDraft only"
         })
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json()["status"], "draft")
