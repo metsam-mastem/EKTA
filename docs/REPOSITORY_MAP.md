@@ -28,7 +28,7 @@ EKTA/
 │   ├── playbooks/
 │   ├── checklists/
 │   └── workflows/
-├── workflows/            # reusable knowledge intake and maintenance playbooks\n├── runtime/              # Python services, versioned API, and browser workbench\n├── scripts/              # local runtime launchers\n├── templates/
+├── workflows/            # reusable knowledge intake and maintenance playbooks\n├── runtime/              # Python services, versioned API, and browser workbench\n├── scripts/              # local runtime launchers\n├── upds/                 # project document records and UPDS subsystem artifacts\n│   └── records/\n├── templates/
 ├── tools/
 ├── tests/
 └── .github/workflows/
