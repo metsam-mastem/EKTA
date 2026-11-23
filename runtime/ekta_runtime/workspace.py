@@ -115,7 +115,10 @@ class Workspace:
             parts = content.split("---", 2)
             if len(parts) != 3:
                 raise WorkspaceError("Front matter باید با --- بسته شود")
-            metadata = yaml.safe_load(parts[1]) or {}
+            try:
+                metadata = yaml.safe_load(parts[1]) or {}
+            except yaml.YAMLError as exc:
+                raise WorkspaceError(f"Front matter نامعتبر است: {exc}") from exc
             if not isinstance(metadata, dict):
                 raise WorkspaceError("Front matter باید YAML mapping باشد")
             parsed = {"metadata": metadata, "body": parts[2].lstrip("\n")}
