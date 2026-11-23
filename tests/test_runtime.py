@@ -34,6 +34,7 @@ class RuntimeRepositoryTests(unittest.TestCase):
     def test_taxonomy_is_exposed(self):
         taxonomy = self.atlas.taxonomy()
         self.assertGreaterEqual(len(taxonomy["domains"]["domains"]), 20)
+        self.assertEqual(len(taxonomy["territories"]["territories"]), 26)
         self.assertIn("DEPENDS_ON", taxonomy["relations"])
 
     def test_graph_contains_typed_edges_and_resolution_state(self):
@@ -85,6 +86,10 @@ class RuntimeApiTests(unittest.TestCase):
         facets = self.client.get("/api/v1/facets")
         self.assertEqual(facets.status_code, 200)
         self.assertIn("tags", facets.json())
+        taxonomy = self.client.get("/api/v1/taxonomy").json()
+        self.assertEqual(len(taxonomy["territories"]["territories"]), 26)
+        by_territory = self.client.get("/api/v1/search", params={"q": "territory:software-engineering"})
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in by_territory.json()["results"]))
 
     def test_document_detail_endpoint_is_id_scoped(self):
         search = self.client.get("/api/v1/search", params={"q": "knowledge lifecycle kind:document"}).json()
@@ -134,6 +139,13 @@ class RuntimeApiTests(unittest.TestCase):
         facets = self.atlas.facets()
         self.assertIn("software-engineering", [item["id"] for item in facets["domains"]])
         self.assertIn("runtime", facets["tags"])
+        self.assertEqual(len(facets["territories"]), 26)
+
+    def test_territory_query_maps_from_domain_membership(self):
+        result = self.atlas.search("territory:software-engineering")
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in result["results"]))
+        concept = self.atlas.get_concept("EKTA-CON-000001")
+        self.assertIn("software-engineering", concept["territories"])
 
 
 if __name__ == "__main__":
