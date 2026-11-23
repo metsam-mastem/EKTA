@@ -24,6 +24,9 @@ In control engineering, a controller computes control actions from setpoints, me
 ## Purpose
 Translate goals, events, or measured state into actions.
 
+## Role
+Translate goals, events, or measured state into control decisions and actions.
+
 ## Mechanism
 Observe inputs/state, evaluate rules or a control law, select actions, issue commands, and optionally use feedback to adjust subsequent actions.
 
