@@ -113,6 +113,10 @@ class RuntimeApiTests(unittest.TestCase):
         self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in by_name["results"]))
         by_domain = self.atlas.search("#software-engineering")
         self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in by_domain["results"]))
+        by_alias_word = self.atlas.search("#execution")
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in by_alias_word["results"]))
+        by_document_word = self.atlas.search("#runtime kind:document")
+        self.assertTrue(any(item["source_file"] == "docs/RUNTIME_ARCHITECTURE.md" for item in by_document_word["results"]))
 
     def test_fielded_query_filters_concepts(self):
         result = self.atlas.search("domain:software-engineering layer:platform-runtime")
