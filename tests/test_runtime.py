@@ -8,6 +8,7 @@ sys.path.insert(0, str(ROOT / "runtime"))
 from fastapi.testclient import TestClient
 from ekta_runtime.repository import AtlasRepository
 from ekta_runtime.api import app
+from ekta_runtime.search import normalize, parse_query
 
 
 class RuntimeRepositoryTests(unittest.TestCase):
@@ -34,6 +35,7 @@ class RuntimeRepositoryTests(unittest.TestCase):
     def test_taxonomy_is_exposed(self):
         taxonomy = self.atlas.taxonomy()
         self.assertGreaterEqual(len(taxonomy["domains"]["domains"]), 20)
+        self.assertEqual(len(taxonomy["territories"]["territories"]), 26)
         self.assertIn("DEPENDS_ON", taxonomy["relations"])
 
     def test_graph_contains_typed_edges_and_resolution_state(self):
@@ -52,6 +54,7 @@ class RuntimeApiTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.client = TestClient(app)
+        cls.atlas = AtlasRepository(ROOT)
 
     def test_health_endpoint(self):
         response = self.client.get("/health")
@@ -77,10 +80,90 @@ class RuntimeApiTests(unittest.TestCase):
         self.assertEqual(graph.status_code, 200)
         self.assertGreater(graph.json()["summary"]["edge_count"], 0)
 
+    def test_unified_search_and_facets_endpoints(self):
+        result = self.client.get("/api/v1/search", params={"q": "#runtime"})
+        self.assertEqual(result.status_code, 200)
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in result.json()["results"]))
+        facets = self.client.get("/api/v1/facets")
+        self.assertEqual(facets.status_code, 200)
+        self.assertIn("tags", facets.json())
+        taxonomy = self.client.get("/api/v1/taxonomy").json()
+        self.assertEqual(len(taxonomy["territories"]["territories"]), 26)
+        by_territory = self.client.get("/api/v1/search", params={"q": "territory:software-engineering"})
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in by_territory.json()["results"]))
+
+    def test_document_detail_endpoint_is_id_scoped(self):
+        search = self.client.get("/api/v1/search", params={"q": "knowledge lifecycle kind:document"}).json()
+        item = next(item for item in search["results"] if item["source_file"] == "docs/END_TO_END_LIFECYCLE.md")
+        detail = self.client.get("/api/v1/documents/" + item["id"])
+        self.assertEqual(detail.status_code, 200)
+        self.assertIn("Traceability chain", detail.json()["content"])
+        self.assertEqual(self.client.get("/api/v1/documents/EKTA-DOC-invalid").status_code, 404)
+
     def test_browser_explorer_is_served(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertIn("EKTA", response.text)
+        self.assertIn('<html lang="fa" dir="rtl">', response.text)
+        self.assertIn('id="territory-filter"', response.text)
+        self.assertIn('id="query"', response.text)
+
+    def test_hashtag_search_matches_concept_name_and_taxonomy(self):
+        by_name = self.atlas.search("#runtime")
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in by_name["results"]))
+        by_domain = self.atlas.search("#software-engineering")
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in by_domain["results"]))
+        by_alias_word = self.atlas.search("#execution")
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in by_alias_word["results"]))
+        by_document_word = self.atlas.search("#runtime kind:document")
+        self.assertTrue(any(item["source_file"] == "docs/RUNTIME_ARCHITECTURE.md" for item in by_document_word["results"]))
+
+    def test_fielded_query_filters_concepts(self):
+        result = self.atlas.search("domain:software-engineering layer:platform-runtime")
+        self.assertTrue(result["results"])
+        self.assertTrue(all("software-engineering" in item.get("domains", []) for item in result["results"]))
+
+    def test_search_returns_explainable_match_metadata(self):
+        result = self.atlas.search("runtime")
+        item = next(item for item in result["results"] if item["id"] == "EKTA-CON-000001")
+        self.assertGreater(item["score"], 0)
+        self.assertTrue(item["matched_fields"])
+        self.assertTrue(item["snippet"])
+
+    def test_repository_document_search_and_safe_detail(self):
+        result = self.atlas.search("knowledge lifecycle kind:document")
+        self.assertTrue(any(item["source_file"] == "docs/END_TO_END_LIFECYCLE.md" for item in result["results"]))
+        document = next(item for item in result["results"] if item["source_file"] == "docs/END_TO_END_LIFECYCLE.md")
+        detail = self.atlas.get_document(document["id"])
+        self.assertIn("Traceability chain", detail["content"])
+        self.assertIsNone(self.atlas.get_document("EKTA-DOC-not-a-valid-id"))
+
+    def test_query_parser_handles_hashtags_fields_and_exact_phrases(self):
+        plan = parse_query('#runtime "workflow runtime" territory:software-engineering status:PROPOSED')
+        self.assertIn("runtime", plan.hashtags)
+        self.assertIn("workflow runtime", plan.phrases)
+        self.assertEqual(plan.filters["territory"], ("software-engineering",))
+        self.assertEqual(plan.filters["status"], ("PROPOSED",))
+
+    def test_search_normalizes_persian_arabic_character_variants(self):
+        self.assertEqual(normalize("كي"), normalize("کی"))
+
+    def test_search_supports_status_and_kind_filters(self):
+        result = self.atlas.search("runtime status:PROPOSED kind:concept")
+        self.assertTrue(result["results"])
+        self.assertTrue(all(item["kind"] == "concept" and item["status"] == "PROPOSED" for item in result["results"]))
+
+    def test_facets_include_tags_and_taxonomy_values(self):
+        facets = self.atlas.facets()
+        self.assertIn("software-engineering", [item["id"] for item in facets["domains"]])
+        self.assertIn("runtime", facets["tags"])
+        self.assertEqual(len(facets["territories"]), 26)
+
+    def test_territory_query_maps_from_domain_membership(self):
+        result = self.atlas.search("territory:software-engineering")
+        self.assertTrue(any(item["id"] == "EKTA-CON-000001" for item in result["results"]))
+        concept = self.atlas.get_concept("EKTA-CON-000001")
+        self.assertIn("software-engineering", concept["territories"])
 
 
 if __name__ == "__main__":

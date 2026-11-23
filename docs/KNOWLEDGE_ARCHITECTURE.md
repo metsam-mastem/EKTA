@@ -32,3 +32,14 @@ Start with Markdown and YAML. Potential exports: JSON, JSON-LD, RDF/Turtle, CSV 
 
 ## Quality constraints
 No duplicate IDs, dangling references, unknown taxonomy tags, unknown predicates, unsupported status promotion, source without provenance, or graph output without source revision.
+
+
+## Portfolio navigation layer — 26 engineering territories
+
+The product has 26 approved top-level engineering territories in `taxonomy/territories.yml`. These territories organize navigation and portfolio coverage; they are not a replacement for operational domain tags. The 25 entries in `taxonomy/domains.yml` are more granular classification values. Each territory declares its current `domain_ids` mapping, and a domain may map to more than one territory.
+
+The remaining three classification axes are independent: engineering layer and knowledge type, alongside operational domain. Concepts may belong to several values on each axis. Territory membership is derived from the explicit registry mapping; empty mappings indicate a knowledge coverage gap, not an invented association.
+
+## Runtime discovery contract
+
+The current deterministic search runtime indexes canonical concept records and selected repository Markdown/YAML/JSON content. It supports free-text AND matching, exact phrases, hashtags, stable ID, territory/domain/layer/type/status/kind selectors, result snippets, ranking, pagination, and facets. Search results are discovery projections; canonical files remain authoritative.

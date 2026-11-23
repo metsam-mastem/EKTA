@@ -8,7 +8,7 @@ EKTA/
 ├── CHANGELOG.md
 ├── LICENSE-STATUS.md
 ├── docs/                 # charter, architecture, lifecycle, governance, continuity
-├── taxonomy/             # domains, layers, knowledge types, relations
+├── taxonomy/             # 26 territories, 25 operational domains, layers, knowledge types, relations
 ├── encyclopedia/
 │   ├── concepts/
 │   ├── techniques/
@@ -28,7 +28,7 @@ EKTA/
 │   ├── playbooks/
 │   ├── checklists/
 │   └── workflows/
-├── templates/
+├── workflows/            # reusable knowledge intake and maintenance playbooks\n├── runtime/              # Python services, versioned API, and browser workbench\n├── scripts/              # local runtime launchers\n├── templates/
 ├── tools/
 ├── tests/
 └── .github/workflows/
@@ -36,7 +36,7 @@ EKTA/
 
 ## Directory rules
 - docs: project-level governance, architecture, lifecycle, continuity.
-- taxonomy: controlled classification vocabularies.
+- taxonomy: 26 top-level territories plus operational domains, layers, knowledge types, and relations.\n- runtime: local-first application runtime, search services, API, and browser explorer.\n- workflows: operational procedures for intake, review, publishing, and verification.
 - encyclopedia: canonical knowledge records.
 - maps: human-readable and generated maps.
 - schemas: data contracts.

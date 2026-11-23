@@ -22,3 +22,6 @@ domains:
   - {id: energy-power, label: Energy and Power Systems, status: proposed}
   - {id: aerospace-automotive-transport, label: Aerospace, Automotive, and Transportation Systems, status: proposed}
   - {id: media-graphics-simulation, label: Media, Graphics, Simulation, and Game Engineering, status: proposed}
+  - {id: testing-verification-validation-quality, label: Testing, Verification, Validation, and Quality Engineering, status: proposed}
+  - {id: workflow-process-engineering, label: Workflow and Process Engineering, status: proposed}
+  - {id: documentation-standards-governance, label: Documentation, Standards, and Engineering Governance, status: proposed}

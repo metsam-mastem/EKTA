@@ -16,7 +16,7 @@ EKTA یک اطلس مهندسی رابطه‌مند، چندلایه و مبتن
 | شاخه اصلی | `main` |
 | منشور و چشم‌انداز | **APPROVED — 2026-11-23** |
 | نوع محصول | Engineering Knowledge Operating Environment |
-| وضعیت توسعه | Foundation / knowledge architecture |
+| وضعیت توسعه | Runtime v0.2 — Search & Explore Workbench |
 | مجوز مخزن | هنوز انتخاب نشده است |
 
 ---
@@ -68,19 +68,19 @@ flowchart TD
 
 ## معماری طبقه‌بندی دانش
 
-EKTA سه محور مستقل دارد؛ این محورها نباید در یک دسته‌بندی واحد با هم اشتباه شوند.
+EKTA سه محور طبقه‌بندی مستقل دارد؛ در کنار آن‌ها یک لایه ناوبری سطح‌بالا برای ۲۶ قلمرو مهندسی قرار دارد. قلمرو کلان با حوزه تخصصی یکی نیست و این دو فهرست نباید با هم جایگزین شوند.
 
 | محور | پرسش | نمونه |
 |---|---|---|
-| **Engineering Domain** | در چه قلمرو مهندسی هستیم؟ | Software، Hardware، Systems، Robotics |
+| **Engineering Territory** | در کدام قلمرو کلان و مسیر ناوبری قرار داریم؟ | ۲۶ قلمرو مصوب در `taxonomy/territories.yml` |\n| **Engineering Domain** | کدام حوزه تخصصی دانش را توصیف می‌کند؟ | Software، Hardware، Systems، Robotics؛ ۲۵ شناسه عملیاتی در `taxonomy/domains.yml` |
 | **Engineering Layer** | مفهوم در کدام لایه سیستم قرار دارد؟ | Physical، Firmware، OS، Platform، Application، Workflow |
 | **Knowledge / Technique Type** | با چه نوع دانشی روبه‌رو هستیم؟ | Concept، Architecture، Mechanism، Algorithm، Pattern، Method، Standard، Tool |
 
-یک مفهوم ممکن است به چند قلمرو یا لایه مرتبط باشد، اما باید هویت canonical و شناسه پایدار خود را حفظ کند.
+یک مفهوم می‌تواند به چند حوزه تخصصی، قلمرو مشتق‌شده و لایه مرتبط باشد، اما باید هویت canonical و شناسه پایدار خود را حفظ کند. نگاشت قلمروها از طریق `domain_ids` در رجیستری قلمروها انجام می‌شود.
 
 ### نقشه مادر قلمروهای مهندسی
 
-دامنه اطلس در نسخه جامع به ۲۶ قلمرو سطح‌بالا تقسیم می‌شود:
+ناوبری سطح‌بالای اطلس در ۲۶ قلمرو مهندسی سازمان‌دهی شده است. این شمار، قلمروهای کلان است و با شمار حوزه‌های تخصصی عملیاتی تفاوت دارد:
 
 1. علوم و ریاضیات مهندسی
 2. مهندسی سیستم‌ها
@@ -375,3 +375,38 @@ also depends on the canonical concept records and is reported rather than hidden
 Then open `http://127.0.0.1:8000`. API documentation is available at `/docs`.
 
 See the [staged implementation plan](docs/IMPLEMENTATION_PLAN.md) for the v1.0 definition of done and remaining delivery gates.
+
+
+## Search and Explore Workbench (v0.2)
+
+The local runtime now provides a unified discovery surface across concept identity records and indexed project documents. The browser experience is Persian-first and right-to-left, while IDs, taxonomy keys, source paths, and technical terms retain their original forms.
+
+### Search syntax
+
+| Input | Purpose |
+|---|---|
+| `runtime engine` | Search all terms across names, aliases, headings, and content |
+| `#runtime` | Match a hashtag derived from concept names, aliases, taxonomy, headings, and content tags |
+| `"workflow runtime"` | Search an exact phrase |
+| `territory:software-engineering` | Filter by one of the 26 approved top-level territories |
+| `domain:software-engineering` | Filter by operational engineering domain |
+| `layer:platform-runtime` | Filter by engineering layer |
+| `type:concept` | Filter by knowledge type |
+| `status:PROPOSED` | Filter by record maturity status |
+| `kind:document` | Filter by result kind: concept, document, taxonomy, or schema |
+| `id:EKTA-CON-000001` | Look up a stable record ID |
+
+Multiple words are AND-matched. Query fields can be combined, for example:
+`runtime territory:software-engineering layer:platform-runtime status:PROPOSED`.
+
+### Discovery API
+
+- `GET /api/v1/search?q=...` — unified, ranked results and snippets.
+- `GET /api/v1/facets` — territory, domain, layer, type, status, and tag facets.
+- `GET /api/v1/concepts/{id}` — full concept identity card and graph relationships.
+- `GET /api/v1/documents/{id}` — scoped full document content by generated stable document ID.
+- `GET /api/v1/taxonomy` — canonical taxonomy registries.
+
+### Taxonomy clarification
+
+EKTA now separates **26 top-level Engineering Territories** from **25 operational domain tags**. Territories are the navigation/portfolio layer; operational domains are more granular classification values. The explicit mapping is in [taxonomy/territories.yml](taxonomy/territories.yml), and domain identifiers remain in [taxonomy/domains.yml](taxonomy/domains.yml). This removes the earlier 22-vs-26 ambiguity without treating the two lists as interchangeable.

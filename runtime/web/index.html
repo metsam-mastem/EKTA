@@ -1,49 +1,417 @@
 <!doctype html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101820">
-  <title>EKTA · Engineering Knowledge Atlas</title>
+  <meta name="theme-color" content="#101a23">
+  <meta name="description" content="EKTA — اطلس دانش و تکنیک‌های مهندسی؛ جست‌وجو، کاوش و مشاهده شناسنامه‌های دانش.">
+  <title>EKTA | اطلس دانش مهندسی</title>
   <style>
-    :root{color-scheme:dark;--bg:#101820;--panel:#182631;--line:#2b414e;--text:#e8f0f4;--muted:#9eb0ba;--accent:#7dd3c7}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,sans-serif}
-    header{padding:28px max(22px,calc((100vw - 1180px)/2));border-bottom:1px solid var(--line);background:#14212b}
-    h1{margin:0;font-size:clamp(24px,4vw,38px)}header p{margin:6px 0 0;color:var(--muted)}
-    main{max-width:1180px;margin:24px auto;padding:0 18px}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-    .stat,.panel,.item{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
-    .stat strong{display:block;font-size:25px;color:var(--accent)}.stat span,.muted{color:var(--muted)}
-    .toolbar{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap}input,select{background:#0d171e;border:1px solid var(--line);color:var(--text);padding:11px 12px;border-radius:8px;min-width:180px}
-    #query{flex:1}.layout{display:grid;grid-template-columns:minmax(260px,1fr) minmax(0,1.5fr);gap:14px}
-    #results{display:grid;gap:8px;align-content:start}.item{cursor:pointer;text-align:left;color:inherit;width:100%}.item:hover,.item[aria-current=true]{border-color:var(--accent)}
-    .item b{display:block}.item small{color:var(--muted)}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#c5d7df}
-    @media(max-width:760px){.layout{grid-template-columns:1fr}.toolbar input{min-width:100%}}
+    :root{
+      color-scheme:dark;--bg:#0d151d;--surface:#131f29;--surface2:#182733;--surface3:#203340;
+      --line:#2a3d49;--line2:#38505d;--text:#e7eef2;--muted:#9baeb8;--soft:#c2d0d6;
+      --accent:#65d6c2;--accent2:#a0eadc;--blue:#8bb8ef;--warn:#edc77d;--danger:#e99595;
+      --shadow:0 14px 44px rgba(0,0,0,.18);--radius:15px
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(ellipse at 12% 0%,rgba(55,113,122,.13),transparent 36%),var(--bg);color:var(--text);font:14px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    .topbar{border-bottom:1px solid var(--line);background:rgba(16,26,35,.92);position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}
+    .topbar-inner{max-width:1600px;margin:auto;padding:13px 22px;display:flex;align-items:center;gap:14px}
+    .brand{display:flex;align-items:center;gap:11px;min-width:230px}
+    .logo{width:39px;height:39px;border-radius:12px;background:linear-gradient(145deg,#2a746e,#183c49);display:grid;place-items:center;color:#d9fff7;font-weight:850;letter-spacing:-1px;box-shadow:inset 0 0 0 1px rgba(160,234,220,.25)}
+    .brand-title{font-weight:800;font-size:17px;letter-spacing:.4px}
+    .brand-sub{font-size:11px;color:var(--muted);margin-top:-2px}
+    .top-status{margin-inline-start:auto;display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}
+    .status-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(101,214,194,.12)}
+    .top-link{border:1px solid var(--line);border-radius:9px;padding:7px 10px;color:var(--soft);text-decoration:none;font-size:12px}
+    main{max-width:1600px;margin:auto;padding:24px 22px 48px}
+    .intro{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px}
+    h1{font-size:clamp(22px,3vw,31px);margin:0 0 4px;letter-spacing:-.5px}
+    .intro p{color:var(--muted);margin:0;font-size:13px}
+    .version{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:5px 9px;border-radius:30px;white-space:nowrap}
+    .search-panel{background:linear-gradient(145deg,#172a35,#14232d);border:1px solid #304a57;border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+    .search-row{display:flex;gap:9px;align-items:stretch}
+    .search-field{min-width:0;flex:1;position:relative}
+    .search-field svg{position:absolute;right:15px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+    #query{width:100%;height:52px;border-radius:12px;border:1px solid var(--line2);background:#0e1a22;color:var(--text);padding:0 47px 0 14px;outline:none;direction:auto}
+    #query::placeholder{color:#78909c}
+    #query:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(101,214,194,.12)}
+    .search-button{border:0;border-radius:12px;background:var(--accent);color:#08211f;padding:0 24px;font-weight:800;min-width:112px}
+    .search-button:hover{background:var(--accent2)}
+    .search-help{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:12px;color:var(--muted);font-size:11px}
+    .syntax-chip,.tag-chip{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:7px;background:#12212a;color:#b6c9d1;padding:3px 8px;font:11px ui-monospace,SFMono-Regular,Consolas,monospace;direction:ltr}
+    .syntax-chip{cursor:pointer}.syntax-chip:hover,.tag-chip:hover{border-color:var(--accent);color:var(--accent2)}
+    .metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:15px 0 18px}
+    .metric{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
+    .metric strong{display:block;font-size:23px;line-height:1.25;color:var(--accent2);font-variant-numeric:tabular-nums}
+    .metric span{color:var(--muted);font-size:11px}
+    .workspace{display:grid;grid-template-columns:250px minmax(300px,390px) minmax(0,1fr);gap:13px;align-items:start}
+    .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-width:0;overflow:hidden}
+    .panel-head{padding:14px 15px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .panel-head h2{font-size:14px;margin:0;font-weight:750}
+    .panel-head small{color:var(--muted);font-size:11px}
+    .panel-body{padding:14px}
+    .filter-group{margin-bottom:14px}
+    .filter-group label{display:block;color:var(--muted);font-size:11px;margin-bottom:6px}
+    select{width:100%;border:1px solid var(--line);background:#0e1a22;color:var(--soft);border-radius:9px;padding:9px 10px;min-width:0;outline:none}
+    select:focus{border-color:var(--accent)}
+    .filter-actions{display:flex;gap:8px}
+    .plain-button{border:1px solid var(--line);background:transparent;color:var(--muted);padding:7px 10px;border-radius:8px;font-size:11px}
+    .plain-button:hover{border-color:var(--line2);color:var(--text)}
+    .tags-title{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin:19px 0 8px}
+    .tag-cloud{display:flex;gap:6px;flex-wrap:wrap}
+    .tag-chip{font-size:10px;cursor:pointer;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+    .tag-chip.active{border-color:var(--accent);color:var(--accent2);background:rgba(101,214,194,.08)}
+    .results-head{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+    #result-count{color:var(--accent2);font-variant-numeric:tabular-nums}
+    #query-echo{color:var(--muted);font-size:11px;overflow-wrap:anywhere}
+    .result-list{padding:9px;display:grid;gap:8px;max-height:calc(100vh - 365px);min-height:280px;overflow:auto}
+    .result-card{border:1px solid var(--line);background:#14212b;border-radius:11px;padding:11px 12px;text-align:right;color:var(--text);width:100%;transition:border-color .15s,background .15s}
+    .result-card:hover{border-color:#547c83;background:#182a34}
+    .result-card[aria-current=true]{border-color:var(--accent);background:rgba(42,103,99,.17);box-shadow:inset -2px 0 0 var(--accent)}
+    .result-title{font-weight:750;font-size:13px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    .result-id{font:10px ui-monospace,SFMono-Regular,Consolas,monospace;color:#83a0ac;direction:ltr;display:inline-block}
+    .kind-pill,.status-pill{display:inline-flex;border:1px solid var(--line);border-radius:20px;padding:1px 7px;font-size:10px;color:#b4c5cc;white-space:nowrap}
+    .kind-pill{color:var(--blue);border-color:#354d61}
+    .status-pill{color:var(--warn);border-color:#66563a}
+    .result-snippet{font-size:11px;color:var(--muted);margin:7px 0 6px;line-height:1.6}
+    .result-footer{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+    .result-footer .tag-chip{padding:1px 6px;font-size:9px}
+    .result-source{font:10px ui-monospace,SFMono-Regular,Consolas,monospace;color:#78909c;direction:ltr;text-align:left;margin-inline-start:auto;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .detail-panel{min-height:560px}
+    .detail-empty{min-height:520px;display:grid;place-items:center;text-align:center;padding:36px;color:var(--muted)}
+    .empty-symbol{width:56px;height:56px;border:1px solid var(--line2);border-radius:17px;margin:0 auto 13px;display:grid;place-items:center;color:var(--accent);font-size:24px;background:#12232b}
+    .detail-top{padding:19px 20px 15px;border-bottom:1px solid var(--line);background:linear-gradient(140deg,rgba(38,82,88,.17),transparent 75%)}
+    .detail-type{display:flex;gap:7px;align-items:center;color:var(--muted);font-size:11px;margin-bottom:7px}
+    .detail-title{font-size:21px;margin:0 0 4px;line-height:1.4;overflow-wrap:anywhere}
+    .detail-id{font:11px ui-monospace,SFMono-Regular,Consolas,monospace;color:#8ca8b3;direction:ltr;text-align:right}
+    .meta-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+    .meta-chip{font-size:10px;color:#bad0d7;border:1px solid #314954;background:#172a34;padding:3px 8px;border-radius:20px}
+    .tabs{display:flex;gap:4px;padding:9px 14px;border-bottom:1px solid var(--line);overflow:auto}
+    .tab{border:0;background:transparent;color:var(--muted);padding:7px 12px;border-radius:8px;white-space:nowrap;font-size:12px}
+    .tab[aria-selected=true]{background:rgba(101,214,194,.12);color:var(--accent2)}
+    .detail-content{padding:17px 20px 24px;min-height:330px}
+    .detail-content h2{font-size:16px;margin:20px 0 8px;color:#d9e8ec}
+    .detail-content h3{font-size:14px;margin:17px 0 6px;color:var(--accent2)}
+    .detail-content p{margin:7px 0;color:#c3d0d5;white-space:pre-wrap}
+    .detail-content ul{padding-inline-start:21px;color:#c3d0d5}
+    .detail-content li{padding:2px 0}
+    .detail-content code{font:12px ui-monospace,SFMono-Regular,Consolas,monospace;background:#0b171f;border:1px solid var(--line);border-radius:5px;padding:2px 5px;direction:ltr;display:inline-block}
+    .detail-content pre{direction:ltr;text-align:left;white-space:pre-wrap;overflow:auto;background:#0b171f;border:1px solid var(--line);border-radius:9px;padding:12px;color:#c4d4d9;font-size:11px}
+    .relation-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid rgba(42,61,73,.7);flex-wrap:wrap}
+    .relation-predicate{font:10px ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--accent2);direction:ltr}
+    .relation-target{border:0;background:transparent;color:#c9d8de;text-decoration:underline;text-decoration-color:#54717d;text-underline-offset:3px;padding:0}
+    .relation-state{font-size:10px;color:var(--warn);margin-inline-start:auto}
+    .metadata-table{width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed}
+    .metadata-table td{padding:8px 7px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+    .metadata-table td:first-child{width:31%;color:var(--muted);direction:ltr;text-align:right}
+    .metadata-table td:last-child{color:#cbd8dd}
+    .notice{padding:14px;color:var(--muted);font-size:12px;text-align:center}
+    .load-more{margin:0 9px 10px;width:calc(100% - 18px);padding:9px;border:1px dashed var(--line2);background:transparent;color:var(--accent2);border-radius:9px}
+    .footer-note{text-align:center;color:#738993;font-size:10px;margin-top:17px}
+    .hidden{display:none!important}
+    @media(max-width:1180px){.workspace{grid-template-columns:220px minmax(0,1fr)}.detail-panel{grid-column:1/-1}.detail-empty{min-height:280px}.result-list{max-height:520px}}
+    @media(max-width:720px){
+      .topbar-inner{padding:10px 13px}.brand{min-width:0}.brand-sub,.top-link{display:none}.top-status{font-size:10px}
+      main{padding:18px 12px 34px}.intro{align-items:flex-start}.version{display:none}
+      .search-panel{padding:11px}.search-row{flex-direction:column}.search-button{height:45px}
+      .metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.metric{padding:10px}.metric strong{font-size:20px}
+      .workspace{grid-template-columns:minmax(0,1fr);gap:10px}.detail-panel{grid-column:auto}.result-list{max-height:440px;min-height:180px}
+      .detail-title{font-size:18px}.detail-content{padding:14px}.detail-top{padding:15px}
+    }
   </style>
 </head>
 <body>
-<header><h1>EKTA</h1><p>Engineering Knowledge &amp; Techniques Atlas · Local-first knowledge runtime</p></header>
-<main>
-  <section class="stats" id="stats" aria-live="polite"><div class="stat">Loading atlas…</div></section>
-  <div class="toolbar">
-    <input id="query" type="search" placeholder="Search concepts, aliases, definitions…" aria-label="Search concepts">
-    <select id="status" aria-label="Filter by status"><option value="">All statuses</option><option>PROPOSED</option><option>RESEARCHED</option><option>VERIFIED</option><option>IMPLEMENTED</option><option>VALIDATED</option></select>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><div class="logo">EK</div><div><div class="brand-title">EKTA</div><div class="brand-sub">Engineering Knowledge &amp; Techniques Atlas</div></div></div>
+    <div class="top-status"><span class="status-dot" id="health-dot"></span><span id="health-label">در حال اتصال به هسته دانش…</span></div>
+    <a class="top-link" href="/docs" target="_blank" rel="noopener">مستندات API</a>
   </div>
-  <section class="layout">
-    <div><h2>Concepts</h2><div id="results" aria-live="polite"></div></div>
-    <article class="panel" id="detail"><h2>Knowledge record</h2><p class="muted">Select a concept to inspect its canonical record.</p></article>
+</header>
+<main>
+  <section class="intro">
+    <div><h1>جست‌وجو و کاوش دانش مهندسی</h1><p>از یک واژه یا مسئله شروع کن؛ مفاهیم، اسناد، طبقه‌بندی‌ها و روابط مرتبط را پیدا کن.</p></div>
+    <span class="version" id="runtime-version">Runtime v0.2</span>
   </section>
+
+  <section class="search-panel" aria-label="جست‌وجوی دانش">
+    <div class="search-row">
+      <div class="search-field">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>
+        <input id="query" type="search" autocomplete="off" placeholder="هر واژه، موضوع، شناسه یا هشتگ را بنویس… مانند #runtime یا workflow engine" aria-label="عبارت جست‌وجو">
+      </div>
+      <button class="search-button" id="search-button" type="button">جست‌وجو</button>
+    </div>
+    <div class="search-help">
+      <span>جست‌وجوی هوشمند با این الگوها:</span>
+      <button class="syntax-chip" data-query="#runtime">#runtime</button>
+      <button class="syntax-chip" data-query="domain:software-engineering">domain:software-engineering</button>
+      <button class="syntax-chip" data-query="layer:platform-runtime">layer:platform-runtime</button>
+      <button class="syntax-chip" data-query="kind:document">kind:document</button>
+      <button class="syntax-chip" data-query='"workflow runtime"'>عبارت دقیق</button>
+    </div>
+  </section>
+
+  <section class="metrics" id="metrics" aria-label="آمار اطلس">
+    <div class="metric"><strong>—</strong><span>مفهوم‌ها</span></div>
+    <div class="metric"><strong>—</strong><span>اسناد قابل جست‌وجو</span></div>
+    <div class="metric"><strong>—</strong><span>قلمروهای مهندسی</span></div>
+    <div class="metric"><strong>—</strong><span>لایه‌ها</span></div>
+    <div class="metric"><strong>—</strong><span>روابط گراف</span></div>
+  </section>
+
+  <section class="workspace">
+    <aside class="panel">
+      <div class="panel-head"><h2>تصفیه و پیمایش</h2><small>فیلترها</small></div>
+      <div class="panel-body">
+        <div class="filter-group"><label for="territory-filter">قلمرو کلان مهندسی (۲۶گانه)</label><select id="territory-filter"><option value="">همه قلمروهای کلان</option></select></div>
+        <div class="filter-group"><label for="domain-filter">حوزه تخصصی</label><select id="domain-filter"><option value="">همه حوزه‌ها</option></select></div>
+        <div class="filter-group"><label for="layer-filter">لایه مهندسی</label><select id="layer-filter"><option value="">همه لایه‌ها</option></select></div>
+        <div class="filter-group"><label for="type-filter">نوع دانش</label><select id="type-filter"><option value="">همه انواع دانش</option></select></div>
+        <div class="filter-group"><label for="status-filter">وضعیت محتوا</label><select id="status-filter"><option value="">همه وضعیت‌ها</option></select></div>
+        <div class="filter-group"><label for="kind-filter">نوع منبع</label><select id="kind-filter"><option value="">همه منابع</option><option value="concept">شناسنامه مفهوم</option><option value="document">سند</option><option value="taxonomy">Taxonomy</option><option value="schema">Schema</option></select></div>
+        <div class="filter-actions"><button class="plain-button" id="clear-filters">پاک‌کردن فیلترها</button><button class="plain-button" id="show-all">نمایش همه</button></div>
+        <div class="tags-title"><span>هشتگ‌ها و برچسب‌های پرتکرار</span><span>کلیک برای جست‌وجو</span></div>
+        <div class="tag-cloud" id="tag-cloud"><span class="muted">در حال ساخت فهرست…</span></div>
+      </div>
+    </aside>
+
+    <section class="panel" aria-label="نتایج جست‌وجو">
+      <div class="panel-head">
+        <div class="results-head"><h2>نتایج کاوش</h2><strong id="result-count">—</strong></div>
+        <small id="query-echo">همه محتوا</small>
+      </div>
+      <div class="result-list" id="result-list" aria-live="polite"><div class="notice">در حال بارگذاری دانشنامه…</div></div>
+      <button class="load-more hidden" id="load-more">نمایش نتایج بیشتر</button>
+    </section>
+
+    <section class="panel detail-panel" aria-label="شناسنامه و محتوای انتخاب‌شده">
+      <div id="detail-view" class="detail-empty">
+        <div><div class="empty-symbol">⌕</div><strong>یک نتیجه را انتخاب کن</strong><p>شناسنامه، محتوای کامل، فراداده و روابط آن در این بخش نمایش داده می‌شود.</p></div>
+      </div>
+    </section>
+  </section>
+  <div class="footer-note">EKTA Knowledge Runtime · منبع اصلی دانش: Markdown و YAML نسخه‌بندی‌شده در مخزن</div>
 </main>
 <script>
-const $=s=>document.querySelector(s);
-async function loadOverview(){const d=await fetch('/api/v1/overview').then(r=>r.json());$('#stats').innerHTML=[
-['Concepts',d.concept_count],['Domains',d.domain_count],['Layers',d.layer_count],['Graph edges',d.graph.edge_count],['Resolved edges',d.graph.resolved_edge_count]
-].map(([k,v])=>'<div class="stat"><strong>'+v+'</strong><span>'+k+'</span></div>').join('')}
-async function loadConcepts(){const p=new URLSearchParams();if($('#query').value)p.set('q',$('#query').value);if($('#status').value)p.set('status',$('#status').value);
-const d=await fetch('/api/v1/concepts?'+p).then(r=>r.json());$('#results').innerHTML=d.items.map(x=>'<button class="item" data-id="'+x.id+'"><b>'+x.canonical_name+'</b><small>'+x.id+' · '+x.status+'</small></button>').join('')||'<p class="muted">No matching concepts.</p>';
-document.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>loadDetail(b.dataset.id)))}
-async function loadDetail(id){const d=await fetch('/api/v1/concepts/'+encodeURIComponent(id)).then(r=>r.json());$('#detail').innerHTML='<h2>'+d.canonical_name+'</h2><p class="muted">'+d.id+' · '+d.status+' · revision '+d.revision+'</p><p><b>Domains:</b> '+d.domains.join(', ')+'</p><p><b>Layers:</b> '+d.layers.join(', ')+'</p><pre></pre>';$('#detail pre').textContent=d.body}
-$('#query').addEventListener('input',loadConcepts);$('#status').addEventListener('change',loadConcepts);
-Promise.all([loadOverview(),loadConcepts()]).catch(e=>{$('#stats').textContent='Runtime error: '+e.message});
+const $ = selector => document.querySelector(selector);
+const state = {query:"",offset:0,limit:25,total:0,results:[],selected:null,tab:"content",sequence:0,facets:null};
+const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+const toLabel = value => String(value ?? "").replace(/[-_]/g," ");
+const kindLabel = kind => ({concept:"شناسنامه مفهوم",document:"سند",taxonomy:"طبقه‌بندی",schema:"قرارداد داده"}[kind] || kind || "محتوا");
+const $query = $("#query");
+
+async function api(path){
+  const response = await fetch(path,{headers:{"Accept":"application/json"}});
+  if(!response.ok) throw new Error("HTTP "+response.status);
+  return response.json();
+}
+function optionMarkup(items, firstLabel){
+  return '<option value="">'+escapeHtml(firstLabel)+'</option>'+items.map(item=>
+    '<option value="'+escapeHtml(item.id)+'">'+escapeHtml(item.label)+' ('+item.count+')</option>'
+  ).join("");
+}
+async function loadShell(){
+  const [overview,facets] = await Promise.all([api("/api/v1/overview"),api("/api/v1/facets")]);
+  state.facets=facets;
+  $("#runtime-version").textContent="Runtime v"+overview.runtime_version;
+  $("#health-label").textContent="هسته دانش متصل است";
+  $("#health-dot").style.background="var(--accent)";
+  $("#metrics").innerHTML=[
+    ["concept_count","شناسنامه مفهوم"],["document_count","اسناد و منابع"],["territory_count","قلمروهای کلان"],["domain_count","حوزه‌های تخصصی"],["layer_count","لایه‌های مهندسی"]
+  ].map(([key,label])=>'<div class="metric"><strong>'+Number(overview[key]||0)+'</strong><span>'+label+'</span></div>').join('')+
+  '<div class="metric"><strong>'+Number(overview.graph?.edge_count||0)+'</strong><span>روابط گراف</span></div>';
+  $("#territory-filter").innerHTML=optionMarkup(facets.territories,"همه قلمروهای کلان");
+  $("#domain-filter").innerHTML=optionMarkup(facets.domains,"همه حوزه‌ها");
+  $("#layer-filter").innerHTML=optionMarkup(facets.layers,"همه لایه‌ها");
+  $("#type-filter").innerHTML=optionMarkup(facets.knowledge_types,"همه انواع دانش");
+  $("#status-filter").innerHTML=optionMarkup(facets.statuses,"همه وضعیت‌ها");
+  $("#tag-cloud").innerHTML=facets.tags.slice(0,42).map(tag=>
+    '<button type="button" class="tag-chip" data-tag="'+escapeHtml(tag)+'">#'+escapeHtml(tag)+'</button>'
+  ).join("");
+  $("#tag-cloud").querySelectorAll("[data-tag]").forEach(button=>button.addEventListener("click",()=>useTag(button.dataset.tag)));
+}
+function currentParams(){
+  const params=new URLSearchParams({q:state.query,limit:String(state.limit),offset:String(state.offset)});
+  const filters=[["territory-filter","territory"],["domain-filter","domain"],["layer-filter","layer"],["type-filter","knowledge_type"],["status-filter","status"],["kind-filter","kind"]];
+  for(const [element,key] of filters){const value=$("#"+element).value;if(value)params.set(key,value)}
+  return params;
+}
+function useTag(tag){
+  $query.value="#"+tag;
+  clearSelectFilters();
+  runSearch(true);
+}
+function clearSelectFilters(){
+  ["territory-filter","domain-filter","layer-filter","type-filter","status-filter","kind-filter"].forEach(id=>$("#"+id).value="");
+}
+function runSearch(reset=true){
+  if(reset){state.offset=0;state.results=[]}
+  state.query=$query.value.trim();
+  const sequence=++state.sequence;
+  $("#query-echo").textContent=state.query || "همه محتوا";
+  $("#result-list").innerHTML='<div class="notice">در حال جست‌وجو در دانش و اسناد…</div>';
+  $("#load-more").classList.add("hidden");
+  api("/api/v1/search?"+currentParams().toString()).then(data=>{
+    if(sequence!==state.sequence)return;
+    state.total=data.count;
+    state.results=reset?data.results:[...state.results,...data.results];
+    renderResults(reset);
+    $("#result-count").textContent=data.count.toLocaleString("fa-IR")+" نتیجه";
+    $("#load-more").classList.toggle("hidden",!data.has_more);
+  }).catch(error=>{
+    if(sequence!==state.sequence)return;
+    $("#result-list").innerHTML='<div class="notice">خطا در جست‌وجو: '+escapeHtml(error.message)+'</div>';
+    $("#result-count").textContent="—";
+  });
+}
+function renderResults(reset){
+  if(!state.results.length){
+    $("#result-list").innerHTML='<div class="notice">محتوایی مطابق عبارت و فیلترهای فعلی پیدا نشد. هشتگ یا فیلترها را تغییر بده.</div>';
+    return;
+  }
+  const html=state.results.map(item=>{
+    const selected=state.selected?.id===item.id;
+    const tags=(item.tags||[]).slice(0,4).map(tag=>
+      '<button type="button" class="tag-chip" data-tag="'+escapeHtml(tag)+'">#'+escapeHtml(tag)+'</button>'
+    ).join("");
+    return '<article class="result-card" data-result-id="'+escapeHtml(item.id)+'" data-result-kind="'+escapeHtml(item.kind)+'" tabindex="0" role="button" aria-current="'+selected+'">'+
+      '<div class="result-title">'+escapeHtml(item.title)+' <span class="kind-pill">'+escapeHtml(kindLabel(item.kind))+'</span>'+
+      (item.status?'<span class="status-pill">'+escapeHtml(item.status)+'</span>':'')+'</div>'+
+      '<div class="result-id">'+escapeHtml(item.id)+'</div>'+
+      '<p class="result-snippet">'+escapeHtml(item.snippet||item.summary||"")+'</p>'+
+      '<div class="result-footer">'+tags+'<span class="result-source">'+escapeHtml(item.source_file)+'</span></div>'+
+      '</article>';
+  }).join("");
+  if(reset)$("#result-list").innerHTML=html;
+  else $("#result-list").insertAdjacentHTML("beforeend",html);
+}
+async function openResult(id,kind){
+  $("#detail-view").innerHTML='<div class="notice">در حال بازکردن شناسنامه…</div>';
+  try{
+    const data=kind==="concept"?await api("/api/v1/concepts/"+encodeURIComponent(id)):await api("/api/v1/documents/"+encodeURIComponent(id));
+    state.selected={...data,kind};
+    state.tab="content";
+    renderResults(true);
+    renderDetail();
+  }catch(error){
+    $("#detail-view").innerHTML='<div class="notice">بازکردن محتوا با خطا مواجه شد: '+escapeHtml(error.message)+'</div>';
+  }
+}
+function renderInline(text){
+  let safe=escapeHtml(text);
+  safe=safe.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");
+  safe=safe.replace(/`([^`]+)`/g,"<code>$1</code>");
+  return safe;
+}
+function renderMarkdown(source){
+  const lines=String(source||"").split(/\r?\n/);
+  const out=[];let paragraph=[];let list=[];let inCode=false;let code=[];
+  const flushParagraph=()=>{if(paragraph.length){out.push("<p>"+paragraph.map(renderInline).join("<br>")+"</p>");paragraph=[]}};
+  const flushList=()=>{if(list.length){out.push("<ul>"+list.map(line=>"<li>"+renderInline(line)+"</li>").join("")+"</ul>");list=[]}};
+  const flushCode=()=>{if(code.length){out.push("<pre><code>"+escapeHtml(code.join("\n"))+"</code></pre>");code=[]}};
+  for(const line of lines){
+    if(line.trim().startsWith("```")){
+      flushParagraph();flushList();
+      if(inCode){flushCode();inCode=false}else inCode=true;
+      continue;
+    }
+    if(inCode){code.push(line);continue}
+    const heading=line.match(/^(#{1,4})\s+(.+)$/);
+    if(heading){flushParagraph();flushList();const level=Math.min(4,Number(heading[1].length)+1);out.push("<h"+level+">"+renderInline(heading[2])+"</h"+level+">");continue}
+    if(/^\s*[-*]\s+/.test(line)){flushParagraph();list.push(line.replace(/^\s*[-*]\s+/,""));continue}
+    if(!line.trim()){flushParagraph();flushList();continue}
+    if(/^---+$/.test(line.trim())){flushParagraph();flushList();out.push("<hr>");continue}
+    paragraph.push(line);
+  }
+  flushParagraph();flushList();if(inCode)flushCode();
+  return out.join("");
+}
+function chipList(values){
+  return (values||[]).map(value=>'<button type="button" class="meta-chip" data-tag="'+escapeHtml(String(value).toLowerCase().replace(/\s+/g,"-"))+'">#'+escapeHtml(value)+'</button>').join("");
+}
+function renderDetail(){
+  const item=state.selected;if(!item)return;
+  const isConcept=item.kind==="concept";
+  const title=isConcept?item.canonical_name:item.title;
+  const tags=[...(item.territory_labels||[]),...(item.domains||[]),...(item.layers||[]),...(item.knowledge_types||[]),...(item.tags||[])];
+  const typeHtml='<span class="kind-pill">'+escapeHtml(kindLabel(item.kind))+'</span>'+
+    (item.status?'<span class="status-pill">'+escapeHtml(item.status)+'</span>':'');
+  const metaHtml=tags.slice(0,20).map(tag=>'<button type="button" class="meta-chip" data-tag="'+escapeHtml(String(tag).toLowerCase().replace(/\s+/g,"-"))+'">#'+escapeHtml(tag)+'</button>').join("");
+  $("#detail-view").innerHTML=
+    '<div class="detail-top"><div class="detail-type">'+typeHtml+'</div><h2 class="detail-title">'+escapeHtml(title)+'</h2>'+
+    '<div class="detail-id">'+escapeHtml(item.id)+'</div><div class="meta-chips">'+metaHtml+'</div></div>'+
+    '<nav class="tabs" role="tablist">'+
+      '<button class="tab" data-tab="content" role="tab" aria-selected="'+(state.tab==="content")+'">محتوا و تعریف</button>'+
+      '<button class="tab" data-tab="relations" role="tab" aria-selected="'+(state.tab==="relations")+'">روابط و پیوندها</button>'+
+      '<button class="tab" data-tab="metadata" role="tab" aria-selected="'+(state.tab==="metadata")+'">فراداده و شناسنامه</button>'+
+    '</nav><div class="detail-content" id="detail-content">'+renderDetailTab(item,state.tab)+'</div>';
+  $("#detail-view").querySelectorAll("[data-tab]").forEach(button=>button.addEventListener("click",()=>{state.tab=button.dataset.tab;renderDetail()}));
+  $("#detail-view").querySelectorAll("[data-tag]").forEach(button=>button.addEventListener("click",()=>useTag(button.dataset.tag)));
+  $("#detail-view").querySelectorAll("[data-related-id]").forEach(button=>button.addEventListener("click",()=>openResult(button.dataset.relatedId,"concept")));
+}
+function renderDetailTab(item,tab){
+  if(tab==="content"){
+    const body=item.body||item.content||"محتوایی برای نمایش وجود ندارد.";
+    const summary=item.metadata?.definition||"";
+    return (summary?'<h3>خلاصه</h3><p>'+escapeHtml(summary)+'</p>':'')+
+      renderMarkdown(body)+'<p class="muted">مسیر منبع: <code>'+escapeHtml(item.source_file)+'</code></p>';
+  }
+  if(tab==="relations"){
+    if(item.kind!=="concept")return '<h3>برچسب‌های سند</h3><div class="meta-chips">'+chipList(item.tags)+'</div><p class="muted">این سند هنوز روابط مفهومی ساخت‌یافته ندارد.</p>';
+    const rel=item.relationships||{outgoing:[],incoming:[]};
+    const renderRows=(rows,direction)=>rows.length?rows.map(edge=>{
+      const label=direction==="outgoing"?edge.target_label:edge.source;
+      const id=direction==="outgoing"?edge.target:edge.source;
+      return '<div class="relation-row"><span class="relation-predicate">'+escapeHtml(edge.predicate)+'</span>'+
+        (id?'<button class="relation-target" data-related-id="'+escapeHtml(id)+'">'+escapeHtml(label)+'</button>':'<span>'+escapeHtml(label)+'</span>')+
+        '<span class="relation-state">'+escapeHtml(edge.status)+'</span></div>';
+    }).join(""):'<p class="muted">موردی ثبت نشده است.</p>';
+    return '<h3>روابط خروجی</h3>'+renderRows(rel.outgoing,"outgoing")+
+      '<h3>روابط ورودی</h3>'+renderRows(rel.incoming,"incoming")+
+      '<p class="muted">پیوندهای حل‌نشده حذف نشده‌اند؛ وضعیتشان برای اصلاح دانش نشان داده می‌شود.</p>';
+  }
+  const metadata=item.metadata||{
+    id:item.id,title:item.title,kind:item.kind,source_file:item.source_file,tags:item.tags,headings:item.headings
+  };
+  const entries=Object.entries(metadata);
+  return '<table class="metadata-table"><tbody>'+entries.map(([key,value])=>
+    '<tr><td>'+escapeHtml(key)+'</td><td><pre>'+escapeHtml(typeof value==="string"?value:JSON.stringify(value,null,2))+'</pre></td></tr>'
+  ).join("")+'</tbody></table>';
+}
+function clearAll(){
+  $query.value="";clearSelectFilters();runSearch(true);
+}
+
+$("#result-list").addEventListener("click",event=>{
+  const tag=event.target.closest("[data-tag]");
+  if(tag){useTag(tag.dataset.tag);return}
+  const card=event.target.closest("[data-result-id]");
+  if(card)openResult(card.dataset.resultId,card.dataset.resultKind);
+});
+$("#result-list").addEventListener("keydown",event=>{
+  const card=event.target.closest("[data-result-id]");
+  if(card&&(event.key==="Enter"||event.key===" ")){event.preventDefault();openResult(card.dataset.resultId,card.dataset.resultKind)}
+});
+$("#search-button").addEventListener("click",()=>runSearch(true));
+$query.addEventListener("keydown",event=>{if(event.key==="Enter")runSearch(true)});
+let debounce;
+$query.addEventListener("input",()=>{clearTimeout(debounce);debounce=setTimeout(()=>runSearch(true),260)});
+["territory-filter","domain-filter","layer-filter","type-filter","status-filter","kind-filter"].forEach(id=>$("#"+id).addEventListener("change",()=>runSearch(true)));
+$("#clear-filters").addEventListener("click",()=>{clearSelectFilters();runSearch(true)});
+$("#show-all").addEventListener("click",clearAll);
+$("#load-more").addEventListener("click",()=>{state.offset+=state.limit;runSearch(false)});
+document.querySelectorAll("[data-query]").forEach(button=>button.addEventListener("click",()=>{$query.value=button.dataset.query;clearSelectFilters();runSearch(true)}));
+document.addEventListener("keydown",event=>{
+  if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==="k"){event.preventDefault();$query.focus()}
+});
+(async()=>{
+  try{await loadShell();runSearch(true)}
+  catch(error){$("#health-label").textContent="عدم دسترسی به Runtime";$("#health-dot").style.background="var(--danger)";$("#result-list").innerHTML='<div class="notice">راه‌اندازی رابط ناموفق بود: '+escapeHtml(error.message)+'</div>'}
+})();
 </script>
 </body>
 </html>

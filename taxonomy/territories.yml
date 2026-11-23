@@ -1,0 +1,31 @@
+schema_version: 1
+description: >
+  The 26 approved top-level engineering territories are a navigation and portfolio
+  layer. Operational domain tags remain a separate, more granular classification axis.
+territories:
+  - {id: engineering-sciences-mathematics, label: Engineering Sciences and Mathematics, domain_ids: []}
+  - {id: systems-engineering, label: Systems Engineering, domain_ids: [systems-engineering]}
+  - {id: software-engineering, label: Software Engineering, domain_ids: [software-engineering]}
+  - {id: computer-science, label: Computer Science, domain_ids: [computer-engineering, software-engineering]}
+  - {id: operating-systems-platform-engineering, label: Operating Systems and Platform Engineering, domain_ids: [operating-systems-platforms]}
+  - {id: data-engineering-databases, label: Data Engineering and Database Systems, domain_ids: [data-engineering]}
+  - {id: networking-telecommunications, label: Networking and Telecommunications, domain_ids: [networking-telecommunications]}
+  - {id: distributed-systems-cloud-infrastructure, label: Distributed Systems and Cloud Infrastructure, domain_ids: [devops-sre, networking-telecommunications]}
+  - {id: ai-ml-agents, label: Artificial Intelligence, Machine Learning, and Agents, domain_ids: [ai-ml-systems]}
+  - {id: electronics-semiconductors, label: Electronics and Semiconductors, domain_ids: [electrical-electronic, semiconductor-ic]}
+  - {id: computer-architecture-processors, label: Computer Architecture and Processor Engineering, domain_ids: [computer-engineering]}
+  - {id: chip-design, label: Integrated Circuit and Chip Design, domain_ids: [semiconductor-ic]}
+  - {id: pcb-electronic-systems, label: PCB and Electronic Systems Design, domain_ids: [electrical-electronic]}
+  - {id: firmware-embedded-systems, label: Firmware and Embedded Systems, domain_ids: [embedded-firmware]}
+  - {id: mechanical-materials-manufacturing, label: Mechanical, Materials, and Manufacturing Engineering, domain_ids: [mechanical-engineering, materials-manufacturing]}
+  - {id: robotics-control-mechatronics, label: Robotics, Control, and Mechatronics, domain_ids: [control-automation, robotics-mechatronics]}
+  - {id: security-safety-resilience, label: Security, Safety, and Resilience Engineering, domain_ids: [security-privacy, safety-reliability]}
+  - {id: testing-verification-validation-quality, label: Testing, Verification, Validation, and Quality Engineering, domain_ids: [testing-verification-validation-quality]}
+  - {id: workflow-process-engineering, label: Workflow and Process Engineering, domain_ids: [workflow-process-engineering]}
+  - {id: automation-engineering, label: Automation Engineering, domain_ids: [control-automation, workflow-process-engineering]}
+  - {id: ux-ui-human-machine-interaction, label: UX, UI, and Human–Machine Interaction, domain_ids: [human-factors-ux]}
+  - {id: operations-reliability-engineering, label: Operations and Reliability Engineering, domain_ids: [devops-sre, safety-reliability]}
+  - {id: product-engineering, label: Product Engineering, domain_ids: [product-project-engineering]}
+  - {id: project-engineering-development-management, label: Project Engineering and Development Management, domain_ids: [product-project-engineering, workflow-process-engineering]}
+  - {id: documentation-standards-engineering-governance, label: Documentation, Standards, and Engineering Governance, domain_ids: [documentation-standards-governance]}
+  - {id: applied-interdisciplinary-engineering, label: Applied and Interdisciplinary Engineering, domain_ids: [energy-power, aerospace-automotive-transport, media-graphics-simulation]}
