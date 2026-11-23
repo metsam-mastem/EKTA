@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101a23"><title>EKTA | میزکار عملیاتی</title>
+<style>
+:root{color-scheme:dark;--bg:#0d151d;--panel:#14212b;--panel2:#192a35;--line:#2b414d;--text:#e7eef2;--muted:#9aadb7;--accent:#65d6c2;--warn:#edc77d;--bad:#e99595}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.7 system-ui,sans-serif}
+header{position:sticky;top:0;z-index:2;background:#111e27;border-bottom:1px solid var(--line);padding:13px max(16px,calc((100% - 1200px)/2));display:flex;align-items:center;gap:14px}
+header a{color:var(--accent);text-decoration:none}header strong{font-size:17px}header span{color:var(--muted);font-size:12px}
+main{max-width:1200px;margin:26px auto;padding:0 16px}.hero{margin-bottom:20px}.hero h1{font-size:26px;margin:0 0 4px}.hero p{margin:0;color:var(--muted)}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0}.tab{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:9px 13px;border-radius:9px;cursor:pointer}.tab[aria-selected=true]{border-color:var(--accent);color:var(--accent);background:#18302f}
+.panel{display:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}.panel.active{display:block}.panel h2{margin:0 0 12px;font-size:18px}.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.step,.check,.doc,.result{border:1px solid var(--line);border-radius:10px;padding:12px;background:#101c25}.step strong{display:block;margin-bottom:3px}.check{display:flex;justify-content:space-between;gap:12px;margin:8px 0}.status{font:11px ui-monospace,monospace;color:var(--accent)}.status.FAIL{color:var(--bad)}
+label{display:block;color:var(--muted);font-size:12px;margin:10px 0 5px}input,textarea,select{width:100%;border:1px solid var(--line);border-radius:9px;background:#0c1820;color:var(--text);padding:10px;font:inherit}textarea{min-height:170px;resize:vertical}button.primary{background:var(--accent);color:#08211f;border:0;border-radius:9px;padding:10px 15px;font-weight:750;cursor:pointer;margin-top:10px}button.secondary{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px 13px;cursor:pointer;margin-top:10px}
+.notice{margin-top:12px;padding:11px;border:1px solid var(--line);border-radius:9px;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}.doc-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.doc button{background:none;border:0;color:var(--accent);padding:0;text-align:right;cursor:pointer;font-weight:700}.doc small{display:block;color:var(--muted);direction:ltr;text-align:right}.doc-view{margin-top:14px;padding:14px;background:#0d1921;border:1px solid var(--line);border-radius:10px;white-space:pre-wrap;direction:auto;max-height:480px;overflow:auto}
+@media(max-width:700px){.grid,.doc-list{grid-template-columns:1fr}.hero h1{font-size:22px}header span{display:none}}
+</style></head>
+<body>
+<header><strong>EKTA / Workbench</strong><span>میزکار راه‌اندازی، نگهداری و تولید دانش</span><a href="/">بازگشت به کاوشگر</a></header>
+<main>
+<section class="hero"><h1>میزکار عملیاتی EKTA</h1><p>راه‌اندازی اولیه، آزمون سلامت، ورود کنترل‌شده، پیش‌نویس دانش، پشتیبان‌گیری و مستندات.</p></section>
+<nav class="tabs" role="tablist">
+<button class="tab" data-panel="onboarding" aria-selected="true">۱. راه‌اندازی</button>
+<button class="tab" data-panel="health" aria-selected="false">۲. خودآزمایی</button>
+<button class="tab" data-panel="import" aria-selected="false">۳. مرکز ورود</button>
+<button class="tab" data-panel="editor" aria-selected="false">۴. ویرایشگر</button>
+<button class="tab" data-panel="backup" aria-selected="false">۵. پشتیبان‌گیری</button>
+<button class="tab" data-panel="docs" aria-selected="false">۶. مستندات</button>
+</nav>
+
+<section class="panel active" id="onboarding">
+<h2>شروع سریع — مسیر ۵ مرحله‌ای</h2>
+<p class="muted">این راهنما وضعیت را از خود Runtime می‌خواند؛ هیچ داده canonical را تغییر نمی‌دهد.</p>
+<div class="grid">
+<div class="step"><strong>۱. پیش‌نیازها</strong>Python 3.11 یا جدیدتر و دسترسی نوشتن در پوشه مخزن لازم است.</div>
+<div class="step"><strong>۲. اجرای محلی</strong>اسکریپت start را اجرا کن و مرورگر را روی 127.0.0.1:8000 باز کن.</div>
+<div class="step"><strong>۳. بررسی هسته</strong>خودآزمایی را اجرا کن؛ همه بررسی‌های پایه باید PASS باشند.</div>
+<div class="step"><strong>۴. ورود دانش</strong>فایل را در مرکز ورود پیش‌نمایش و مرحله‌بندی کن؛ انتشار به دانشنامه جداگانه و دستی است.</div>
+<div class="step"><strong>۵. حفاظت</strong>پیش از تغییرات ساختاری، بسته پشتیبان ZIP بساز و آن را خارج از دستگاه نگهداری کن.</div>
+<div class="step"><strong>محدوده ایمنی</strong>ویرایشگر فقط پیش‌نویس می‌سازد. بازیابی فقط بسته را مرحله‌بندی می‌کند و روی فایل‌های اصلی بازنویسی ندارد.</div>
+</div>
+<button class="primary" id="start-check">اجرای بررسی اولیه</button><div id="onboarding-result" class="notice">برای سنجش آمادگی، بررسی اولیه را اجرا کن.</div>
+</section>
+
+<section class="panel" id="health">
+<h2>خودآزمایی Runtime</h2><p class="muted">وجود فایل‌ها، نسخه Python و قابلیت نوشتن در فضای کاری محلی بررسی می‌شود.</p>
+<button class="primary" id="run-health">اجرای خودآزمایی</button><div id="health-result" class="notice">هنوز اجرا نشده است.</div>
+</section>
+
+<section class="panel" id="import">
+<h2>مرکز ورود دانش — Intake Staging</h2><p class="muted">فرمت‌های مجاز: .md، .markdown، .yaml، .yml و .json؛ حداکثر ۱ مگابایت برای هر فایل. این مرحله فقط پیش‌نمایش و مرحله‌بندی است.</p>
+<label for="import-file">انتخاب فایل</label><input id="import-file" type="file" accept=".md,.markdown,.yaml,.yml,.json">
+<label for="import-content">یا متن را وارد کن</label><textarea id="import-content" placeholder="متن فایل انتخاب‌شده در اینجا نمایش داده می‌شود…"></textarea>
+<button class="primary" id="stage-import">اعتبارسنجی و مرحله‌بندی</button><div id="import-result" class="notice">هیچ فایلی مرحله‌بندی نشده است.</div>
+</section>
+
+<section class="panel" id="editor">
+<h2>ویرایشگر پیش‌نویس دانش</h2><p class="muted">خروجی در .ekta/workspace/drafts ذخیره می‌شود؛ وارد پوشه canonical دانشنامه نمی‌شود.</p>
+<div class="grid">
+<div><label for="draft-id">شناسه پیشنهادی</label><input id="draft-id" value="EKTA-CON-900001"><label for="draft-name">نام canonical</label><input id="draft-name" placeholder="نام مفهوم"></div>
+<div><label for="draft-domains">حوزه‌ها (با کاما جدا کن)</label><input id="draft-domains" placeholder="software-engineering"><label for="draft-layers">لایه‌ها (با کاما جدا کن)</label><input id="draft-layers" placeholder="application"></div>
+</div>
+<label for="draft-body">محتوای Markdown</label><textarea id="draft-body" placeholder="## Definition&#10;تعریف دقیق مفهوم&#10;&#10;## Purpose&#10;چرایی و نقش"></textarea>
+<button class="primary" id="save-draft">ذخیره پیش‌نویس</button><div id="draft-result" class="notice">پیش‌نویس هنوز ذخیره نشده است.</div>
+</section>
+
+<section class="panel" id="backup">
+<h2>پشتیبان‌گیری و بازیابی کنترل‌شده</h2><p class="muted">پشتیبان شامل اسناد، Taxonomy، دانشنامه، Schemaها، Runtime، ابزارها و آزمون‌هاست؛ پوشه‌های مخفی محیط، کلیدها و تاریخچه .git وارد بسته نمی‌شوند. بازیابی فعلاً فقط در ناحیه staging قرار می‌گیرد.</p>
+<button class="primary" id="make-backup">ساخت بسته پشتیبان ZIP</button><div id="backup-result" class="notice">پشتیبان جدیدی ساخته نشده است.</div>
+<label for="restore-file">انتخاب ZIP برای پیش‌نمایش بازیابی</label><input id="restore-file" type="file" accept=".zip">
+<button class="secondary" id="stage-restore">اعتبارسنجی و مرحله‌بندی بازیابی</button><div id="restore-result" class="notice">بازیابی خودکار و بازنویسی فایل‌ها غیرفعال است.</div>
+</section>
+
+<section class="panel" id="docs">
+<h2>مرکز مستندات</h2><p class="muted">اسناد Markdown از پوشه docs مخزن خوانده می‌شوند.</p>
+<div id="docs-list" class="doc-list">در حال بارگذاری فهرست مستندات…</div><article id="doc-view" class="doc-view">یک سند را انتخاب کن.</article>
+</section>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+async function api(path,options={}){const r=await fetch(path,{...options,headers:{"Content-Type":"application/json",...(options.headers||{})}});const data=await r.json().catch(()=>({detail:"پاسخ نامعتبر"}));if(!r.ok)throw new Error(data.detail||("HTTP "+r.status));return data}
+function show(id,data){$(id).textContent=typeof data==="string"?data:JSON.stringify(data,null,2)}
+function fileText(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result));reader.onerror=reject;reader.readAsText(file)})}
+document.querySelectorAll(".tab").forEach(button=>button.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",String(b===button)));document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("active",p.id===button.dataset.panel))}));
+async function runHealth(target){try{const d=await api("/api/v1/workspace/self-test");$(target).textContent=d.checks.map(x=>(x.status==="PASS"?"✓":"✕")+" "+x.label+" — "+x.detail+" ["+x.status+"]").join("\n")+"\n\n"+d.summary.passed+"/"+d.summary.total+" PASS";return d}catch(e){show(target,e.message)}}
+$("#run-health").addEventListener("click",()=>runHealth("#health-result"));
+$("#start-check").addEventListener("click",()=>runHealth("#onboarding-result"));
+$("#import-file").addEventListener("change",async e=>{if(e.target.files[0])$("#import-content").value=await fileText(e.target.files[0])});
+$("#stage-import").addEventListener("click",async()=>{try{const file=$("#import-file").files[0];const filename=file?.name||"pasted.md";const d=await api("/api/v1/workspace/import/preview",{method:"POST",body:JSON.stringify({filename,content:$("#import-content").value})});show("#import-result",d)}catch(e){show("#import-result",e.message)}});
+$("#save-draft").addEventListener("click",async()=>{try{const split=id=>$("#"+id).value.split(",").map(x=>x.trim()).filter(Boolean);const d=await api("/api/v1/workspace/drafts",{method:"POST",body:JSON.stringify({id:$("#draft-id").value,canonical_name:$("#draft-name").value,domains:split("draft-domains"),layers:split("draft-layers"),body:$("#draft-body").value})});show("#draft-result",d)}catch(e){show("#draft-result",e.message)}});
+$("#make-backup").addEventListener("click",async()=>{try{const d=await api("/api/v1/workspace/backup",{method:"POST"});$("#backup-result").innerHTML="فایل: "+d.filename+" — "+d.file_count+" فایل — "+d.size+" بایت<br><a style='color:var(--accent)' href='/api/v1/workspace/backups/"+encodeURIComponent(d.filename)+"'>دریافت بسته ZIP</a>"}catch(e){show("#backup-result",e.message)}});
+$("#stage-restore").addEventListener("click",async()=>{try{const f=$("#restore-file").files[0];if(!f)throw new Error("ابتدا فایل ZIP انتخاب کن");const raw=await f.arrayBuffer();let binary="";new Uint8Array(raw).forEach(b=>binary+=String.fromCharCode(b));const encoded=btoa(binary);const d=await api("/api/v1/workspace/restore/preview",{method:"POST",body:JSON.stringify({filename:f.name,archive_base64:encoded})});show("#restore-result",d)}catch(e){show("#restore-result",e.message)}});
+async function loadDocs(){try{const d=await api("/api/v1/workspace/docs");$("#docs-list").innerHTML=d.items.map(x=>'<div class="doc"><button data-doc="'+x.path.replace(/"/g,"&quot;")+'">'+x.title.replace(/</g,"&lt;")+'</button><small>'+x.path+'</small></div>').join("");$("#docs-list").querySelectorAll("[data-doc]").forEach(b=>b.addEventListener("click",async()=>{try{const doc=await api("/api/v1/workspace/docs/"+b.dataset.doc);$("#doc-view").textContent=doc.content}catch(e){$("#doc-view").textContent=e.message}}))}catch(e){$("#docs-list").textContent=e.message}}
+loadDocs();
+</script>
+</body></html>
