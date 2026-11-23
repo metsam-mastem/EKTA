@@ -39,3 +39,4 @@
 - Updated README navigation, repository map, and context continuity handoff.
 - Documented that deleting a ChatGPT conversation does not delete GitHub repository content, while uncommitted chat-only decisions may be lost.
 - Explicitly documented current non-features: no UI upload/edit, semantic/AI search, authentication, multi-user cloud, Android package, or production public deployment.
+\n## Operational Workspace v0.4 — 2026-11-23\n\n- Added first-run onboarding and repository self-test.\n- Added bounded Markdown/YAML/JSON import staging; canonical knowledge remains unchanged.\n- Added a Git-separated draft editor for proposed concept records.\n- Added allowlisted ZIP backup export and safe restore preview staging; no automatic overwrite.\n- Added a Markdown documentation center.\n- Added API tests and user/security documentation for the new workflows.\n
