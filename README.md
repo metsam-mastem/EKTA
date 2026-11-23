@@ -38,6 +38,7 @@ A domain, layer, and knowledge type are different dimensions. A concept may belo
 ## Start here
 - [Project Charter](docs/PROJECT_CHARTER.md)
 - [Project Guide](docs/PROJECT_GUIDE.md)
+- [Vision, Product Story, and Platform Evolution](docs/VISION_AND_PRODUCT_STORY.md)
 - [Governance](docs/GOVERNANCE.md)
 - [Knowledge Architecture](docs/KNOWLEDGE_ARCHITECTURE.md)
 - [Master Taxonomy](taxonomy/MASTER_TAXONOMY.md)
