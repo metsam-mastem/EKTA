@@ -8,6 +8,7 @@ sys.path.insert(0, str(ROOT / "runtime"))
 from fastapi.testclient import TestClient
 from ekta_runtime.repository import AtlasRepository
 from ekta_runtime.api import app
+from ekta_runtime.search import normalize, parse_query
 
 
 class RuntimeRepositoryTests(unittest.TestCase):
@@ -103,6 +104,9 @@ class RuntimeApiTests(unittest.TestCase):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertIn("EKTA", response.text)
+        self.assertIn('<html lang="fa" dir="rtl">', response.text)
+        self.assertIn('id="territory-filter"', response.text)
+        self.assertIn('id="query"', response.text)
 
     def test_hashtag_search_matches_concept_name_and_taxonomy(self):
         by_name = self.atlas.search("#runtime")
@@ -129,6 +133,16 @@ class RuntimeApiTests(unittest.TestCase):
         detail = self.atlas.get_document(document["id"])
         self.assertIn("Traceability chain", detail["content"])
         self.assertIsNone(self.atlas.get_document("EKTA-DOC-not-a-valid-id"))
+
+    def test_query_parser_handles_hashtags_fields_and_exact_phrases(self):
+        plan = parse_query('#runtime "workflow runtime" territory:software-engineering status:PROPOSED')
+        self.assertIn("runtime", plan.hashtags)
+        self.assertIn("workflow runtime", plan.phrases)
+        self.assertEqual(plan.filters["territory"], ("software-engineering",))
+        self.assertEqual(plan.filters["status"], ("PROPOSED",))
+
+    def test_search_normalizes_persian_arabic_character_variants(self):
+        self.assertEqual(normalize("كي"), normalize("کی"))
 
     def test_search_supports_status_and_kind_filters(self):
         result = self.atlas.search("runtime status:PROPOSED kind:concept")
