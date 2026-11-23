@@ -89,9 +89,32 @@ $("#start-check").addEventListener("click",()=>runHealth("#onboarding-result"));
 $("#import-file").addEventListener("change",async e=>{if(e.target.files[0])$("#import-content").value=await fileText(e.target.files[0])});
 $("#stage-import").addEventListener("click",async()=>{try{const file=$("#import-file").files[0];const filename=file?.name||"pasted.md";const d=await api("/api/v1/workspace/import/preview",{method:"POST",body:JSON.stringify({filename,content:$("#import-content").value})});show("#import-result",d)}catch(e){show("#import-result",e.message)}});
 $("#save-draft").addEventListener("click",async()=>{try{const split=id=>$("#"+id).value.split(",").map(x=>x.trim()).filter(Boolean);const d=await api("/api/v1/workspace/drafts",{method:"POST",body:JSON.stringify({id:$("#draft-id").value,canonical_name:$("#draft-name").value,domains:split("draft-domains"),layers:split("draft-layers"),body:$("#draft-body").value})});show("#draft-result",d)}catch(e){show("#draft-result",e.message)}});
-$("#make-backup").addEventListener("click",async()=>{try{const d=await api("/api/v1/workspace/backup",{method:"POST"});$("#backup-result").innerHTML="فایل: "+d.filename+" — "+d.file_count+" فایل — "+d.size+" بایت<br><a style='color:var(--accent)' href='/api/v1/workspace/backups/"+encodeURIComponent(d.filename)+"'>دریافت بسته ZIP</a>"}catch(e){show("#backup-result",e.message)}});
+$("#make-backup").addEventListener("click",async()=>{try{const d=await api("/api/v1/workspace/backup",{method:"POST"});const box=$("#backup-result");const link=document.createElement("a");link.style.color="var(--accent)";link.href="/api/v1/workspace/backups/"+encodeURIComponent(d.filename);link.textContent="دریافت بسته ZIP";box.replaceChildren(document.createTextNode("فایل: "+d.filename+" — "+d.file_count+" فایل — "+d.size+" بایت "),link)}catch(e){show("#backup-result",e.message)}});
 $("#stage-restore").addEventListener("click",async()=>{try{const f=$("#restore-file").files[0];if(!f)throw new Error("ابتدا فایل ZIP انتخاب کن");const raw=await f.arrayBuffer();let binary="";new Uint8Array(raw).forEach(b=>binary+=String.fromCharCode(b));const encoded=btoa(binary);const d=await api("/api/v1/workspace/restore/preview",{method:"POST",body:JSON.stringify({filename:f.name,archive_base64:encoded})});show("#restore-result",d)}catch(e){show("#restore-result",e.message)}});
-async function loadDocs(){try{const d=await api("/api/v1/workspace/docs");$("#docs-list").innerHTML=d.items.map(x=>'<div class="doc"><button data-doc="'+x.path.replace(/"/g,"&quot;")+'">'+x.title.replace(/</g,"&lt;")+'</button><small>'+x.path+'</small></div>').join("");$("#docs-list").querySelectorAll("[data-doc]").forEach(b=>b.addEventListener("click",async()=>{try{const doc=await api("/api/v1/workspace/docs/"+b.dataset.doc);$("#doc-view").textContent=doc.content}catch(e){$("#doc-view").textContent=e.message}}))}catch(e){$("#docs-list").textContent=e.message}}
+async function loadDocs(){
+  try{
+    const data=await api("/api/v1/workspace/docs");
+    const list=$("#docs-list");
+    list.replaceChildren();
+    data.items.forEach(item=>{
+      const card=document.createElement("div");
+      card.className="doc";
+      const button=document.createElement("button");
+      button.type="button";
+      button.textContent=item.title;
+      button.addEventListener("click",async()=>{
+        try{
+          const doc=await api("/api/v1/workspace/docs/"+item.path);
+          $("#doc-view").textContent=doc.content;
+        }catch(error){$("#doc-view").textContent=error.message}
+      });
+      const small=document.createElement("small");
+      small.textContent=item.path;
+      card.append(button,small);
+      list.append(card);
+    });
+  }catch(error){$("#docs-list").textContent=error.message}
+}
 loadDocs();
 </script>
 </body></html>
