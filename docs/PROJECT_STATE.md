@@ -30,3 +30,10 @@
 4. Extend validators with tests before implementation.
 5. Reconcile README, repository map and master handoff.
 6. Run existing CI and record exact results.
+
+
+## UPDS schema/validator increment
+- Added `schemas/upds-document.schema.json`, `tools/upds_validation.py`, `tools/validate_upds.py`, a sample canonical UPDS record and unit tests.
+- CI workflow now includes the UPDS record validator and integration branch push pattern.
+- Runtime registry/API/UI and cross-graph integration remain NOT IMPLEMENTED.
+- Local tests and latest CI result: pending; do not claim pass until Actions completes on current HEAD.
