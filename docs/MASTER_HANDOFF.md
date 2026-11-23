@@ -1074,3 +1074,21 @@ For exact historical conversation wording and original visual assets, preserve t
 **Product vision:** [docs/VISION_AND_PRODUCT_STORY.md](VISION_AND_PRODUCT_STORY.md)  
 **Master taxonomy:** [taxonomy/MASTER_TAXONOMY.md](../taxonomy/MASTER_TAXONOMY.md)  
 **Repository map:** [docs/REPOSITORY_MAP.md](REPOSITORY_MAP.md)
+
+
+---
+
+## 22. UPDS integration baseline (2026-11-23)
+
+A proposed federated integration has been added under [docs/INTEGRATION/](INTEGRATION/UPDS_INTEGRATION_INDEX.md). EKTA remains the canonical engineering knowledge atlas. UPDS is a bounded, reusable subsystem for project documentation, governance, memory, traceability, evidence and lifecycle artifacts. It is cross-cutting across DISCOVERY, ENCYCLOPEDIA, DECISION LAB and EXECUTION LAB; it is not merely a first chapter and does not replace the 26-territory taxonomy.
+
+The integration branch adds:
+- Integration decision and system architecture.
+- Universal document-family catalog with applicability/tailoring rules.
+- Workspace and typed-traceability crosswalk.
+- Project memory and chat-independence protocol.
+- Universal document metadata/template standard.
+- Phased implementation roadmap and integration index.
+- Repository-native project state, decision, active-work, issue, constraint, evidence and session-handoff registers.
+
+**Status limitation:** these are proposed architecture and documentation artifacts. UPDS runtime, machine-readable schemas, automated validators, UI and graph integration are not yet implemented. Automated tests/CI for this branch are NOT RUN. Review and approve EKTA-ADR-0003 before treating the integration decision as approved.
