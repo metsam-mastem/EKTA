@@ -417,3 +417,16 @@ EKTA now separates **26 top-level Engineering Territories** from **25 operationa
 EKTA now has a proposed, bounded integration architecture for the **Universal Project Documentation System (UPDS)**. UPDS is a reusable subsystem for project documents, requirements, decisions, governance, memory, traceability, evidence and lifecycle records. It is integrated across all four EKTA workspaces while preserving EKTA's canonical knowledge model and the ability to extract UPDS later.
 
 Start here: [UPDS Integration Index](docs/INTEGRATION/UPDS_INTEGRATION_INDEX.md). The integration is currently **PROPOSED** and documentation-baseline only; runtime services, schemas, validators and UI integration are not yet implemented.
+
+
+## UPDS integration and independent user documentation
+
+The integration branch includes the proposed Universal Project Documentation System (UPDS) architecture and its document catalog, memory/continuity protocol, artifact intake model and runtime execution blueprint.
+
+- [UPDS integration index](docs/INTEGRATION/UPDS_INTEGRATION_INDEX.md)
+- [UPDS input and artifact model](docs/INTEGRATION/UPDS_INPUT_AND_ARTIFACT_MODEL.md)
+- [UPDS runtime execution blueprint](docs/INTEGRATION/UPDS_EXECUTION_BLUEPRINT.md)
+- [Supplemental user documentation hub](docs/USER_GUIDE/README.md)
+- [Recovery and chat independence](docs/USER_GUIDE/RECOVERY_AND_CONTINUITY.md)
+
+**Important:** UPDS integration is still proposed and is not a claim that its registry/API, graph traceability, dashboard or project generator are implemented. The main branch already contains the Persian-first user documentation set under `docs/USER_DOCUMENTATION_INDEX.md`; overlapping manuals should be consolidated during review. The user guide documents current EKTA Runtime v0.2 as read-only.
