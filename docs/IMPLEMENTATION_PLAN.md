@@ -2,7 +2,7 @@
 
 **Product target:** EKTA Engineering Knowledge Workbench  
 **Planning baseline:** 2026-11-23  
-**Current implementation branch:** docs/user-independence-v0.3  
+**Current implementation branch:** main (user documentation PR #4 merged)  
 **Delivery principle:** ship verified vertical slices; never label a phase complete because its plan or documentation exists.
 
 ## Product definition of done — v1.0
