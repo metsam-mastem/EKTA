@@ -5,7 +5,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "runtime"))
 
+from fastapi.testclient import TestClient
 from ekta_runtime.repository import AtlasRepository
+from ekta_runtime.api import app
 
 
 class RuntimeRepositoryTests(unittest.TestCase):
@@ -44,6 +46,41 @@ class RuntimeRepositoryTests(unittest.TestCase):
     def test_invalid_predicates_are_not_silently_accepted(self):
         graph = self.atlas.graph_data
         self.assertTrue(any(edge["status"] == "invalid_predicate" for edge in graph["edges"]))
+
+
+class RuntimeApiTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.client = TestClient(app)
+
+    def test_health_endpoint(self):
+        response = self.client.get("/health")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["status"], "ok")
+
+    def test_concept_list_and_detail_endpoints(self):
+        listing = self.client.get("/api/v1/concepts")
+        self.assertEqual(listing.status_code, 200)
+        self.assertGreaterEqual(listing.json()["count"], 7)
+        detail = self.client.get("/api/v1/concepts/EKTA-CON-000001")
+        self.assertEqual(detail.status_code, 200)
+        self.assertEqual(detail.json()["canonical_name"], "Runtime")
+
+    def test_unknown_concept_returns_http_404(self):
+        response = self.client.get("/api/v1/concepts/EKTA-CON-999999")
+        self.assertEqual(response.status_code, 404)
+
+    def test_overview_taxonomy_and_graph_endpoints(self):
+        self.assertEqual(self.client.get("/api/v1/overview").status_code, 200)
+        self.assertEqual(self.client.get("/api/v1/taxonomy").status_code, 200)
+        graph = self.client.get("/api/v1/graph")
+        self.assertEqual(graph.status_code, 200)
+        self.assertGreater(graph.json()["summary"]["edge_count"], 0)
+
+    def test_browser_explorer_is_served(self):
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("EKTA", response.text)
 
 
 if __name__ == "__main__":
