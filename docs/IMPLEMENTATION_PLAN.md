@@ -47,7 +47,7 @@ Exit gate:
 - A new user can follow the documentation without relying on chat history; usability onboarding still requires a separate user test.
 
 ### Operational Workspace slice — v0.4
-Status: IMPLEMENTED IN PR #5; CI validation pending.
+Status: VALIDATED and merged to main. Final PR-head CI run #146 completed SUCCESS.
 
 Deliverables in this slice:
 - First-run onboarding flow and self-test API/UI.
