@@ -1,0 +1,13 @@
+schema_version: 1
+layers:
+  - {id: mission-requirements, label: Mission, Business, and Requirements, order: 1}
+  - {id: human-experience, label: Human, Experience, and Interaction, order: 2}
+  - {id: application-agent, label: Application, Agent, and Domain Logic, order: 3}
+  - {id: workflow-orchestration, label: Workflow, Orchestration, and Process, order: 4}
+  - {id: service-data, label: Service, API, and Data, order: 5}
+  - {id: platform-runtime, label: Platform, Framework, and Runtime, order: 6}
+  - {id: operating-system, label: Operating System and System Services, order: 7}
+  - {id: firmware-control, label: Firmware, Drivers, and Embedded Control, order: 8}
+  - {id: hardware-architecture, label: Hardware Architecture and Computation, order: 9}
+  - {id: physical-implementation, label: Circuit, Physical, Mechanical, and Manufacturing, order: 10}
+cross_cutting: [security, safety, performance, reliability, observability, interoperability, maintainability, accessibility, cost, sustainability]
