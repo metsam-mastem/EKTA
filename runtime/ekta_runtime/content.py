@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -27,6 +28,18 @@ class ContentError(ValueError):
     """Raised when canonical content cannot be parsed safely."""
 
 
+def _normalize_yaml_dates(value: Any) -> Any:
+    if isinstance(value, datetime):
+        return value.isoformat()
+    if isinstance(value, date):
+        return value.isoformat()
+    if isinstance(value, list):
+        return [_normalize_yaml_dates(item) for item in value]
+    if isinstance(value, dict):
+        return {key: _normalize_yaml_dates(item) for key, item in value.items()}
+    return value
+
+
 def split_front_matter(text: str) -> tuple[dict[str, Any], str]:
     if not text.startswith("---\n"):
         raise ContentError("Missing YAML front matter")
@@ -39,7 +52,7 @@ def split_front_matter(text: str) -> tuple[dict[str, Any], str]:
         raise ContentError(f"Invalid YAML front matter: {exc}") from exc
     if not isinstance(metadata, dict):
         raise ContentError("Front matter must be a YAML mapping")
-    return metadata, parts[2].lstrip("\n")
+    return _normalize_yaml_dates(metadata), parts[2].lstrip("\n")
 
 
 def _strings(value: Any) -> tuple[str, ...]:
