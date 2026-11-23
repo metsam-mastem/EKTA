@@ -12,7 +12,7 @@ from .content import ConceptRecord
 
 
 FIELD_PATTERN = re.compile(
-    r"(?<!\S)(id|domain|layer|type|status|kind|tag):"
+    r"(?<!\S)(id|territory|domain|layer|type|status|kind|tag):"
     r'(?:"([^"]+)"|\'([^\']+)\'|(\S+))',
     re.IGNORECASE,
 )
