@@ -17,11 +17,13 @@ EKTA/
 │   ├── INDEPENDENCE_AND_RECOVERY.md
 │   ├── TROUBLESHOOTING.md
 │   ├── AGENT_ONBOARDING.md
+│   ├── MATHEMATICAL_UNIVERSE/ # MUA architecture, standards, implementation plan
 │   └── architecture, governance, continuity, roadmap, handoff
 ├── taxonomy/             # 26 territories, 25 operational domains, layers, types, relations
 ├── encyclopedia/         # canonical concepts and engineering knowledge
 ├── maps/                 # stack, domain, cross-layer and graph maps
-├── schemas/              # machine-readable data contracts
+├── schemas/              # machine-readable data contracts, including UMO and coordinate frames
+├── examples/              # versioned examples, including mathematical-universe
 ├── research/             # literature and source assessment
 ├── references/           # standards, tools and primary-source indexes
 ├── decision-lab/         # RFCs and ADRs
@@ -42,7 +44,9 @@ EKTA/
 - taxonomy: canonical classification registries.
 - encyclopedia: canonical knowledge records; IDs are stable.
 - maps: human-readable and generated knowledge maps.
-- schemas: machine-readable contracts.
+- schemas: machine-readable contracts, including the UMO and coordinate-frame schemas.
+- examples: illustrative, versioned instances for schema and runtime validation.
+- docs/MATHEMATICAL_UNIVERSE: MUA architecture, standards research, and implementation orchestration.
 - research: literature discovery, source metadata and provenance.
 - references: curated standards, tools and primary sources.
 - decision-lab: proposals and accepted/rejected decisions.

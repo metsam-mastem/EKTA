@@ -408,3 +408,17 @@ Multiple words are AND-matched. Query fields can be combined, for example:
 ### Taxonomy clarification
 
 EKTA now separates **26 top-level Engineering Territories** from **25 operational domain tags**. Territories are the navigation/portfolio layer; operational domains are more granular classification values. The explicit mapping is in [taxonomy/territories.yml](taxonomy/territories.yml), and domain identifiers remain in [taxonomy/domains.yml](taxonomy/domains.yml). This removes the earlier 22-vs-26 ambiguity without treating the two lists as interchangeable.
+
+
+## Mathematical Universe Architecture (MUA)
+
+EKTA includes the proposed Mathematical Universe Architecture: a representation-independent mathematical object model, coordinate-frame contracts, typed relation validation, and a staged engineering-workbench roadmap.
+
+- [MUA Architecture](docs/MATHEMATICAL_UNIVERSE/ARCHITECTURE.md)
+- [Research and Standards Register](docs/MATHEMATICAL_UNIVERSE/RESEARCH_AND_STANDARDS.md)
+- [Implementation and Orchestration Plan](docs/MATHEMATICAL_UNIVERSE/IMPLEMENTATION_PLAN.md)
+- [Universal Mathematical Object Schema](schemas/mathematical-object.schema.json)
+- [Coordinate Frame Schema](schemas/coordinate-frame.schema.json)
+- [Quadratic Function Example](examples/mathematical-universe/quadratic-function.umo.json)
+
+The first foundation slice is not a full mathematical engine or finished workspace. Its current scope and unimplemented capabilities are documented in the MUA architecture.
