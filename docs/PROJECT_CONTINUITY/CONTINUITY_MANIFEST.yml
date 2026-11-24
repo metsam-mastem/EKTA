@@ -1,0 +1,53 @@
+schema_version: "1.0"
+project_id: "EKTA"
+manifest_id: "EKTA-CONTINUITY-2026-11-24"
+captured_at: "2026-11-24"
+canonical_repository: "https://github.com/metsam-mastem/EKTA"
+default_branch: "main"
+integration_branch: "integration/upds-independent-continuity"
+archive:
+  path: "docs/PROJECT_CONTINUITY/CHAT_SESSION_ARCHIVE_2026-11-24.md"
+  fidelity: "structured_context_summary_not_verbatim_transcript"
+  raw_chat_export_available: false
+canonical_entry_points:
+  - "README.md"
+  - "docs/USER_DOCUMENTATION_INDEX.md"
+  - "docs/CONTEXT_CONTINUITY.md"
+  - "docs/MASTER_HANDOFF.md"
+  - "docs/PROJECT_STATE.md"
+  - "docs/ACTIVE_WORK.md"
+  - "docs/DECISION_REGISTER.md"
+  - "docs/CONSTRAINTS_AND_ASSUMPTIONS.md"
+  - "docs/OPEN_ISSUES.md"
+  - "docs/EVIDENCE_INDEX.md"
+  - "docs/SESSION_HANDOFF.md"
+  - "docs/INTEGRATION/UPDS_INTEGRATION_INDEX.md"
+  - "docs/PROJECT_CONTINUITY/AGENT_ONBOARDING.md"
+  - "docs/PROJECT_CONTINUITY/RECOVERY_RUNBOOK.md"
+authority:
+  canonical: "approved repository artifacts and verified evidence"
+  non_canonical:
+    - "chat history"
+    - "model memory"
+    - "unsaved drafts"
+    - "temporary tool sessions"
+upds:
+  status: "PROPOSED"
+  integration_style: "cross_cutting_separable_subsystem"
+  runtime_registry: "NOT_IMPLEMENTED"
+  typed_traceability: "NOT_IMPLEMENTED"
+  dashboard: "NOT_IMPLEMENTED"
+  project_starter_generator: "NOT_IMPLEMENTED"
+  clean_clone_recovery: "NOT_RUN"
+  backup_restore: "NOT_RUN"
+constraints:
+  license: "undecided"
+  hosted_database: "not_approved"
+  destructive_migrations: "not_approved"
+  merge_without_owner_approval: false
+  merge_unrelated_projects: false
+recovery:
+  clean_clone_required: true
+  independent_backup_required: true
+  last_recovery_drill: "NOT_RUN"
+  last_backup_restore: "NOT_RUN"
