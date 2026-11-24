@@ -4,7 +4,7 @@
 **Audit date:** 2026-11-24  
 **Canonical upstream:** https://github.com/metsam-mastem/GTC  
 **Pinned commit:** `2f0229bd622de4e9ce22196e57fb986659dc7934`  
-**Pinned tree:** `2f0229bd622de4e9ce22196e57fb986659dc7934` (GTC main commit/tree root)  
+**Pinned tree:** `662acc0fa9888ea1c1137d267e76f85ba2ebc75b` (GTC root tree SHA)  
 **EKTA integration path:** `integrations/gtc`
 
 ## 1. Integration decision
