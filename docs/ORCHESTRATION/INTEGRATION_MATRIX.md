@@ -11,7 +11,7 @@
 | Collaboration methods and organizational practice | Collaboration Atlas | EKTA taxonomy and source evidence | Runtime multi-user collaboration feature |
 | Project document lifecycle and continuity | UPDS (proposed) | EKTA project governance and records | Approved replacement for current EKTA governance |
 | External technical documentation | Source registry / GitHub Docs | EKTA source IDs and taxonomy crosswalk | Canonical concepts until reviewed |
-| User-provided concept-series archive | Staging intake | Hash manifest, source metadata, schema validator | Canonical Encyclopedia before review |
+| User-provided concept-series archive | Staging intake | Hash manifest, source metadata, schema validator | Canonical Encyclopedia before review; record 000008 currently collides with an already canonical Hardware Knowledge Atlas ID |\n| Hardware Knowledge Atlas / GTC | GTC upstream + EKTA integration record | Pinned submodule commit and claim-level source provenance | Automatic ingestion or re-licensing of upstream content |
 
 ## Coordinate-system separation
 
