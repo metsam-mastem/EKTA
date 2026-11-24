@@ -47,3 +47,18 @@ The previous CI run reported PowerShell 5.1 and PowerShell 7 syntax parsing as P
 **Calibration:** measure sensor-to-JPEG mapping with a calibration target and record reprojection error before exporting intrinsics to COLMAP.
 
 All claims refer to the exact source revision stated. This register is an EKTA audit snapshot, not a substitute for upstream CI.
+
+
+## EKTA integration validation
+
+The EKTA integration branch passed [workflow run 45308208509](https://github.com/metsam-mastem/EKTA/actions/runs/45308208509) on commit `b9983ddeb61fcaaeb9192d6c3515c92ed339576b`.
+
+Observed successful steps:
+- Recursive Git submodule checkout.
+- Pinned project submodule verification (including the 3DCAP gitlink).
+- Documentation validation.
+- EKTA unit and runtime tests.
+- Explorer HTML/JavaScript validation.
+- Typed knowledge graph export.
+
+This validates the EKTA repository integration and pinned source checkout at that commit. It does not validate the 3DCAP Android app, physical-device capture or COLMAP reconstruction.
