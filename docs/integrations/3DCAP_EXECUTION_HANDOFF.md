@@ -11,7 +11,7 @@ Keep 3DCAP and EKTA as distinct projects. 3DCAP implementation changes stay in i
 
 | Stream | Repo boundary | Priority | Next task | Acceptance evidence |
 |---|---|---:|---|---|
-| A — Android build recovery | 3DCAP | P0 | Verify CameraX 1.6.1 and AndroidX Camera2 opt-in corrections with run 45308358035; fix remaining Lint findings if any | Unit tests, lint and APK PASS on one SHA |
+| A — Android build recovery | 3DCAP | P0 | Android CI gate now PASS at run 45308358035 (unit tests, Lint, Debug APK and artifact upload); proceed to physical-device validation | Unit tests, lint and APK PASS on one SHA |
 | B — Passport/data contract | 3DCAP | P1 | Verify JSON invariants, partial EXIF semantics and fail-closed export | Unit + ZIP tests PASS; archive inspected |
 | C — Device validation | 3DCAP | P1 | Install APK; test permissions, orientation, capture, retake/delete and export | Device report with OS/build SHA |
 | D — Desktop reconstruction | 3DCAP | P1 | Run Windows COLMAP on a real Passport ZIP | Logs, run-summary, sparse model and fused.ply |

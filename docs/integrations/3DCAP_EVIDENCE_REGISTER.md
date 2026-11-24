@@ -7,10 +7,14 @@
 
 ## Current-head CI
 
-Latest run: [45308358035](https://github.com/metsam-mastem/3DCAP/actions/runs/45308358035), current pin `001f2dc2cf6947244db89e640e39749ff07eceec` — **IN_PROGRESS** at the last check.
-- Android verify job: Gradle setup in progress; unit tests, lint and APK steps pending.
-- Windows script parse job: PowerShell 5.1 parse in progress; PowerShell 7 pending.
-- No conclusion is claimed for this run until GitHub reports completion.
+Latest run: [45308358035](https://github.com/metsam-mastem/3DCAP/actions/runs/45308358035), current pin `001f2dc2cf6947244db89e640e39749ff07eceec` — **PASS**.
+- Windows PowerShell 5.1 syntax: PASS.
+- PowerShell 7 syntax: PASS.
+- Android unit tests: PASS.
+- Android Lint: PASS.
+- Debug APK build: PASS.
+- Artifact upload: PASS — `3DCAP-debug-apk`, 20,483,927 bytes.
+- Both workflow jobs completed successfully.
 
 ## Previous run evidence
 
@@ -77,3 +81,6 @@ Run [45308358035](https://github.com/metsam-mastem/3DCAP/actions/runs/4530835803
 - Artifact upload: pending.
 
 This is partial CI evidence. Do not claim a complete Android build or downloadable APK until the workflow and artifact-upload step both finish successfully.
+
+
+The 3DCAP CI run 45308358035 validates the Android build/test pipeline and PowerShell syntax at the exact pinned source revision. It does not establish physical-device behavior or a real COLMAP reconstruction.

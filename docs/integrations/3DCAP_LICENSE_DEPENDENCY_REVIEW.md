@@ -24,7 +24,7 @@ Public visibility does not grant redistribution, modification or commercial-use 
 | AndroidX ExifInterface | 1.3.7 |
 | JUnit / org.json | 4.13.2 / 20240303 |
 
-The previous CI run on CameraX 1.6.0 reported unresolved `ListenableFuture` at CameraX call sites. The pinned source upgrades all CameraX artifacts to 1.6.1, whose official release notes identify a fix for this compile-classpath regression. It also changes Camera2 interop opt-in to AndroidX `@androidx.annotation.OptIn` after the previous Lint run flagged Kotlin `@OptIn`. Current-head CI run 45308358035 is in progress.
+The previous CI run on CameraX 1.6.0 reported unresolved `ListenableFuture` at CameraX call sites. The pinned source upgrades all CameraX artifacts to 1.6.1, whose official release notes identify a fix for this compile-classpath regression. It also changes Camera2 interop opt-in to AndroidX `@androidx.annotation.OptIn` after the previous Lint run flagged Kotlin `@OptIn`. Current-head CI run 45308358035 passed unit tests, Lint, Debug APK build and artifact upload.
 
 ## Upstream research references
 
