@@ -4,17 +4,18 @@
 
 | ID | Work package | Status | Next action |
 |---|---|---|---|
-| UPDS-WP-001 | Port UPDS architecture/catalog onto current main | IMPLEMENTED | review replacement PR |
+| UPDS-WP-001 | Port UPDS architecture/catalog to current main | IMPLEMENTED | review PR #23 |
 | UPDS-WP-002 | Integration ADR owner decision | BLOCKED | approve/revise EKTA-ADR-0003 |
-| UPDS-WP-003 | Base schema, fixture and validator | IMPLEMENTED | verify latest branch CI |
-| UPDS-WP-004 | UPDS validator CI gate | IMPLEMENTED in branch | CI run on exact latest SHA |
-| UPDS-WP-005 | Canonical user docs cross-link | IMPLEMENTED in branch | link validation in CI |
-| UPDS-WP-006 | Chat context archive and agent onboarding | IMPLEMENTED as structured docs | clean-clone recovery test NOT RUN |
-| UPDS-WP-007 | Independent backup and restore drill | NOT RUN | produce archive, checksum and restore test |
-| UPDS-WP-008 | Repository-backed document registry | NOT IMPLEMENTED | define API/model contracts; TDD |
-| UPDS-WP-009 | Typed traceability engine | NOT IMPLEMENTED | define graph predicates and vertical-slice acceptance |
-| UPDS-WP-010 | Completeness dashboard and project starter | NOT IMPLEMENTED | defer until registry/traceability stabilize |
-| UPDS-WP-011 | Supersede stale PR #3 | BLOCKED | replacement PR must exist first |
-| UPDS-WP-012 | Latest branch CI and full regression suite | NOT VERIFIED | inspect exact head workflow result |
+| UPDS-WP-003 | Base schema, fixture and validator | IMPLEMENTED | retain passing CI evidence |
+| UPDS-WP-004 | CI gate and unit tests | VERIFIED at 11ac9b7 | verify latest PR head |
+| UPDS-WP-005 | Canonical user docs and navigation | IMPLEMENTED | maintain one Persian-first manual |
+| UPDS-WP-006 | Chat archive, manifest and agent onboarding | IMPLEMENTED as structured docs | raw transcript export unavailable |
+| UPDS-WP-007 | Clean-clone recovery | NOT RUN | execute without chat |
+| UPDS-WP-008 | Independent backup and restore drill | NOT RUN | create archive/checksum/restore test |
+| UPDS-WP-009 | Repository-backed document registry/API | NOT IMPLEMENTED | define contract, write failing tests, implement |
+| UPDS-WP-010 | Typed traceability engine | NOT IMPLEMENTED | define relation registry and vertical-slice tests |
+| UPDS-WP-011 | Dashboard and project starter | NOT IMPLEMENTED | wait for registry and traceability |
+| UPDS-WP-012 | Replace old PR #3 | IMPLEMENTED | PR #3 closed; PR #23 is replacement |
+| UPDS-WP-013 | Latest-head CI | IN PROGRESS / NOT VERIFIED | check Actions for latest PR #23 head |
 
-IMPLEMENTED means files/code exist. VERIFIED requires a named passing check and exact commit SHA. VALIDATED requires acceptance criteria and recorded conditions. NOT RUN and BLOCKED remain explicit.
+IMPLEMENTED means files/code exist. VERIFIED requires a passing check and exact SHA. VALIDATED requires acceptance criteria and recorded conditions. NOT RUN and BLOCKED remain explicit.
