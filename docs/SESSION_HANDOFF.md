@@ -15,17 +15,15 @@ UPDS architecture/catalog/crosswalk/template standard/input model/runtime bluepr
 Old branch integration/upds-documentation-architecture diverged from main (57 ahead / 35 behind). PR #3 is CLOSED, NOT MERGED, and points to replacement PR #23. Old branch is preserved; do not resume it as active path.
 
 ## Verification
-Run 45304714331 passed on exact commit fdd995f173c7d51a777f9e841172c648b4af3cad: dependency installation, docs/link validation, UPDS record validation, unittest suite, frontend validation and graph export. It predates the read-only registry implementation.
-Run 45304839153 was queued for the first registry implementation commit. The registry tests were then refined; latest-head CI must be checked. No pass is claimed for the latest head yet.
+GitHub Actions run 45304968576 passed on exact commit 1c06074a8d31b87602b4426cb70640a8b26571aa: dependency installation, docs/link validation, UPDS record validation, full unittest suite including registry/API tests, frontend validation and graph export. Run 45304878493 also passed on 491fdca28995837e69c7f0403bd2da0a2db57d7b. An earlier run failed due two stale title assertions; logs were inspected, assertions corrected, and subsequent runs passed.
 Clean-clone recovery and independent backup restore remain NOT RUN.
 
 ## Next actions
-1. Inspect latest PR #23 head and Actions result; fix any registry test/API failures.
-2. Review EKTA-ADR-0003 with owner; no merge before approval.
-3. Execute clean-clone recovery without chat.
-4. Create an independent archive, compute SHA-256, restore into a new directory and rerun checks.
-5. Extend registry to controlled draft/write/revision lifecycle with TDD.
-6. Implement typed traceability, then dashboard and project starter.
+1. Review EKTA-ADR-0003 with owner; no merge before approval.
+2. Execute clean-clone recovery without chat.
+3. Create an independent archive, compute SHA-256, restore into a new directory and rerun checks.
+4. Define and test controlled draft/write/revision lifecycle for UPDS.
+5. Implement typed traceability, then dashboard and project starter.
 
 ## Recovery reading order
 README → USER_DOCUMENTATION_INDEX → CONTEXT_CONTINUITY → MASTER_HANDOFF → PROJECT_STATE → INTEGRATION/UPDS_INTEGRATION_INDEX → PROJECT_CONTINUITY/CHAT_SESSION_ARCHIVE → AGENT_ONBOARDING → ORCHESTRATION_PLAN → ACTIVE_WORK → DECISION_REGISTER → CONSTRAINTS_AND_ASSUMPTIONS → OPEN_ISSUES → EVIDENCE_INDEX → SESSION_HANDOFF → relevant code/tests/CI.
