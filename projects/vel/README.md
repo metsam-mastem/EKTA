@@ -35,7 +35,7 @@ From the EKTA repository root:
 
 ```bash
 python tools/validate_vel.py projects/vel/examples/local-ai-workstation.json
-python -m unittest tests.test_vel -v
+python -m unittest discover -s tests -p 'test_vel.py' -v
 ```
 
 The validator uses the existing EKTA runtime dependencies. The core semantic checks in `ekta_runtime.vel` use only the Python standard library.

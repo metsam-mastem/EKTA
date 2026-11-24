@@ -195,7 +195,8 @@ def to_dot(model: dict[str, Any]) -> str:
             source_id, target_id = source.get("node_id"), target.get("node_id")
             if isinstance(source_id, str) and isinstance(target_id, str):
                 label = f"{connection.get('kind', 'LINK')} / {connection.get('label', '')}".strip(" /")
-                lines.append(f"  {quote(source_id)} -> {quote(target_id)} [id={quote(connection.get(\"id\", \"\"))}, label={quote(label)}];")
+                connection_id = connection.get("id", "")
+                lines.append(f"  {quote(source_id)} -> {quote(target_id)} [id={quote(connection_id)}, label={quote(label)}];")
     lines.append("}")
     return "\n".join(lines) + "\n"
 
