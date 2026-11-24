@@ -408,3 +408,14 @@ Multiple words are AND-matched. Query fields can be combined, for example:
 ### Taxonomy clarification
 
 EKTA now separates **26 top-level Engineering Territories** from **25 operational domain tags**. Territories are the navigation/portfolio layer; operational domains are more granular classification values. The explicit mapping is in [taxonomy/territories.yml](taxonomy/territories.yml), and domain identifiers remain in [taxonomy/domains.yml](taxonomy/domains.yml). This removes the earlier 22-vs-26 ambiguity without treating the two lists as interchangeable.
+
+
+## Project documentation and chat-independent continuity
+
+- [UPDS integration index](docs/INTEGRATION/UPDS_INTEGRATION_INDEX.md) — proposed cross-cutting project-documentation subsystem.
+- [Conversation context archive](docs/PROJECT_CONTINUITY/CHAT_SESSION_ARCHIVE_2026-11-24.md) — durable summary of decisions, context and work captured from the 2026-11-24 session.
+- [Agent onboarding](docs/PROJECT_CONTINUITY/AGENT_ONBOARDING.md) — operating contract for a new human or AI contributor.
+- [Recovery runbook](docs/PROJECT_CONTINUITY/RECOVERY_RUNBOOK.md) — clean-clone and backup-restore procedure.
+- [Continuity manifest](docs/PROJECT_CONTINUITY/CONTINUITY_MANIFEST.yml) — machine-readable entry points and current verification boundaries.
+
+Chat history is supplemental, not canonical project memory. See [Context Continuity](docs/CONTEXT_CONTINUITY.md).
