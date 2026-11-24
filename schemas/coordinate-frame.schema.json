@@ -1,0 +1,22 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://github.com/metsam-mastem/EKTA/blob/main/schemas/coordinate-frame.schema.json",
+  "title":"EKTA Coordinate Frame",
+  "description":"Coordinate metadata separated from UI layout and knowledge-graph placement.",
+  "type":"object",
+  "required":["id","dimension","axes","origin"],
+  "properties":{
+    "id":{"type":"string","minLength":2},
+    "name":{"type":"string"},
+    "dimension":{"type":"integer","minimum":1},
+    "coordinate_kind":{"type":"string","enum":["cartesian","polar","cylindrical","spherical","parametric","projective","abstract","custom"]},
+    "axes":{"type":"array","minItems":1,"items":{"type":"object","required":["id","label"],"properties":{"id":{"type":"string","minLength":1},"label":{"type":"string","minLength":1},"role":{"type":"string"},"unit":{"type":"string"},"orientation":{"type":"string","enum":["positive","negative","bidirectional"]}},"additionalProperties":true}},
+    "origin":{"type":"array","items":{"type":"number"}},
+    "basis":{"type":"array","items":{"type":"array","items":{"type":"number"}}},
+    "handedness":{"type":"string","enum":["right","left","not_applicable"]},
+    "units_policy":{"type":"string"},
+    "time_axis":{"type":["string","null"]},
+    "metadata":{"type":"object"}
+  },
+  "additionalProperties":true
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version":"0.1.0",
+  "id":"UMO-FUNCTION-QUADRATIC-001",
+  "kind":"function",
+  "status":"PROPOSED",
+  "identity":{"canonical_name":"Quadratic function","aliases":["تابع درجه دوم"],"language":"en"},
+  "revision":"0.1.0",
+  "semantics":{"definition":"A polynomial function of degree exactly two over a specified coefficient domain.","scope":"The leading coefficient is non-zero.","notation":["f(x) = ax^2 + bx + c"]},
+  "structure":{"dimensions":1,"domain":"real numbers","codomain":"real numbers","attributes":{"parameters":["a","b","c"],"constraint":"a != 0"}},
+  "behavior":{"operations":[{"name":"evaluate","input_contract":{"x":"real"},"output_contract":{"y":"real"}}],"laws":["The graph is a parabola in the standard Cartesian plane."]},
+  "relations":[],
+  "representations":[
+    {"representation_type":"symbolic","media_type":"text/plain","payload":"f(x) = ax^2 + bx + c"},
+    {"representation_type":"2d","renderer":"unspecified","visual_profile":{"semantic_role":"function-graph","encoding":["axes","curve","parameter-controls"]}}
+  ],
+  "provenance":{"sources":["https://openmath.org/standard/"],"confidence":"medium"},
+  "extensions":{"ekta_status_note":"Illustrative schema instance; domain constraints require a future semantic validator."}
+}
