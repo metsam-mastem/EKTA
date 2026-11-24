@@ -1,20 +1,20 @@
 # Active Work Register
-**Baseline:** integration/upds-documentation-architecture  
-**Updated:** 2026-11-23
+**Baseline:** integration/upds-independent-continuity  
+**Snapshot:** 2026-11-24
 
-| Work ID | Work package | Status | Evidence / next action |
+| ID | Work package | Status | Next action |
 |---|---|---|---|
-| UPDS-WP-001 | Additive integration architecture and catalog | IMPLEMENTED | docs/INTEGRATION; review proposed ADR |
-| UPDS-WP-002 | Owner review of integration decision | BLOCKED | Owner must approve/revise EKTA-ADR-0003 |
-| UPDS-WP-003 | Base artifact schema and sample | IMPLEMENTED | schema + fixture; prior CI pass on exact recorded SHA |
-| UPDS-WP-004 | Validator and unit tests | IMPLEMENTED | code/tests/CI step exist; latest HEAD CI unverified |
-| UPDS-WP-005 | Runtime document registry/API | NOT RUN | define contracts and failing tests, then implement |
-| UPDS-WP-006 | Typed graph traceability | NOT RUN | requirements → decisions → components → tests → evidence |
-| UPDS-WP-007 | User docs and onboarding | IMPLEMENTED in main via PR #4; supplemental docs in branch | consolidate duplicate manuals |
-| UPDS-WP-008 | Chat-independent recovery protocol | IMPLEMENTED (design/docs) | clean-clone drill NOT RUN |
-| UPDS-WP-009 | Automated recovery/docs completeness checks | NOT RUN | define invariants and add tests |
-| UPDS-WP-010 | Project starter and completeness dashboard | NOT RUN | defer until registry/schema stable |
-| UPDS-WP-011 | Owner architecture review and PR disposition | BLOCKED | no merge without explicit approval |
-| UPDS-WP-012 | Input/artifact model and execution blueprint | IMPLEMENTED (design only) | reconcile with final schema/API |
+| UPDS-WP-001 | Port UPDS architecture/catalog onto current main | IMPLEMENTED | review replacement PR |
+| UPDS-WP-002 | Integration ADR owner decision | BLOCKED | approve/revise EKTA-ADR-0003 |
+| UPDS-WP-003 | Base schema, fixture and validator | IMPLEMENTED | verify latest branch CI |
+| UPDS-WP-004 | UPDS validator CI gate | IMPLEMENTED in branch | CI run on exact latest SHA |
+| UPDS-WP-005 | Canonical user docs cross-link | IMPLEMENTED in branch | link validation in CI |
+| UPDS-WP-006 | Chat context archive and agent onboarding | IMPLEMENTED as structured docs | clean-clone recovery test NOT RUN |
+| UPDS-WP-007 | Independent backup and restore drill | NOT RUN | produce archive, checksum and restore test |
+| UPDS-WP-008 | Repository-backed document registry | NOT IMPLEMENTED | define API/model contracts; TDD |
+| UPDS-WP-009 | Typed traceability engine | NOT IMPLEMENTED | define graph predicates and vertical-slice acceptance |
+| UPDS-WP-010 | Completeness dashboard and project starter | NOT IMPLEMENTED | defer until registry/traceability stabilize |
+| UPDS-WP-011 | Supersede stale PR #3 | BLOCKED | replacement PR must exist first |
+| UPDS-WP-012 | Latest branch CI and full regression suite | NOT VERIFIED | inspect exact head workflow result |
 
-IMPLEMENTED means files/code/design exist. VERIFIED requires a passing check and exact SHA. VALIDATED requires acceptance criteria and recorded test conditions. A design document does not prove runtime behavior.
+IMPLEMENTED means files/code exist. VERIFIED requires a named passing check and exact commit SHA. VALIDATED requires acceptance criteria and recorded conditions. NOT RUN and BLOCKED remain explicit.
