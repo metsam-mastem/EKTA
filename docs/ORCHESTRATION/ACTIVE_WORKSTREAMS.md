@@ -42,7 +42,9 @@ Ten active product workstreams were inspected on 2026-11-24; PR #3 is closed/unm
 - UMSF PR #11 latest inspected head `fcf6ea61f01b23a0d410313fe6c3ef172e9bb4ca` passed Actions run [#288](https://github.com/metsam-mastem/EKTA/actions/runs/45304547566): documentation validation, unit/runtime tests, frontend validation, and graph export. The PR remains draft/unmerged.
 - Orchestration PR #21 revision `8dfe76838da79bfff5cb1f1ebae09b897cb5766d` passed Actions run [#382](https://github.com/metsam-mastem/EKTA/actions/runs/45305073885), including the workstream registry validator, integration pin checks, cycle detection, and archive collision regression test. Later registry refreshes are being revalidated in run #418.
 
-- UPDS PR #23 exact head `8453a2d179490969a5b2262c8d8e34ba957d3d5c` passed Actions run [#408](https://github.com/metsam-mastem/EKTA/actions/runs/45305319405); clean-clone recovery and restore remain NOT RUN.\n\n## New integration and integrity finding
+- UPDS PR #23 exact head `8453a2d179490969a5b2262c8d8e34ba957d3d5c` passed Actions run [#408](https://github.com/metsam-mastem/EKTA/actions/runs/45305319405); clean-clone recovery and restore remain NOT RUN.
+
+## New integration and integrity finding
 
 - GTC is pinned at `integrations/gtc` to upstream commit `2f0229bd622de4e9ce22196e57fb986659dc7934`. EKTA main includes the integration audit and the canonical Hardware Knowledge Atlas concept record `EKTA-CON-000008`.
 - PR #7's staging manifest assigns `EKTA-CON-000008` to Operating System. This is a confirmed stable-ID collision, not a theoretical risk. The archive branch must remain blocked until the source record receives an owner-approved new immutable ID and the manifest/hash/provenance mapping is updated.
