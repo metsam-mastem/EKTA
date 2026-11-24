@@ -35,12 +35,12 @@ Ten active product workstreams were inspected on 2026-11-24; PR #3 is closed/unm
 | #7 | Archive intake | archive-intake/ekta-concepts-2026-11-23 | 3 / 1 | BLOCKED: staged EKTA-CON-000008 conflicts with canonical Hardware Knowledge Atlas ID; resolve immutable ID allocation before transfer |
 | #22 | Engineering Organization Crosswalk | knowledge/engineering-organization-v1 | 16 / 0 | Exact-head CI PASS (run 289); owner review of source interpretation and non-canonical scope |
 | #23 | UPDS | integration/upds-independent-continuity | 75 / 0 | Exact-head CI PASS (run 408); owner review and clean-clone recovery test |
-| #3 | UPDS | integration/upds-documentation-architecture | 57 / 35 | Scope reconciliation; rebase; CI |
+| #3 | UPDS (superseded) | integration/upds-documentation-architecture | 57 / 35 | CLOSED / NOT MERGED; superseded by clean-mainline PR #23 |
 
 ## Recent verified execution
 
 - UMSF PR #11 latest inspected head `fcf6ea61f01b23a0d410313fe6c3ef172e9bb4ca` passed Actions run [#288](https://github.com/metsam-mastem/EKTA/actions/runs/45304547566): documentation validation, unit/runtime tests, frontend validation, and graph export. The PR remains draft/unmerged.
-- Orchestration PR #21 revision `8dfe76838da79bfff5cb1f1ebae09b897cb5766d` passed Actions run [#382](https://github.com/metsam-mastem/EKTA/actions/runs/45305073885), including the workstream registry validator, integration pin checks, cycle detection, and archive collision regression test. Later registry refreshes are being revalidated in run #418.
+- Orchestration PR #21 revision `8dfe76838da79bfff5cb1f1ebae09b897cb5766d` passed Actions run [#382](https://github.com/metsam-mastem/EKTA/actions/runs/45305073885), including the workstream registry validator, integration pin checks, cycle detection, and archive collision regression test. The refreshed registry and integration inventory passed the full CI workflow on exact PR #21 head `7eb75b02204aae557534174a1f19987e10b9cd22` in runs [#433](https://github.com/metsam-mastem/EKTA/actions/runs/45305452208) and [#434](https://github.com/metsam-mastem/EKTA/actions/runs/45305472078).
 
 - UPDS PR #23 exact head `8453a2d179490969a5b2262c8d8e34ba957d3d5c` passed Actions run [#408](https://github.com/metsam-mastem/EKTA/actions/runs/45305319405); clean-clone recovery and restore remain NOT RUN.
 
