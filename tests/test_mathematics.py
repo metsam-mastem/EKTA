@@ -54,10 +54,6 @@ class MathematicalObjectTests(unittest.TestCase):
         self.assertEqual(validate_relation_graph([first, second]), [])
 
 
-if __name__ == "__main__":
-    unittest.main()
-
-
 class MathematicalSchemaTests(unittest.TestCase):
     def test_umo_schema_is_valid_and_example_conforms(self):
         import json
@@ -79,3 +75,7 @@ class MathematicalSchemaTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         schema = json.loads((root / "schemas" / "coordinate-frame.schema.json").read_text(encoding="utf-8"))
         jsonschema.Draft202012Validator.check_schema(schema)
+
+
+if __name__ == "__main__":
+    unittest.main()
