@@ -54,3 +54,12 @@
 - Enforced the canonical `EKTA-CON-######` draft ID format and blocked collisions with existing canonical concept IDs.
 - Added metadata bounds, malformed YAML rejection, restore traversal regression coverage, and workspace UI JavaScript/structure validation.
 - Replaced HTML string interpolation in documentation listing and backup-link rendering with DOM text nodes.
+
+
+## VEL 0.1.0 — Visual engineering language foundation (2026-11-24)
+
+- Added VEL specification, card/connector catalog, open-source research register, and phased roadmap.
+- Added canonical JSON Schema and a local Python semantic validator for node/port/connection/group integrity.
+- Added deterministic DOT export and a local-AI-workstation example model.
+- Added unit tests and EKTA integration boundaries; no external source code was vendored.
+- Visual editor, QR/camera ingestion, and third-party adapters remain planned, not implemented.

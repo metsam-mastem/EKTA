@@ -1,0 +1,95 @@
+{
+  "schema_version": "0.1.0",
+  "model_id": "VEL-LOCAL-AI-WORKSTATION",
+  "name": "Local AI Workstation",
+  "revision": "0.1.0",
+  "status": "PROPOSED",
+  "nodes": [
+    {
+      "id": "VEL-N-USER",
+      "kind": "actor",
+      "label": "User",
+      "status": "APPROVED",
+      "ports": [
+        {"id": "request", "name": "Request", "direction": "OUT", "channels": ["CONTROL"]}
+      ]
+    },
+    {
+      "id": "VEL-N-INTERFACE",
+      "kind": "interface",
+      "label": "Workbench UI",
+      "status": "PROPOSED",
+      "ports": [
+        {"id": "request-in", "name": "Request In", "direction": "IN", "channels": ["CONTROL"]},
+        {"id": "prompt-out", "name": "Prompt Out", "direction": "OUT", "channels": ["DATA"]},
+        {"id": "response-in", "name": "Response In", "direction": "IN", "channels": ["DATA"]}
+      ]
+    },
+    {
+      "id": "VEL-N-ORCHESTRATOR",
+      "kind": "module",
+      "label": "Request Orchestrator",
+      "status": "PROPOSED",
+      "ports": [
+        {"id": "prompt-in", "name": "Prompt In", "direction": "IN", "channels": ["DATA"]},
+        {"id": "prompt-out", "name": "Prompt Out", "direction": "OUT", "channels": ["DATA"]},
+        {"id": "result-in", "name": "Result In", "direction": "IN", "channels": ["DATA"]},
+        {"id": "result-out", "name": "Result Out", "direction": "OUT", "channels": ["DATA"]}
+      ]
+    },
+    {
+      "id": "VEL-N-LOCAL-MODEL",
+      "kind": "service",
+      "label": "Local Language Model",
+      "status": "PROPOSED",
+      "ports": [
+        {"id": "prompt-in", "name": "Prompt In", "direction": "IN", "channels": ["DATA"]},
+        {"id": "result-out", "name": "Result Out", "direction": "OUT", "channels": ["DATA"]}
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "VEL-C-USER-UI",
+      "kind": "CONTROL",
+      "source": {"node_id": "VEL-N-USER", "port_id": "request"},
+      "target": {"node_id": "VEL-N-INTERFACE", "port_id": "request-in"},
+      "status": "PROPOSED"
+    },
+    {
+      "id": "VEL-C-UI-ORCHESTRATOR",
+      "kind": "DATA",
+      "source": {"node_id": "VEL-N-INTERFACE", "port_id": "prompt-out"},
+      "target": {"node_id": "VEL-N-ORCHESTRATOR", "port_id": "prompt-in"},
+      "status": "PROPOSED"
+    },
+    {
+      "id": "VEL-C-ORCHESTRATOR-MODEL",
+      "kind": "DATA",
+      "source": {"node_id": "VEL-N-ORCHESTRATOR", "port_id": "prompt-out"},
+      "target": {"node_id": "VEL-N-LOCAL-MODEL", "port_id": "prompt-in"},
+      "status": "PROPOSED"
+    },
+    {
+      "id": "VEL-C-MODEL-ORCHESTRATOR",
+      "kind": "DATA",
+      "source": {"node_id": "VEL-N-LOCAL-MODEL", "port_id": "result-out"},
+      "target": {"node_id": "VEL-N-ORCHESTRATOR", "port_id": "result-in"},
+      "status": "PROPOSED"
+    },
+    {
+      "id": "VEL-C-ORCHESTRATOR-UI",
+      "kind": "DATA",
+      "source": {"node_id": "VEL-N-ORCHESTRATOR", "port_id": "result-out"},
+      "target": {"node_id": "VEL-N-INTERFACE", "port_id": "response-in"},
+      "status": "PROPOSED"
+    }
+  ],
+  "groups": [
+    {"id": "LOCAL-COMPUTE", "label": "Local Compute Boundary", "node_ids": ["VEL-N-ORCHESTRATOR", "VEL-N-LOCAL-MODEL"]}
+  ],
+  "metadata": {
+    "language": "en",
+    "note": "Illustrative architecture; not an implementation claim."
+  }
+}
