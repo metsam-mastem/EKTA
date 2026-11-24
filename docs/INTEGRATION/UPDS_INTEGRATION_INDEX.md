@@ -49,6 +49,7 @@ Do not maintain a second competing manual under a parallel path. The older suppl
 - [Conversation archive and project context](../PROJECT_CONTINUITY/CHAT_SESSION_ARCHIVE_2026-11-24.md)
 - [Agent onboarding for chat-independent continuation](../PROJECT_CONTINUITY/AGENT_ONBOARDING.md)
 - [Recovery runbook](../PROJECT_CONTINUITY/RECOVERY_RUNBOOK.md)
+- [Delivery orchestration plan](../PROJECT_CONTINUITY/ORCHESTRATION_PLAN.md)
 
 ## Architecture boundary
 EKTA remains the canonical engineering knowledge atlas. UPDS owns project-scoped artifacts: plans, requirements, decisions, change/risk records, evidence, test reports, baselines, releases and handoffs. Shared concepts, taxonomies, reusable methods and relation vocabulary remain governed by EKTA. UPDS must remain extractable behind stable schemas and interfaces.
