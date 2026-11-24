@@ -11,11 +11,11 @@
 | Typed form validation | IMPLEMENTED - INITIAL | src/ves_forms.py |
 | Card, board, view and Deck catalog | IMPLEMENTED - INITIAL | src/ves_catalog.py |
 | EKTA taxonomy identifier crosswalk | VERIFIED AGAINST REGISTRIES | integration/ekta-taxonomy-crosswalk.json |
-| Unit tests | LOCAL PASS | 19 tests across six test modules in development workspace |
-| Entity/relationship/board/project/form JSON Schemas | IMPLEMENTED - INITIAL | schemas/ and test_schemas.py |
+| Unit tests | LOCAL PASS | 19 tests across six test modules |
+| JSON Schemas | ADDED AND TESTED | schemas/ and tests/test_schemas.py |
 | Browser Board/Gallery/Deck prototype | IMPLEMENTED - PROTOTYPE | web/ |
 | GitHub Actions on crosswalk implementation head | PASS | runs 45304206018 and 45304213142 |
-| GitHub Actions on latest visual/schema head | PENDING | verify latest branch runs |
+| GitHub Actions on latest schema/UI head | IN PROGRESS | runs 45304629419 and 45304636491 |
 | EKTA project registry | ADDED IN THIS BRANCH | projects/README.md |
 | Browser runtime/manual QA | NOT RUN | syntax checks only; no browser automation evidence |
 | Windows package | NOT RUN | not implemented |

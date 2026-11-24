@@ -17,7 +17,7 @@
 - فرم‌های typed و اعتبارسنجی فیلدهای اجباری، نوع، محدوده و enum
 - رجیستری اولیه 14 نوع کارت، 12 نوع بورد، 10 حالت نمایش و 5 Deck آماده
 - crosswalk ماشین‌خوان شناسه‌های EKTA با تست تطبیق رجیستری
-- نمونه اولیه مرورگری بدون وابستگی خارجی: کارت‌های قابل جابه‌جایی، Inspector، ذخیره محلی و خروجی JSON
+- نمونه اولیه مرورگری: Board، Gallery جست‌وجوپذیر، Deck Library، Inspector، ذخیره محلی و خروجی JSON
 - قراردادهای JSON Schema، تست واحد و اسناد مهندسی و کاربری
 
 ## اجرای سریع
@@ -47,6 +47,7 @@
 - docs/MVP_PLAN.md — برنامه MVP و معیار پذیرش
 - docs/OPEN_SOURCE_REGISTER.md — مخازن متن‌باز و استانداردها
 - docs/EKTA_INTEGRATION.md — اتصال به EKTA
+- docs/ORCHESTRATION.md — گردش کار توسعه و گیت‌های تحویل
 - docs/INSTALLATION.md و docs/USER_GUIDE.md — راهنمای اجرا و کاربری
 - docs/GOVERNANCE.md و docs/STATUS.md — حاکمیت و وضعیت
 
