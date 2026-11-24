@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/metsam-mastem/EKTA/blob/main/schemas/usdo-entity.schema.json",
+  "title": "EKTA USDO Entity Record",
+  "description": "A multi-facet record keeping ontology, dimensions, scope, scale, layers, classification, architecture, topology, circuits, relations, dynamics, and evaluation distinct.",
+  "type": "object",
+  "required": ["schema_version", "id", "name", "definition", "status", "abstraction_level", "facets"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "id": {"type": "string", "pattern": "^EKTA-USDO-[0-9]{6}$"},
+    "name": {"type": "string", "minLength": 2},
+    "aliases": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "definition": {"type": "string", "minLength": 20},
+    "status": {"enum": ["DRAFT", "PROPOSED", "RESEARCHED", "VERIFIED", "IMPLEMENTED", "VALIDATED", "NOT_RUN", "BLOCKED", "DEPRECATED"]},
+    "revision": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "abstraction_level": {"enum": ["macro", "meso", "micro"]},
+    "facets": {
+      "type": "object",
+      "required": ["ontology", "dimensions", "scope", "scale", "layers", "classification", "architecture", "topology", "circuits", "relations", "dynamics", "evaluation"],
+      "properties": {
+        "ontology": {"type": "object", "properties": {"entity_kind": {"type": "string"}, "classes": {"type": "array", "items": {"type": "string"}}, "instances": {"type": "array", "items": {"type": "string"}}, "semantic_notes": {"type": "string"}}, "additionalProperties": false},
+        "dimensions": {"type": "array", "items": {"type": "object", "required": ["id", "family", "role"], "properties": {"id": {"type": "string"}, "family": {"enum": ["spatial", "temporal", "functional", "informational", "structural", "logical", "social", "physical", "domain_specific"]}, "role": {"enum": ["coordinate", "measurable_property", "qualitative_axis", "degree_of_freedom"]}, "unit": {"type": "string"}, "value": {}, "description": {"type": "string"}}, "additionalProperties": false}},
+        "scope": {"type": "object", "properties": {"kind": {"type": "string"}, "includes": {"type": "array", "items": {"type": "string"}}, "excludes": {"type": "array", "items": {"type": "string"}}, "validity_conditions": {"type": "array", "items": {"type": "string"}}, "boundary_notes": {"type": "string"}}, "additionalProperties": false},
+        "scale": {"type": "object", "properties": {"granularity": {"type": "string"}, "magnitude": {"type": "string"}, "resolution": {"type": "string"}, "reference_system": {"type": "string"}}, "additionalProperties": false},
+        "layers": {"type": "array", "items": {"type": "object", "required": ["layer_id", "responsibility"], "properties": {"layer_id": {"type": "string"}, "responsibility": {"type": "string"}, "interfaces": {"type": "array", "items": {"type": "string"}}, "depends_on": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false}},
+        "classification": {"type": "object", "properties": {"type_ids": {"type": "array", "items": {"type": "string"}}, "category_ids": {"type": "array", "items": {"type": "string"}}, "criteria": {"type": "array", "items": {"type": "string"}}, "taxonomy_paths": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false},
+        "architecture": {"type": "object", "properties": {"pattern": {"type": "string"}, "components": {"type": "array", "items": {"type": "string"}}, "responsibilities": {"type": "array", "items": {"type": "string"}}, "interfaces": {"type": "array", "items": {"type": "string"}}, "constraints": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false},
+        "topology": {"type": "object", "properties": {"kind": {"type": "string"}, "nodes": {"type": "array", "items": {"type": "string"}}, "edges": {"type": "array", "items": {"type": "string"}}, "directed": {"type": "boolean"}, "connectivity_notes": {"type": "string"}}, "additionalProperties": false},
+        "circuits": {"type": "array", "items": {"type": "object", "required": ["kind", "purpose"], "properties": {"kind": {"enum": ["electrical", "logic", "control_feedback", "signal_path", "dataflow", "other"]}, "purpose": {"type": "string"}, "nodes": {"type": "array", "items": {"type": "string"}}, "paths": {"type": "array", "items": {"type": "string"}}, "closed_loop": {"type": "boolean"}, "domain_qualification": {"type": "string"}}, "additionalProperties": false}},
+        "relations": {"type": "array", "items": {"type": "object", "required": ["predicate", "target"], "properties": {"predicate": {"type": "string"}, "target": {"type": "string"}, "direction": {"enum": ["outgoing", "incoming", "bidirectional"]}, "context": {"type": "string"}, "evidence_status": {"enum": ["PROPOSED", "RESEARCHED", "VERIFIED"]}, "source": {"type": "string"}}, "additionalProperties": false}},
+        "dynamics": {"type": "object", "properties": {"states": {"type": "array", "items": {"type": "string"}}, "transitions": {"type": "array", "items": {"type": "string"}}, "processes": {"type": "array", "items": {"type": "string"}}, "flows": {"type": "array", "items": {"type": "string"}}, "events": {"type": "array", "items": {"type": "string"}}, "feedback": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false},
+        "evaluation": {"type": "object", "properties": {"metrics": {"type": "array", "items": {"type": "string"}}, "constraints": {"type": "array", "items": {"type": "string"}}, "acceptance_criteria": {"type": "array", "items": {"type": "string"}}, "verification_methods": {"type": "array", "items": {"type": "string"}}, "evidence_refs": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false}
+      },
+      "additionalProperties": false
+    },
+    "sources": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

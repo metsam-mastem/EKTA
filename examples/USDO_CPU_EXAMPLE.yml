@@ -1,0 +1,71 @@
+schema_version: 1
+id: EKTA-USDO-000001
+name: Central Processing Unit
+aliases: [CPU, پردازنده مرکزی]
+definition: >-
+  A programmable digital computing component that fetches, decodes, and executes
+  instructions while coordinating data movement and operations within a computer system.
+status: PROPOSED
+revision: 0.1.0
+abstraction_level: meso
+facets:
+  ontology:
+    entity_kind: hardware_component
+    classes: [digital_processor, programmable_computing_unit]
+    instances: []
+    semantic_notes: "Illustrative generic CPU model; not a commercial product."
+  dimensions:
+    - {id: clock_frequency, family: temporal, role: measurable_property, unit: Hz, description: "Illustrative property; no product value asserted."}
+    - {id: instruction_latency, family: temporal, role: measurable_property, unit: cycle, description: "Depends on microarchitecture and workload."}
+    - {id: throughput, family: functional, role: measurable_property, unit: instructions_per_second, description: "Workload-dependent measure."}
+    - {id: die_area, family: physical, role: measurable_property, unit: mm2, description: "No value supplied for this generic example."}
+  scope:
+    kind: system_component
+    includes: [instruction_execution, internal_data_movement, control_coordination]
+    excludes: [complete_computer_system, external_network, application_semantics]
+    validity_conditions: [generic_architectural_description]
+    boundary_notes: "Responsibilities vary by ISA, microarchitecture, and integration."
+  scale: {granularity: "processor package / microarchitecture", magnitude: unspecified, resolution: "component and subsystem level", reference_system: "generic computer architecture"}
+  layers:
+    - {layer_id: hardware-architecture, responsibility: "Instruction execution and hardware computation"}
+    - {layer_id: physical-implementation, responsibility: "Physical implementation in semiconductor circuitry"}
+  classification:
+    type_ids: [component, architecture]
+    category_ids: [computer-architecture-processors]
+    criteria: [programmable, digital, instruction_executing]
+    taxonomy_paths: [engineering/computing/processor]
+  architecture:
+    pattern: "heterogeneous modular composition (illustrative)"
+    components: [core, cache_hierarchy, control_unit, execution_units, memory_interface]
+    responsibilities: [instruction_control, arithmetic_logic, data_movement, memory_access]
+    interfaces: [memory_interface, interconnect, interrupt_interface]
+    constraints: [power_budget, thermal_limit, ISA_compatibility, memory_consistency]
+  topology:
+    kind: "on-chip interconnect graph"
+    nodes: [core, cache_hierarchy, control_unit, execution_units, memory_interface]
+    edges: [core_to_cache, core_to_execution_units, cache_to_memory_interface, control_to_execution]
+    directed: true
+    connectivity_notes: "Conceptual only; no vendor-specific physical topology."
+  circuits:
+    - {kind: logic, purpose: "Implement arithmetic, control, and state logic.", nodes: [logic_gates, registers, arithmetic_units], paths: [combinational_paths, sequential_paths], closed_loop: false, domain_qualification: "digital logic"}
+    - {kind: dataflow, purpose: "Represent instruction and operand movement through execution stages.", nodes: [fetch, decode, execute, memory, writeback], paths: [instruction_path, operand_path], closed_loop: false, domain_qualification: "processor pipeline model"}
+  relations:
+    - {predicate: PART_OF, target: computer_system, direction: incoming, context: "CPU is a component of a computer system.", evidence_status: RESEARCHED}
+    - {predicate: CONNECTS_TO, target: memory_subsystem, direction: outgoing, context: "Through a memory interface.", evidence_status: RESEARCHED}
+  dynamics:
+    states: [active, idle, halted, faulted]
+    transitions: [interrupt, wake, reset, exception]
+    processes: [fetch, decode, execute, retire]
+    flows: [instructions, operands, results, control_signals]
+    events: [interrupt, exception, cache_miss]
+    feedback: [branch_prediction_feedback, performance_monitoring_feedback]
+  evaluation:
+    metrics: [instructions_per_cycle, latency, throughput, power, energy_per_instruction]
+    constraints: [thermal_envelope, power_envelope, correctness, compatibility]
+    acceptance_criteria: [instruction_set_conformance, workload_specific_performance_target]
+    verification_methods: [simulation, formal_verification, hardware_testing, benchmark]
+    evidence_refs: []
+sources: []
+notes:
+  - "All names and values are generic and illustrative."
+  - "This example demonstrates schema shape, not facts about a specific CPU."

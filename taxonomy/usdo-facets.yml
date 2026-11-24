@@ -1,0 +1,30 @@
+schema_version: 1
+model: USDO
+title: Universal Structural and Dimensional Ontology
+facets:
+  - {id: ontology, label: هستی‌شناسی, question: "What exists and what kind of thing is it?", definition: "Identity, kinds, classes, instances, and semantic categories.", independent_axis: true}
+  - {id: dimension, label: بُعد, question: "Along which axis is an entity described?", definition: "A descriptive axis or degree of freedom: spatial, temporal, functional, informational, structural, logical, social, or domain-specific.", independent_axis: true}
+  - {id: scope, label: گستره, question: "Within what boundary or conditions does a claim apply?", definition: "Declared inclusion, exclusion, validity, and coverage boundary.", independent_axis: true}
+  - {id: scale, label: مقیاس, question: "At what magnitude, granularity, or resolution?", definition: "Magnitude or granularity, distinct from abstraction level and architectural layer.", independent_axis: true}
+  - {id: layer, label: لایه, question: "At which responsibility stratum?", definition: "An architectural partition with defined responsibility and boundary.", independent_axis: true}
+  - {id: classification, label: نوع و دسته‌بندی, question: "What kind is it and by which criteria is it grouped?", definition: "Type, class, category, taxonomy, and classification criteria.", independent_axis: true}
+  - {id: architecture, label: معماری و ساختار, question: "How are parts organized and composed?", definition: "Arrangement of parts, responsibilities, interfaces, and constraints.", independent_axis: true}
+  - {id: topology, label: توپولوژی, question: "What connectivity or adjacency pattern exists?", definition: "Connectivity among nodes and links, independent of geometric embedding unless stated.", independent_axis: true}
+  - {id: circuit, label: مدار و حلقه, question: "Which domain-qualified path, network, or loop is modeled?", definition: "Electrical circuit, logic circuit, signal path, dataflow network, or control-feedback loop; not every graph cycle is a circuit.", independent_axis: true}
+  - {id: relation, label: روابط و ارتباطات, question: "How are entities related, dependent, or exchanging information?", definition: "Typed structural, semantic, causal, temporal, control, material, energy, or communication relation.", independent_axis: true}
+  - {id: dynamics, label: پویایی و رفتار, question: "How does the entity change or operate over time?", definition: "States, transitions, processes, events, flows, control, and feedback.", independent_axis: true}
+  - {id: evaluation, label: ارزیابی و شواهد, question: "How are properties or claims measured and validated?", definition: "Metrics, constraints, acceptance criteria, verification methods, evidence, and provenance.", independent_axis: true}
+hierarchy:
+  abstraction_levels:
+    - {id: macro, label: بالا رده / کلان, meaning: "System-wide or governing view; contextual abstraction level, not physical size"}
+    - {id: meso, label: میان رده / میانی, meaning: "Subsystem, architectural block, or coordination view"}
+    - {id: micro, label: پایین رده / جزئی, meaning: "Element, operation, field, or implementation detail"}
+  rule: "Abstraction level is contextual. Never infer physical size, scale, or importance from macro/meso/micro."
+controlled_distinctions:
+  - {left: dimension, right: scope, rule: "Dimension describes an axis; scope declares where a claim applies."}
+  - {left: layer, right: scale, rule: "Layer partitions responsibility; scale describes magnitude or granularity."}
+  - {left: abstraction_level, right: scale, rule: "Abstraction level is a modeling viewpoint; scale is magnitude or resolution."}
+  - {left: structure, right: topology, rule: "Structure includes composition and responsibility; topology focuses on connectivity."}
+  - {left: relation, right: communication, rule: "Relation is general; communication is message, signal, or information exchange."}
+  - {left: circuit, right: graph_cycle, rule: "A circuit is domain-qualified; a graph cycle is only a closed path in a graph."}
+  - {left: architecture, right: architecture_description, rule: "Architecture organizes an entity; an architecture description represents it."}
