@@ -3,7 +3,7 @@
 **Audit:** 2026-11-24 | **Status:** PROPOSED — integration PR review pending  
 **Upstream:** https://github.com/metsam-mastem/3DCAP  
 **Pinned branch:** `feat/android-guided-capture-mvp`  
-**Pinned commit:** `d0ca3a689631dda944a783d61562ef70564fcd2f`  
+**Pinned commit:** `b72561384a2a5a1b838167e534bb32eac756c9be`  
 **Upstream PR:** [#1 — Android guided-capture MVP](https://github.com/metsam-mastem/3DCAP/pull/1), open/Draft  
 **EKTA source path:** `integrations/3dcap`
 
@@ -92,7 +92,7 @@ The tour manifest defines scenes, panorama assets, hotspots and routes. Panorama
 | Setting | Pinned development configuration |
 |---|---|
 | Language/UI | Kotlin, Jetpack Compose |
-| Camera | CameraX 1.6.0; optional Camera2 interop |
+| Camera | CameraX 1.6.1; optional Camera2 interop |
 | Android | minSdk 26, compileSdk 36, targetSdk 35 |
 | Build | AGP 8.9.1, Gradle 8.11.1, JDK 17 |
 | Metadata | AndroidX ExifInterface 1.3.7 |
@@ -104,13 +104,13 @@ The repository has no checked-in Gradle wrapper; CI provisions Gradle 8.11.1. Ex
 
 ## 8. Current maturity and verification
 
-At pinned commit `d0ca3a689631dda944a783d61562ef70564fcd2f`:
+At pinned commit `b72561384a2a5a1b838167e534bb32eac756c9be`:
 - Capture planning, camera UI, local session storage, metadata extraction, Passport contracts/analysis, ZIP export and Windows COLMAP handoff code are present.
 - Latest observed CI: [run 45303631813](https://github.com/metsam-mastem/3DCAP/actions/runs/45303631813), overall **FAIL**.
 - PowerShell 5.1 and PowerShell 7 syntax: **PASS**.
-- Android unit-test job: **FAIL** during Kotlin compilation at `:app:compileDebugKotlin`; test assertions did not complete.
+- Android unit-test job on the previous revision: **FAIL** during Kotlin compilation at `:app:compileDebugKotlin`; test assertions did not complete. On the current pinned revision: **NOT_RUN**.
 - Reported diagnostics include inaccessible `com.google.common.util.concurrent.ListenableFuture`, unresolved `addListener`, `unbindAll`, `bindToLifecycle`, and a missing `name` argument diagnostic.
-- Android Lint and Debug APK steps: **SKIPPED**.
+- Android Lint and Debug APK on the previous revision: **SKIPPED**; on the current pinned revision: **NOT_RUN**.
 - Physical Android device: **NOT_RUN**.
 - Real Windows/COLMAP dataset reconstruction: **NOT_RUN**.
 - Saved-JPEG calibration mapping and intrinsic solver: **NOT_IMPLEMENTED**.
@@ -136,7 +136,7 @@ git submodule update --init --recursive
 git -C integrations/3dcap rev-parse HEAD
 ```
 
-Expected 3DCAP revision: `d0ca3a689631dda944a783d61562ef70564fcd2f`.
+Expected 3DCAP revision: `b72561384a2a5a1b838167e534bb32eac756c9be`.
 
 ## 11. Integration work packages
 

@@ -1,6 +1,6 @@
 # 3DCAP — Execution Handoff and Parallel Workstreams
 
-**Snapshot:** 2026-11-24 | **Source SHA:** `d0ca3a689631dda944a783d61562ef70564fcd2f`  
+**Snapshot:** 2026-11-24 | **Source SHA:** `b72561384a2a5a1b838167e534bb32eac756c9be`  
 **Upstream PR:** https://github.com/metsam-mastem/3DCAP/pull/1  
 **EKTA branch:** `integration/3dcap-capture-reconstruction-v0.1`
 
@@ -11,7 +11,7 @@ Keep 3DCAP and EKTA as distinct projects. 3DCAP implementation changes stay in i
 
 | Stream | Repo boundary | Priority | Next task | Acceptance evidence |
 |---|---|---:|---|---|
-| A — Android build recovery | 3DCAP | P0 | Diagnose ListenableFuture/CameraX compile failure and related MainActivity diagnostics | Unit tests, lint and APK PASS on one SHA |
+| A — Android build recovery | 3DCAP | P0 | Verify CameraX 1.6.1 compile-classpath correction with fresh CI; resolve any remaining compiler diagnostics | Unit tests, lint and APK PASS on one SHA |
 | B — Passport/data contract | 3DCAP | P1 | Verify JSON invariants, partial EXIF semantics and fail-closed export | Unit + ZIP tests PASS; archive inspected |
 | C — Device validation | 3DCAP | P1 | Install APK; test permissions, orientation, capture, retake/delete and export | Device report with OS/build SHA |
 | D — Desktop reconstruction | 3DCAP | P1 | Run Windows COLMAP on a real Passport ZIP | Logs, run-summary, sparse model and fused.ply |

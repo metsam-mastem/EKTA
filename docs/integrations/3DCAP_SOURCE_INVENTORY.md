@@ -1,7 +1,7 @@
 # 3DCAP — Complete Pinned Source Inventory
 
 **Upstream:** https://github.com/metsam-mastem/3DCAP  
-**Pinned commit:** `d0ca3a689631dda944a783d61562ef70564fcd2f`  
+**Pinned commit:** `b72561384a2a5a1b838167e534bb32eac756c9be`  
 **EKTA submodule:** `integrations/3dcap`  
 **Inventory generated from:** Git tree API at the pinned commit, recursive=true  
 **Tree entries:** 71 total; **50 files** and 21 directories. The tree response was not truncated.
@@ -76,7 +76,7 @@ git -C integrations/3dcap rev-parse HEAD
 git -C integrations/3dcap ls-tree -r --name-only HEAD
 ```
 
-Expected commit: `d0ca3a689631dda944a783d61562ef70564fcd2f`.
+Expected commit: `b72561384a2a5a1b838167e534bb32eac756c9be`.
 
 ## 8. Inventory limits
 The inventory records paths at one exact commit. It does not include Git history objects outside that commit, Git LFS payloads if any, untracked local files, build outputs or generated datasets. Refresh it whenever the submodule pointer changes.

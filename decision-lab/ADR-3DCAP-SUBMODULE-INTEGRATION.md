@@ -6,7 +6,7 @@
 3DCAP is an independent Android-first capture/reconstruction-handoff project. EKTA needs source access for knowledge extraction, but both repositories have separate identities. EKTA's license is undecided; 3DCAP has no declared license at the inspected revision.
 
 ## Decision proposal
-Connect the complete 3DCAP source tree through a Git submodule at `integrations/3dcap`, pinned to `d0ca3a689631dda944a783d61562ef70564fcd2f`. Keep the integration dossier, crosswalk, evidence register, license/dependency review and handoff in `docs/integrations/`.
+Connect the complete 3DCAP source tree through a Git submodule at `integrations/3dcap`, pinned to `b72561384a2a5a1b838167e534bb32eac756c9be`. Keep the integration dossier, crosswalk, evidence register, license/dependency review and handoff in `docs/integrations/`.
 
 Do not copy or vendor upstream source, docs or assets into EKTA canonical files. Do not merge 3DCAP history into EKTA.
 

@@ -1,7 +1,7 @@
 # 3DCAP — License and Dependency Review
 
 **Review date:** 2026-11-24 | **Upstream:** https://github.com/metsam-mastem/3DCAP  
-**Pinned revision:** `d0ca3a689631dda944a783d61562ef70564fcd2f` | **EKTA license:** UNDECIDED
+**Pinned revision:** `b72561384a2a5a1b838167e534bb32eac756c9be` | **EKTA license:** UNDECIDED
 
 ## Licensing boundary
 
@@ -24,7 +24,7 @@ Public visibility does not grant redistribution, modification or commercial-use 
 | AndroidX ExifInterface | 1.3.7 |
 | JUnit / org.json | 4.13.2 / 20240303 |
 
-Latest CI reports unresolved `com.google.common.util.concurrent.ListenableFuture` at CameraX call sites. Inspect the resolved Gradle graph and exact call sites; this document does not prescribe an unverified dependency fix.
+The previous CI run on CameraX 1.6.0 reported unresolved `ListenableFuture` at CameraX call sites. The pinned source upgrades all CameraX artifacts to 1.6.1, whose official release notes identify a fix for this compile-classpath regression. The current pinned revision still requires a fresh CI run.
 
 ## Upstream research references
 
