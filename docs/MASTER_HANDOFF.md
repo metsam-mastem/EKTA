@@ -1074,3 +1074,23 @@ For exact historical conversation wording and original visual assets, preserve t
 **Product vision:** [docs/VISION_AND_PRODUCT_STORY.md](VISION_AND_PRODUCT_STORY.md)  
 **Master taxonomy:** [taxonomy/MASTER_TAXONOMY.md](../taxonomy/MASTER_TAXONOMY.md)  
 **Repository map:** [docs/REPOSITORY_MAP.md](REPOSITORY_MAP.md)
+
+
+---
+
+## 2026-11-24 — UPDS integration and conversation independence update
+
+This update supersedes older transient branch details where they conflict.
+
+- Canonical repository: https://github.com/metsam-mastem/EKTA
+- New clean continuation branch: `integration/upds-independent-continuity`, created from main baseline `7ea271e00ef2cb010c17bdaa553e1f27645f12ca`.
+- Previous UPDS branch `integration/upds-documentation-architecture` diverged 57 commits ahead / 35 behind main at the captured comparison; do not merge it as-is.
+- PR #3 remains open and should be superseded by a replacement PR after the clean port is validated.
+- The Persian-first user documentation index is `docs/USER_DOCUMENTATION_INDEX.md`; do not maintain duplicate user manuals.
+- UPDS is proposed as a bounded, cross-cutting and extractable project-documentation subsystem. EKTA owns shared knowledge/taxonomy; UPDS owns project-scoped records, lifecycle, traceability and durable project memory.
+- The continuation branch contains UPDS architecture/catalog, artifact input model, runtime blueprint, schema, validator, sample record, tests, continuity registers, conversation context archive, agent onboarding and recovery runbook.
+- UPDS runtime registry/API, full graph traceability, dashboard and starter generator are NOT IMPLEMENTED.
+- Latest-head CI, clean-clone recovery and independent backup restore are NOT VERIFIED / NOT RUN.
+- The conversation archive is a structured summary of available context, not a verbatim transcript.
+
+Resume from `docs/PROJECT_STATE.md`, then `docs/INTEGRATION/UPDS_INTEGRATION_INDEX.md` and `docs/PROJECT_CONTINUITY/CHAT_SESSION_ARCHIVE_2026-11-24.md`. See `docs/SESSION_HANDOFF.md` for ordered next actions.
