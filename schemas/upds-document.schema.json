@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/metsam-mastem/EKTA/blob/main/schemas/upds-document.schema.json",
+  "title": "UPDS Document Record",
+  "description": "Canonical metadata contract for project-controlled documentation and lifecycle artifacts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "artifact_type",
+    "family",
+    "level",
+    "domain",
+    "project_id",
+    "status",
+    "version",
+    "owner",
+    "classification",
+    "applicability"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*-(DOC|REQ|ADR|RSK|ISS|CHG|TST|EVD|REL|MEM|BASE|WP)-[0-9]{6}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "artifact_type": {
+      "type": "string",
+      "minLength": 2
+    },
+    "family": {
+      "type": "string",
+      "minLength": 2
+    },
+    "level": {
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ]
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 2
+    },
+    "project_id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_-]{1,31}$"
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "PROPOSED",
+        "IN_REVIEW",
+        "APPROVED",
+        "BASELINED",
+        "IMPLEMENTED",
+        "VERIFIED",
+        "VALIDATED",
+        "SUPERSEDED",
+        "DEPRECATED",
+        "BLOCKED",
+        "NOT_RUN",
+        "ARCHIVED"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "author": {
+      "type": "string"
+    },
+    "reviewer": {
+      "type": "string"
+    },
+    "approver": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "classification": {
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ]
+    },
+    "applicability": {
+      "enum": [
+        "REQUIRED",
+        "CONDITIONAL",
+        "OPTIONAL",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "parent_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "related_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "satisfies_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "implemented_by_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "verified_by_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
