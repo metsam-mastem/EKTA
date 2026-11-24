@@ -16,12 +16,12 @@ EKTA یک اطلس مهندسی رابطه‌مند، چندلایه و مبتن
 | شاخه اصلی | `main` |
 | منشور و چشم‌انداز | **APPROVED — 2026-11-23** |
 | نوع محصول | Engineering Knowledge Operating Environment |
-| وضعیت توسعه | Runtime v0.2 — Search & Explore Workbench |
+| وضعیت توسعه | Runtime v0.2 + Operational Workspace v0.4 — parallel subsystem foundations in review |
 | مجوز مخزن | هنوز انتخاب نشده است |
 
 ---
 
-## معرفی پروژه
+## Orchestration and active development\n\n- [Active workstreams and execution order](docs/ORCHESTRATION/ACTIVE_WORKSTREAMS.md)\n- [Cross-subsystem integration matrix](docs/ORCHESTRATION/INTEGRATION_MATRIX.md)\n- [Machine-readable workstream registry](orchestration/WORKSTREAMS.yml)\n\nThe orchestration registry tracks nine open PR workstreams. It does not approve or merge them. Every subsystem remains isolated until exact-head CI, contract review, and owner approval.\n\n## معرفی پروژه
 
 EKTA قرار نیست صرفاً یک واژه‌نامه یا مجموعه‌ای از فایل‌های Markdown باشد. هدف، ساخت یک محیط دانش مهندسی است که مفاهیم، تکنیک‌ها، الگوها، استانداردها، ابزارها، معماری‌ها، پیاده‌سازی‌ها و شواهد را به هم متصل می‌کند.
 
