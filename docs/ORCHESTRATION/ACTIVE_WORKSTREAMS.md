@@ -16,22 +16,22 @@ Coordinate independent EKTA subsystems through parallel research and implementat
 | Foundations | USDO #13, UMSF #11, MUA #19 | Parallel isolated contracts; coordinate identity, dimensionality, relation semantics, and schema compatibility before cross-integration. |
 | Visual engineering | VEL #10, VES #20 | VEL defines visual-model interchange; VES is a separate product environment. Resolve their boundary before claiming integration. |
 | Knowledge ingestion | GitHub Docs #8, Concept archive #7 | Source discovery and archive transfer proceed in parallel; no unreviewed source material enters canonical Encyclopedia. |
-| Governance and practice | Collaboration Atlas #9, UPDS #3 | Keep content proposed until source, governance, and overlap reviews are complete. |
+| Governance and practice | Collaboration Atlas #9, UPDS #23 | Keep content proposed until source, governance, and overlap reviews are complete. |\n| Taxonomy views | Engineering Organization Crosswalk #22 | Keep the 14-area map non-canonical; do not replace EKTA taxonomy registries. |
 
 ## Repository facts
 
-Nine open PRs were inspected on 2026-11-24. None was merged as part of this orchestration setup. GTC is already connected to main as a pinned submodule in commit 7ea271e00ef2cb010c17bdaa553e1f27645f12ca; it is tracked as an integration, not an open workstream PR. Several branches are one commit behind main. UPDS is substantially divergent: 57 commits ahead and 35 behind. Rebase or reconcile before review; do not merge stale snapshots because an earlier CI run passed.
+Ten active product workstreams were inspected on 2026-11-24; PR #3 is closed and superseded by clean-mainline PR #23. The orchestration PR #21 is separate from these ten product workstreams. GTC is already connected to main as a pinned submodule in commit 7ea271e00ef2cb010c17bdaa553e1f27645f12ca. GTC is already connected to main as a pinned submodule in commit 7ea271e00ef2cb010c17bdaa553e1f27645f12ca; it is tracked as an integration, not an open workstream PR. Several branches are one commit behind main. UPDS is substantially divergent: 57 commits ahead and 35 behind. Rebase or reconcile before review; do not merge stale snapshots because an earlier CI run passed.
 
 | PR | Workstream | Branch | Ahead / behind main | Next gate |
 |---:|---|---|---:|---|
-| #20 | VES | project/ves-foundation-v0.1 | 9 / 0 | Exact-head CI; VES/VEL boundary ADR |
-| #19 | MUA | workbench/mua-foundation-0.1.0 | 6 / 1 | Rebase; latest schema/example tests |
-| #13 | USDO | knowledge/usdo-ontology-foundation | 5 / 1 | Review semantics; freeze v0.1 |
+| #20 | VES | project/ves-foundation-v0.1 | 16 / 0 | Exact-head CI PASS (run 348); owner review and VES/VEL boundary ADR |
+| #19 | MUA | workbench/mua-foundation-0.1.0 | 6 / 1 | Exact-head CI PASS (run 221); reconcile one-commit mainline gap |
+| #13 | USDO | knowledge/usdo-ontology-foundation | 5 / 1 | Exact-head CI PASS (run 210); reconcile one-commit mainline gap |
 | #11 | UMSF | architecture/umsf-coordinate-framework-v0.1 | 19 / 1 | Exact-head CI PASS (run 288); owner review and branch freshness reconciliation |
-| #10 | VEL | project/vel-language-v0.1 | 6 / 1 | Rebase; CI; taxonomy crosswalk |
-| #9 | Collaboration Atlas | feat/collaboration-organizational-atlas | 13 / 1 | CI; source edition/taxonomy checks |
-| #8 | GitHub Docs | integration/github-docs-source-v1 | 9 / 1 | CI; bounded collector proof |
-| #7 | Archive intake | archive-intake/ekta-concepts-2026-11-23 | 3 / 1 | BLOCKED: staged EKTA-CON-000008 conflicts with canonical Hardware Knowledge Atlas ID; resolve immutable ID allocation before transfer |
+| #10 | VEL | project/vel-language-v0.1 | 6 / 1 | Exact-head CI PASS (run 207); reconcile one-commit mainline gap |
+| #9 | Collaboration Atlas | feat/collaboration-organizational-atlas | 13 / 1 | Exact-head CI PASS (run 184); reconcile one-commit mainline gap and source review |
+| #8 | GitHub Docs | integration/github-docs-source-v1 | 9 / 1 | Exact-head CI PASS (run 183); bounded collector proof and branch refresh |
+| #7 | Archive intake | archive-intake/ekta-concepts-2026-11-23 | 3 / 1 | BLOCKED: staged EKTA-CON-000008 conflicts with canonical Hardware Knowledge Atlas ID; resolve immutable ID allocation before transfer |\n| #22 | Engineering Organization Crosswalk | knowledge/engineering-organization-v1 | 16 / 0 | Exact-head CI PASS (run 289); owner review of source interpretation and non-canonical scope |\n| #23 | UPDS | integration/upds-independent-continuity | 75 / 0 | Exact-head CI run 390 in progress; review ADR-0003 and test clean-clone recovery |
 | #3 | UPDS | integration/upds-documentation-architecture | 57 / 35 | Scope reconciliation; rebase; CI |
 
 ## Recent verified execution
@@ -63,7 +63,7 @@ EKTA registries -> UMSF semantic coordinates -> MUA coordinate references
 USDO + UMSF -> VEL model semantics -> VES visual studio  
 External sources/archive -> provenance + staging -> human review -> canonical Encyclopedia  
 Collaboration Atlas -> Execution Lab practices  
-UPDS -> proposed cross-cutting document governance
+UPDS #23 -> proposed cross-cutting document governance
 
 This is a planned dependency graph, not evidence of completed runtime integration.
 
@@ -86,7 +86,7 @@ This is a planned dependency graph, not evidence of completed runtime integratio
 5. Run Collaboration Atlas source and taxonomy checks.
 6. Execute the GitHub Docs collector with a bounded limit; preserve a failure ledger.
 7. Complete archive transfer with byte-for-byte SHA-256 checks before canonical review.
-8. Reconcile UPDS overlap with existing governance; do not merge its divergent branch as-is.
+8. Review clean-mainline UPDS PR #23 after exact-head CI; keep PR #3 closed and unmerged.\n9. Review the 14-area Engineering Organization Crosswalk #22 as a non-canonical navigation overlay.\n10. Keep archive PR #7 blocked until the EKTA-CON-000008 collision is resolved.
 
 ## Session boundary
 
