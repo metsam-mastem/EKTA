@@ -73,3 +73,16 @@ Mark missing facts UNKNOWN. Do not guess. Conflicts between sources and decision
 
 ## Memory hierarchy
 Approved repository artifacts > accepted ADRs > verified sources and test evidence > issues/PRs > conversation summaries > unverified suggestions.
+
+
+## UPDS and chat-independent continuity snapshot — 2026-11-24
+
+The current clean continuation work is on `integration/upds-independent-continuity`, created from main at `7ea271e00ef2cb010c17bdaa553e1f27645f12ca`. The earlier `integration/upds-documentation-architecture` branch diverged from current main (57 ahead / 35 behind at the 2026-11-24 comparison) and must not be merged as-is. PR #3 remains open pending supersession by a clean replacement PR.
+
+Read [UPDS Integration Index](INTEGRATION/UPDS_INTEGRATION_INDEX.md), [Project State](PROJECT_STATE.md), [Conversation Context Archive](PROJECT_CONTINUITY/CHAT_SESSION_ARCHIVE_2026-11-24.md), [Agent Onboarding](PROJECT_CONTINUITY/AGENT_ONBOARDING.md), and [Recovery Runbook](PROJECT_CONTINUITY/RECOVERY_RUNBOOK.md).
+
+The canonical Persian-first user documentation remains [USER_DOCUMENTATION_INDEX.md](USER_DOCUMENTATION_INDEX.md). Do not create parallel manuals.
+
+UPDS architecture is PROPOSED; the base schema, validator and test source are implemented on the continuation branch, but latest-head CI is pending. Registry/API, complete typed traceability, dashboard and project starter are NOT IMPLEMENTED. Clean-clone recovery and independent backup restore are NOT RUN. Historical CI evidence is commit-specific and must not be reused for this branch.
+
+The archive is a structured summary, not a verbatim ChatGPT transcript. Repository state supersedes conversation summaries.
