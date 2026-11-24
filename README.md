@@ -408,3 +408,13 @@ Multiple words are AND-matched. Query fields can be combined, for example:
 ### Taxonomy clarification
 
 EKTA now separates **26 top-level Engineering Territories** from **25 operational domain tags**. Territories are the navigation/portfolio layer; operational domains are more granular classification values. The explicit mapping is in [taxonomy/territories.yml](taxonomy/territories.yml), and domain identifiers remain in [taxonomy/domains.yml](taxonomy/domains.yml). This removes the earlier 22-vs-26 ambiguity without treating the two lists as interchangeable.
+
+
+## Connected engineering projects
+
+EKTA connects selected independent projects through reviewed, commit-pinned Git submodules. Their product identities and source-of-truth boundaries remain separate.
+
+- [GTC — Gadget Time Capsule](integrations/gtc)
+- [3DCAP — Guided 3D Capture](integrations/3dcap)
+
+See [External Project Integrations](integrations/README.md) and the [3DCAP integration record](docs/integrations/3DCAP_INTEGRATION.md). Initialize all pinned source trees with `git submodule update --init --recursive`.

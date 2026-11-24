@@ -1,3 +1,7 @@
 [submodule "integrations/gtc"]
 	path = integrations/gtc
 	url = https://github.com/metsam-mastem/GTC.git
+
+[submodule "integrations/3dcap"]
+	path = integrations/3dcap
+	url = https://github.com/metsam-mastem/3DCAP.git

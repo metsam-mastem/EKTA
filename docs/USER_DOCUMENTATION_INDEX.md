@@ -57,3 +57,13 @@
 نسخه محصول و نسخه مستندات مستقل‌اند. هر انتشار باید CHANGELOG، فهرست مستندات، راهنمای نصب/کاربری در صورت تغییر رفتار، Context Continuity و آزمون‌های مرتبط را به‌روز کند.
 
 اگر رفتار نسخه نصب‌شده با این راهنما متفاوت است، ابتدا Commit یا نسخه نصب‌شده را مشخص و مستندات همان نسخه را بررسی کنید.
+
+
+## پروژه‌های مهندسی متصل
+
+| پروژه | کاربرد | مسیر و مستندات |
+|---|---|---|
+| GTC | اطلس دانش سخت‌افزار و دستگاه‌ها | [Source](../integrations/gtc) · [Audit](integrations/GTC_INTEGRATION.md) |
+| 3DCAP | برداشت چندنمایی، Capture Passport، اعتبارسنجی Dataset و تحویل به COLMAP | [Source](../integrations/3dcap) · [Audit](integrations/3DCAP_INTEGRATION.md) · [Crosswalk](integrations/3DCAP_KNOWLEDGE_CROSSWALK.md) · [Evidence](integrations/3DCAP_EVIDENCE_REGISTER.md) |
+
+برای دریافت سورس پروژه‌های متصل، مخزن را با submoduleها clone کنید یا پس از clone دستور `git submodule update --init --recursive` را اجرا کنید. وضعیت تست و مجوز هر پروژه را در سند ممیزی آن بررسی کنید.

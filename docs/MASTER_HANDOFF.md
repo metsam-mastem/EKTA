@@ -1074,3 +1074,17 @@ For exact historical conversation wording and original visual assets, preserve t
 **Product vision:** [docs/VISION_AND_PRODUCT_STORY.md](VISION_AND_PRODUCT_STORY.md)  
 **Master taxonomy:** [taxonomy/MASTER_TAXONOMY.md](../taxonomy/MASTER_TAXONOMY.md)  
 **Repository map:** [docs/REPOSITORY_MAP.md](REPOSITORY_MAP.md)
+
+
+---
+
+## 22. Connected independent engineering projects
+
+EKTA may connect independent engineering projects as implementation references without merging their identities, histories or governance. Each connection requires an exact Git commit pin, an integration record, a knowledge crosswalk, evidence status and a license/dependency boundary.
+
+- [GTC Integration](integrations/GTC_INTEGRATION.md) — hardware knowledge atlas.
+- [3DCAP Integration](integrations/3DCAP_INTEGRATION.md) — guided multi-view capture, Capture Passport, dataset validation and COLMAP handoff.
+
+The 3DCAP source tree is exposed through `integrations/3dcap`; its own repository remains authoritative for application source and tests. The integration does not claim that 3DCAP's latest CI passes, that its app has been validated on a physical phone, or that a real COLMAP reconstruction has been completed.
+
+Before copying external code or data into EKTA, review ownership, license, dependency notices, provenance and commercial-use restrictions. Public visibility alone does not grant reuse rights.

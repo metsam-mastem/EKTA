@@ -17,6 +17,7 @@ EKTA/
 │   ├── INDEPENDENCE_AND_RECOVERY.md
 │   ├── TROUBLESHOOTING.md
 │   ├── AGENT_ONBOARDING.md
+│   ├── integrations/       # project integration dossiers and audits
 │   └── architecture, governance, continuity, roadmap, handoff
 ├── taxonomy/             # 26 territories, 25 operational domains, layers, types, relations
 ├── encyclopedia/         # canonical concepts and engineering knowledge
@@ -24,6 +25,7 @@ EKTA/
 ├── schemas/              # machine-readable data contracts
 ├── research/             # literature and source assessment
 ├── references/           # standards, tools and primary-source indexes
+├── integrations/         # pinned independent project source trees (Git submodules)
 ├── decision-lab/         # RFCs and ADRs
 ├── execution-lab/        # playbooks, checklists and workflows
 ├── workflows/            # knowledge intake and maintenance procedures
@@ -45,6 +47,7 @@ EKTA/
 - schemas: machine-readable contracts.
 - research: literature discovery, source metadata and provenance.
 - references: curated standards, tools and primary sources.
+- integrations: exact-commit Git submodules for independently governed projects; each requires an integration audit and license boundary.
 - decision-lab: proposals and accepted/rejected decisions.
 - execution-lab: repeatable procedures and verification.
 - workflows: intake, review, publishing and maintenance procedures.
@@ -53,6 +56,12 @@ EKTA/
 - templates: reusable record and work-item forms.
 - tools/tests: automation, validators and test coverage.
 - .github/workflows: continuous integration gates.
+
+## Connected projects
+
+- `integrations/gtc`: GTC hardware knowledge atlas.
+- `integrations/3dcap`: 3DCAP guided 3D capture project.
+- `docs/integrations/`: source audits, decisions, evidence registers and knowledge crosswalks.
 
 ## Naming
 Use stable IDs in canonical filenames, e.g. EKTA-CON-000001-runtime.md. IDs are immutable and never recycled. Use lowercase kebab-case for scripts and assets. Do not silently rename a stable ID.
