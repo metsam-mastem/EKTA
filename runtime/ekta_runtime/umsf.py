@@ -18,9 +18,9 @@ class SemanticAddress:
 
     def validate(self) -> list[str]:
         errors: list[str] = []
-        if not self.x_layer_id.strip():
+        if not isinstance(self.x_layer_id, str) or not self.x_layer_id.strip():
             errors.append("x_layer_id must be non-empty")
-        if not self.y_module_id.strip():
+        if not isinstance(self.y_module_id, str) or not self.y_module_id.strip():
             errors.append("y_module_id must be non-empty")
         if isinstance(self.z_depth, bool) or not isinstance(self.z_depth, int) or self.z_depth < 0:
             errors.append("z_depth must be a non-negative integer")
@@ -89,6 +89,8 @@ def validate_model(
     if not model.view_id.strip():
         errors.append("view_id must be non-empty")
 
+    layer_ids = set(known_layer_ids) if known_layer_ids is not None else None
+    predicates = set(known_predicates) if known_predicates is not None else None
     by_id: dict[str, Entity] = {}
     for entity in model.entities:
         if not entity.id.strip():
@@ -105,13 +107,12 @@ def validate_model(
         for index, address in enumerate(entity.addresses):
             for problem in address.validate():
                 errors.append(f"{entity.id}: address[{index}]: {problem}")
-            if known_layer_ids is not None and address.x_layer_id not in set(known_layer_ids):
+            if layer_ids is not None and address.x_layer_id not in layer_ids:
                 errors.append(f"{entity.id}: unknown layer id: {address.x_layer_id}")
 
     if model.root_entity_id not in by_id:
         errors.append(f"root entity not found: {model.root_entity_id}")
 
-    predicates = set(known_predicates) if known_predicates is not None else None
     for index, relation in enumerate(model.relationships):
         if relation.source_id not in by_id:
             errors.append(f"relationship[{index}]: source not found: {relation.source_id}")
