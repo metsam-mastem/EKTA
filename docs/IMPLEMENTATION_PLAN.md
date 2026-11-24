@@ -170,3 +170,10 @@ Do not add a graph database, cloud database, authentication, multi-user editing,
 - Canonical knowledge remains read-only through the runtime. Workspace 0.4 adds local import staging and draft files outside canonical paths; promotion and direct canonical editing are not implemented. Decision Lab, Execution Lab, and all four complete workspaces remain incomplete.
 - License selection remains undecided and is a v1.0 release gate.
 - A live hosted preview has not been provisioned; the current evidence is GitHub Actions CI and automated API tests.
+
+
+## Parallel subsystem program — 2026-11-24
+
+Status: ORCHESTRATED; subsystem PRs remain independently proposed/review-pending.
+
+The active work queue is maintained in `orchestration/WORKSTREAMS.yml` and documented in `docs/ORCHESTRATION/ACTIVE_WORKSTREAMS.md`. Nine open PRs are tracked: USDO #13, UMSF #11, MUA #19, VEL #10, VES #20, Collaboration Atlas #9, GitHub Docs #8, archive intake #7, and UPDS #3. No subsystem is approved by inclusion in the registry. Exact-head CI, schema/semantic review, and owner approval remain required.
