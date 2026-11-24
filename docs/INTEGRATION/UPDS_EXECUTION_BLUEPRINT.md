@@ -111,3 +111,7 @@ No hosted database, multi-tenant SaaS, workflow automation marketplace, AI auto-
 7. Add write operations with audit and concurrency controls.
 8. Add dashboard only after API and user flows stabilize.
 9. Run clean-clone recovery and archive/restore tests.
+
+
+## 13. First implemented runtime slice — 2026-11-24
+A read-only repository-backed Document Registry has been added in `runtime/ekta_runtime/upds_registry.py`. It loads YAML records under `upds/records/`, validates them against `schemas/upds-document.schema.json`, detects duplicate IDs and malformed/invalid records, and exposes list/get methods. The FastAPI app exposes GET `/api/v1/upds/documents` and GET `/api/v1/upds/documents/{document_id}`. It does not write records or accept user-supplied filesystem paths. Tests cover list/get, missing IDs, duplicate IDs, schema violations and malformed YAML; API tests cover list/get/404. Latest-head CI must pass before this slice is marked VERIFIED.
