@@ -1074,3 +1074,16 @@ For exact historical conversation wording and original visual assets, preserve t
 **Product vision:** [docs/VISION_AND_PRODUCT_STORY.md](VISION_AND_PRODUCT_STORY.md)  
 **Master taxonomy:** [taxonomy/MASTER_TAXONOMY.md](../taxonomy/MASTER_TAXONOMY.md)  
 **Repository map:** [docs/REPOSITORY_MAP.md](REPOSITORY_MAP.md)
+
+---
+
+## Collaboration & Organizational Engineering knowledge area
+
+A proposed collaboration-engineering collection has been added to the practice library. It covers individual and pair work, groups, teams, cross-functional coordination, business partnerships, inter-organizational arrangements, communities, open-source collaboration, and human–AI collaboration.
+
+Canonical entry points:
+- `encyclopedia/methods/EKTA-MTH-000001-collaboration-engineering.md`
+- `references/COLLABORATION_STANDARDS_AND_SOURCES.md`
+- `templates/collaboration/README.md`
+
+The content is classified as PROPOSED. The next required work is to validate territory/domain/layer IDs against the canonical registries, verify standards editions and source metadata, add source records and typed relationships using only approved predicates, and run the repository's validators. This addition does not claim that multi-user collaboration has been implemented in EKTA Runtime.
