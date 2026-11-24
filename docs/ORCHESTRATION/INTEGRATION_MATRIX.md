@@ -9,7 +9,7 @@
 | Visual model nodes, ports, connectors, groups | VEL | EKTA stable IDs; optional MUA/USDO/UMSF references | Canonical knowledge definitions |
 | Visual engineering product shell and board workflows | VES | VEL model interchange and EKTA references | VEL language itself or EKTA runtime dependency |
 | Collaboration methods and organizational practice | Collaboration Atlas | EKTA taxonomy and source evidence | Runtime multi-user collaboration feature |
-| Project document lifecycle and continuity | UPDS (proposed) | EKTA project governance and records | Approved replacement for current EKTA governance |
+| Project document lifecycle and continuity | UPDS #23 (proposed) | EKTA project governance and records | Approved replacement for current EKTA governance |\n| Engineering knowledge organization view | PR #22 (proposed) | Canonical EKTA territories and terminology | A replacement for the canonical taxonomy registries |
 | External technical documentation | Source registry / GitHub Docs | EKTA source IDs and taxonomy crosswalk | Canonical concepts until reviewed |
 | User-provided concept-series archive | Staging intake | Hash manifest, source metadata, schema validator | Canonical Encyclopedia before review; record 000008 currently collides with an already canonical Hardware Knowledge Atlas ID |
 | Hardware Knowledge Atlas / GTC | GTC upstream + EKTA integration record | Pinned submodule commit and claim-level source provenance | Automatic ingestion or re-licensing of upstream content |
