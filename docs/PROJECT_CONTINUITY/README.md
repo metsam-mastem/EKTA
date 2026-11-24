@@ -9,3 +9,7 @@ This directory contains durable project context intended to make EKTA resumable 
 - [Orchestration plan](ORCHESTRATION_PLAN.md) — dependency-aware work packages, parallel tracks and delivery gates.
 
 The archive is a structured summary, not a verbatim transcript. Git history and approved project artifacts remain authoritative. Always refresh live branch, PR and CI status before resuming.
+
+## Automated integrity check
+
+Run `python tools/validate_continuity.py` from the repository root. CI executes this check to ensure required handoff files and manifest references remain present. It verifies structural completeness; it does not prove a human can successfully restore the project.
