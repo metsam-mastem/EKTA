@@ -11,4 +11,4 @@ dependencies = []
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-py-modules = ["ves_core", "ves_storage"]
+py-modules = ["ves_core", "ves_storage", "ves_forms"]
