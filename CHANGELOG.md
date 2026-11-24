@@ -54,3 +54,10 @@
 - Enforced the canonical `EKTA-CON-######` draft ID format and blocked collisions with existing canonical concept IDs.
 - Added metadata bounds, malformed YAML rejection, restore traversal regression coverage, and workspace UI JavaScript/structure validation.
 - Replaced HTML string interpolation in documentation listing and backup-link rendering with DOM text nodes.
+
+## Parallel Workstream Orchestration v1 — 2026-11-24
+
+- Added machine-readable registry for nine open EKTA workstreams.
+- Added cross-subsystem integration matrix and dependency plan.
+- Added schema and deterministic validator with regression tests.
+- Added orchestration validation to CI and linked the work queue from README.
