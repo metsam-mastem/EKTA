@@ -19,3 +19,6 @@
 | UPDS-EVD-0013 | Full traceability, dashboard and project starter | execution blueprint/roadmap | NOT IMPLEMENTED |
 
 A file proves existence, not behavior. CI evidence applies only to the exact commit tested.
+
+
+| UPDS-EVD-0014 | Continuity manifest rewrite after run 45305440281 failure | commit 7577f43f20de2ec166257a79cc2a238fea79c470 | YAML parsed with PyYAML; latest full CI NOT RUN / NOT VERIFIED |
