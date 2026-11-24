@@ -33,12 +33,25 @@ Start with Markdown and YAML. Potential exports: JSON, JSON-LD, RDF/Turtle, CSV 
 ## Quality constraints
 No duplicate IDs, dangling references, unknown taxonomy tags, unknown predicates, unsupported status promotion, source without provenance, or graph output without source revision.
 
-
 ## Portfolio navigation layer — 26 engineering territories
 
 The product has 26 approved top-level engineering territories in `taxonomy/territories.yml`. These territories organize navigation and portfolio coverage; they are not a replacement for operational domain tags. The 25 entries in `taxonomy/domains.yml` are more granular classification values. Each territory declares its current `domain_ids` mapping, and a domain may map to more than one territory.
 
 The remaining three classification axes are independent: engineering layer and knowledge type, alongside operational domain. Concepts may belong to several values on each axis. Territory membership is derived from the explicit registry mapping; empty mappings indicate a knowledge coverage gap, not an invented association.
+
+## UMSF — semantic coordinate and relationship framework
+
+EKTA's Universal Multidimensional System Framework (UMSF) is being developed as a governed subsystem under `architecture/umsf/`. It extends the existing taxonomy and graph model; it does not replace them.
+
+UMSF defines a view-relative semantic address `(X, Y, Z, T)`:
+- X: architectural layer ID from `taxonomy/layers.yml`;
+- Y: stable functional module/subsystem identity, not an engineering-domain tag;
+- Z: non-negative decomposition depth relative to a declared root and view;
+- T: temporal validity, with record time/revision tracked separately.
+
+Typed relationships remain graph edges, not another coordinate. Scope, breadth, scale, viewpoint, view, and context remain explicit qualifiers/metadata. Semantic addresses are not Cartesian measurements; coordinate proximity does not imply dependency, containment, similarity, or execution order.
+
+See [UMSF model specification](../architecture/umsf/MODEL_SPEC.md), [data contract](../architecture/umsf/DATA_CONTRACT.md), [architecture decision ADR-0001](../architecture/umsf/ADR-0001-coordinate-semantics.md), and [research register](../architecture/umsf/RESEARCH_REGISTER.md).
 
 ## Runtime discovery contract
 
