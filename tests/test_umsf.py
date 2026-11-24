@@ -1,5 +1,9 @@
 """Unit tests for the UMSF semantic coordinate and graph validator."""
+import json
 import unittest
+from pathlib import Path
+
+import jsonschema
 
 from ekta_runtime.umsf import (
     Entity,
@@ -32,6 +36,19 @@ class UMSFValidationTests(unittest.TestCase):
     def test_accepts_valid_model_with_known_registries(self):
         self.assertEqual(
             validate_model(self.model, {"application-agent"}, {"PART_OF"}),
+            [],
+        )
+
+    def test_accepts_generator_registries_across_multiple_addresses(self):
+        second = SemanticAddress(
+            "application-agent", "module.identity", 2, "2026-01-01T00:00:00Z"
+        )
+        model = SystemModel(
+            "model.example", "system.root", "view.system-context",
+            (self.root, Entity("module.identity", "module", "Identity Module", (self.address, second))),
+        )
+        self.assertEqual(
+            validate_model(model, (item for item in ["application-agent"])),
             [],
         )
 
@@ -88,6 +105,12 @@ class UMSFValidationTests(unittest.TestCase):
         self.assertEqual(data["entities"][1]["id"], "module.identity")
         self.assertEqual(data["entities"][1]["addresses"][0]["z_depth"], 1)
         self.assertEqual(data["schema_version"], "0.1.0")
+
+    def test_serialized_model_matches_json_schema(self):
+        schema_path = Path(__file__).resolve().parents[1] / "schemas" / "umsf.schema.json"
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+        jsonschema.Draft202012Validator.check_schema(schema)
+        jsonschema.validate(model_to_dict(self.model), schema, format_checker=jsonschema.FormatChecker())
 
 
 if __name__ == "__main__":
