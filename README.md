@@ -419,3 +419,5 @@ EKTA now separates **26 top-level Engineering Territories** from **25 operationa
 - [Continuity manifest](docs/PROJECT_CONTINUITY/CONTINUITY_MANIFEST.yml) — machine-readable entry points and current verification boundaries.
 
 Chat history is supplemental, not canonical project memory. See [Context Continuity](docs/CONTEXT_CONTINUITY.md).
+
+- [UPDS delivery orchestration](docs/PROJECT_CONTINUITY/ORCHESTRATION_PLAN.md) — parallel work packages, dependencies and acceptance gates.
