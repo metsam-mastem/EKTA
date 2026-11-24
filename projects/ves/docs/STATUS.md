@@ -6,6 +6,7 @@
 |---|---|---|
 | Product decisions | ACCEPTED BY USER | Universal / Hybrid / All / Cross / All |
 | Product, architecture and UX docs | DRAFTED | docs/ |
+| Research findings and OSS decision brief | DOCUMENTED | docs/RESEARCH_FINDINGS.md |
 | Python domain core | IMPLEMENTED - INITIAL | src/ves_core.py |
 | SQLite local persistence | IMPLEMENTED - INITIAL | src/ves_storage.py |
 | Typed form validation | IMPLEMENTED - INITIAL | src/ves_forms.py |
@@ -18,13 +19,13 @@
 | Browser scripts and existing frontend checks | CI PASS | run 45304702818 |
 | Documentation validation and knowledge graph export | CI PASS | run 45304702818 |
 | EKTA project registry | ADDED IN THIS BRANCH | projects/README.md |
-| Browser runtime/manual QA | NOT RUN | syntax and static checks only; no browser automation evidence |
+| Browser runtime/manual QA | NOT RUN | syntax and static checks only |
 | Windows package | NOT RUN | not implemented |
 | Android package | NOT RUN | not implemented |
 | SysML/UML/BPMN/EDA adapters | NOT RUN | candidate register only |
 | Plugin sandbox/collaboration | NOT RUN | out of scope |
 
-**Verified commit:** 1b9d6229502033e59f08232690fdaafe5199d185  
-**GitHub Actions run:** 45304702818 — SUCCESS.
+**Verified commit:** 46ea893f393bf5a0ea45e68358611b044b61a3b7  
+**GitHub Actions run:** 45304786770 — SUCCESS.
 
-PASS applies only to the exact revision and test evidence stated. The next documentation-only commit requires its own CI run.
+PASS applies only to the exact revision and test evidence stated. The next research-documentation commit requires its own CI run.

@@ -44,6 +44,7 @@
 - docs/FORMS.md — فرم‌ساز و اعتبارسنجی
 - docs/PERSISTENCE.md — ذخیره‌سازی محلی
 - docs/TAXONOMY_CROSSWALK.md — اتصال taxonomy به EKTA
+- docs/RESEARCH_FINDINGS.md — یافته‌های تحقیق و انتخاب فناوری
 - docs/MVP_PLAN.md — برنامه MVP و معیار پذیرش
 - docs/OPEN_SOURCE_REGISTER.md — مخازن متن‌باز و استانداردها
 - docs/EKTA_INTEGRATION.md — اتصال به EKTA
