@@ -27,6 +27,7 @@ def validate_registry(registry_path: Path = REGISTRY, schema_path: Path = SCHEMA
         return errors
 
     streams = registry["workstreams"]
+    integrations = registry.get("integrations", [])
     allowed = set(registry["policy"]["status_vocabulary"])
     ids = [item["id"] for item in streams]
     prs = [item["pr"] for item in streams]
@@ -35,6 +36,13 @@ def validate_registry(registry_path: Path = REGISTRY, schema_path: Path = SCHEMA
     for label, values in (("id", ids), ("PR", prs), ("branch", branches)):
         if len(values) != len(set(values)):
             errors.append(f"duplicate workstream {label}")
+
+    integration_ids = [item["id"] for item in integrations]
+    integration_paths = [item["path"] for item in integrations]
+    if len(integration_ids) != len(set(integration_ids)):
+        errors.append("duplicate integration id")
+    if len(integration_paths) != len(set(integration_paths)):
+        errors.append("duplicate integration path")
 
     known = set(ids)
     graph: dict[str, list[str]] = {}
@@ -80,7 +88,7 @@ def main() -> int:
         for error in errors:
             print(f"ERROR: {error}")
         return 1
-    print("PASS: EKTA workstream registry schema, IDs, PRs, branches, statuses, dependencies")
+    print("PASS: EKTA workstream and integration registry schema, unique IDs/paths, PRs, branches, statuses, dependencies")
     return 0
 
 
