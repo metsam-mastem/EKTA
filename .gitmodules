@@ -1,0 +1,3 @@
+[submodule "integrations/gtc"]
+	path = integrations/gtc
+	url = https://github.com/metsam-mastem/GTC.git
