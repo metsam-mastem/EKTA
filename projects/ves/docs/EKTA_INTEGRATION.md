@@ -19,8 +19,8 @@ Register VES as an independent engineering project in EKTA while preserving the 
 - VES drafts are not automatically promoted into canonical Encyclopedia records.
 - This integration is additive; no existing project, taxonomy or runtime file is removed or overwritten.
 
-## Crosswalk policy
-Use existing EKTA territories, domains, layers and knowledge types. VES spans systems engineering, software, hardware/electronics, data, architecture, process engineering, product design and documentation. Exact canonical IDs are to be reconciled against current YAML registries in a dedicated follow-up; no IDs are invented here.
+## Taxonomy integration
+The machine-readable mapping is maintained in integration/ekta-taxonomy-crosswalk.json. The current identifier membership was checked against EKTA territories, domains, layers, knowledge types and relations on 2026-11-24. See docs/TAXONOMY_CROSSWALK.md for exact mapping and semantic limitations. EKTA domain entries are currently marked proposed; the crosswalk does not approve them.
 
 ## Provenance
 External source/asset records must retain URI, publisher, version/revision, retrieval date, license and checksum when applicable.
