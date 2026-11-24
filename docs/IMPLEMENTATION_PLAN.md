@@ -176,7 +176,7 @@ Do not add a graph database, cloud database, authentication, multi-user editing,
 
 Status: ORCHESTRATED; subsystem PRs remain independently proposed/review-pending.
 
-The active work queue is maintained in `orchestration/WORKSTREAMS.yml` and documented in `docs/ORCHESTRATION/ACTIVE_WORKSTREAMS.md`. Nine open PRs are tracked: USDO #13, UMSF #11, MUA #19, VEL #10, VES #20, Collaboration Atlas #9, GitHub Docs #8, archive intake #7, and UPDS #3. No subsystem is approved by inclusion in the registry. Exact-head CI, schema/semantic review, and owner approval remain required.
+The active work queue is maintained in `orchestration/WORKSTREAMS.yml` and documented in `docs/ORCHESTRATION/ACTIVE_WORKSTREAMS.md`. Ten active workstreams are tracked: USDO #13, UMSF #11, MUA #19, VEL #10, VES #20, Collaboration Atlas #9, GitHub Docs #8, archive intake #7 (BLOCKED by a canonical ID collision), Engineering Organization Crosswalk #22, and UPDS #23. PR #3 is closed/unmerged and superseded by #23. No subsystem is approved by inclusion in the registry. Exact-head CI, schema/semantic review, and owner approval remain required.
 
 
 ### External integration baseline — GTC
