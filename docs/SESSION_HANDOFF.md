@@ -32,3 +32,8 @@ README → USER_DOCUMENTATION_INDEX → CONTEXT_CONTINUITY → MASTER_HANDOFF �
 
 ## Fidelity and limits
 The archive is a structured summary of available context, not a verbatim raw ChatGPT transcript. Registry write lifecycle, full traceability, dashboard and starter generator are not implemented. No clean-clone human recovery or backup restore pass is claimed.
+
+
+## Latest manifest correction — verification pending
+
+The latest continuity manifest was rewritten in commit `7577f43f20de2ec166257a79cc2a238fea79c470` after CI run 45305440281 exposed duplicate/mis-indented YAML keys. The corrected content was parsed with PyYAML, but CI has not yet been observed on that exact head. Previous full CI pass 45305319405 applies to `8453a2d179490969a5b2262c8d8e34ba957d3d5c`, not the later manifest rewrite. Re-run/inspect CI before treating the current head as verified.
