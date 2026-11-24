@@ -5,6 +5,8 @@ captured_at: "2026-11-24"
 canonical_repository: "https://github.com/metsam-mastem/EKTA"
 default_branch: "main"
 integration_branch: "integration/upds-independent-continuity"
+replacement_pull_request: 23
+superseded_pull_request: 3
 archive:
   path: "docs/PROJECT_CONTINUITY/CHAT_SESSION_ARCHIVE_2026-11-24.md"
   fidelity: "structured_context_summary_not_verbatim_transcript"
@@ -24,6 +26,7 @@ canonical_entry_points:
   - "docs/INTEGRATION/UPDS_INTEGRATION_INDEX.md"
   - "docs/PROJECT_CONTINUITY/AGENT_ONBOARDING.md"
   - "docs/PROJECT_CONTINUITY/RECOVERY_RUNBOOK.md"
+  - "docs/PROJECT_CONTINUITY/ORCHESTRATION_PLAN.md"
 authority:
   canonical: "approved repository artifacts and verified evidence"
   non_canonical:
