@@ -19,7 +19,7 @@ EKTA/
 │   ├── TROUBLESHOOTING.md
 │   ├── AGENT_ONBOARDING.md
 │   └── architecture, governance, continuity, roadmap, handoff
-├── orchestration/       # machine-readable parallel workstream registry
+├── integrations/        # pinned independent projects (GTC submodule)\n├── orchestration/       # machine-readable parallel workstream registry
 ├── taxonomy/             # 26 territories, 25 operational domains, layers, types, relations
 ├── encyclopedia/         # canonical concepts and engineering knowledge
 ├── maps/                 # stack, domain, cross-layer and graph maps
