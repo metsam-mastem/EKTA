@@ -1,0 +1,23 @@
+schema_version: 1
+id: EKTA-USDO-000000
+name: Replace with canonical entity name
+aliases: []
+definition: "Write a distinguishing definition of at least twenty characters."
+status: PROPOSED
+revision: 0.1.0
+abstraction_level: meso
+facets:
+  ontology: {entity_kind: system, classes: [], instances: [], semantic_notes: ""}
+  dimensions: []
+  scope: {kind: "", includes: [], excludes: [], validity_conditions: [], boundary_notes: ""}
+  scale: {granularity: "", magnitude: "", resolution: "", reference_system: ""}
+  layers: []
+  classification: {type_ids: [], category_ids: [], criteria: [], taxonomy_paths: []}
+  architecture: {pattern: "", components: [], responsibilities: [], interfaces: [], constraints: []}
+  topology: {kind: "", nodes: [], edges: [], directed: false, connectivity_notes: ""}
+  circuits: []
+  relations: []
+  dynamics: {states: [], transitions: [], processes: [], flows: [], events: [], feedback: []}
+  evaluation: {metrics: [], constraints: [], acceptance_criteria: [], verification_methods: [], evidence_refs: []}
+sources: []
+notes: []

@@ -408,3 +408,17 @@ Multiple words are AND-matched. Query fields can be combined, for example:
 ### Taxonomy clarification
 
 EKTA now separates **26 top-level Engineering Territories** from **25 operational domain tags**. Territories are the navigation/portfolio layer; operational domains are more granular classification values. The explicit mapping is in [taxonomy/territories.yml](taxonomy/territories.yml), and domain identifiers remain in [taxonomy/domains.yml](taxonomy/domains.yml). This removes the earlier 22-vs-26 ambiguity without treating the two lists as interchangeable.
+
+
+## USDO — Universal Structural & Dimensional Ontology
+
+EKTA includes a proposed cross-domain descriptive foundation that keeps ontology, dimensions, scope, scale, layers, classification, architecture, topology, circuits, relations, dynamics, and evaluation as separate but connected facets.
+
+- [USDO index and architecture](docs/USDO_INDEX.md)
+- [Persian architecture and terminology](docs/USDO_ARCHITECTURE.md)
+- [Cross-facet relation matrix](maps/USDO_RELATION_MATRIX.md)
+- [Facet registry](taxonomy/usdo-facets.yml)
+- [JSON Schema](schemas/usdo-entity.schema.json)
+- [CPU example](examples/USDO_CPU_EXAMPLE.yml)
+
+Validate locally with `python tools/validate_usdo.py` and `python -m unittest tests.test_usdo -v`. Runtime/API/UI integration remains a separate phase.
