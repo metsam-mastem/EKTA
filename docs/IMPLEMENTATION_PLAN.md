@@ -170,3 +170,15 @@ Do not add a graph database, cloud database, authentication, multi-user editing,
 - Canonical knowledge remains read-only through the runtime. Workspace 0.4 adds local import staging and draft files outside canonical paths; promotion and direct canonical editing are not implemented. Decision Lab, Execution Lab, and all four complete workspaces remain incomplete.
 - License selection remains undecided and is a v1.0 release gate.
 - A live hosted preview has not been provisioned; the current evidence is GitHub Actions CI and automated API tests.
+
+
+## Parallel subsystem program — 2026-11-24
+
+Status: ORCHESTRATED; subsystem PRs remain independently proposed/review-pending.
+
+The active work queue is maintained in `orchestration/WORKSTREAMS.yml` and documented in `docs/ORCHESTRATION/ACTIVE_WORKSTREAMS.md`. Ten active workstreams are tracked: USDO #13, UMSF #11, MUA #19, VEL #10, VES #20, Collaboration Atlas #9, GitHub Docs #8, archive intake #7 (BLOCKED by a canonical ID collision), Engineering Organization Crosswalk #22, and UPDS #23. PR #3 is closed/unmerged and superseded by #23. No subsystem is approved by inclusion in the registry. Exact-head CI, schema/semantic review, and owner approval remain required.
+
+
+### External integration baseline — GTC
+
+Status: PINNED on main at commit `7ea271e00ef2cb010c17bdaa553e1f27645f12ca`. The independent GTC repository is linked as a Git submodule at `integrations/gtc`, pinned to upstream commit `2f0229bd622de4e9ce22196e57fb986659dc7934`. EKTA includes an audit and a RESEARCHED Hardware Knowledge Atlas concept record. Runtime ingestion, claim/schema crosswalk, graph projection, and recursive clone validation remain NOT RUN / NOT IMPLEMENTED. See `docs/integrations/GTC_INTEGRATION.md` and `docs/ORCHESTRATION/INTEGRATION_MATRIX.md`.

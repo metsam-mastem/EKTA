@@ -16,10 +16,18 @@ EKTA یک اطلس مهندسی رابطه‌مند، چندلایه و مبتن
 | شاخه اصلی | `main` |
 | منشور و چشم‌انداز | **APPROVED — 2026-11-23** |
 | نوع محصول | Engineering Knowledge Operating Environment |
-| وضعیت توسعه | Runtime v0.2 — Search & Explore Workbench |
+| وضعیت توسعه | Runtime v0.2 + Operational Workspace v0.4 — parallel subsystem foundations in review |
 | مجوز مخزن | هنوز انتخاب نشده است |
 
 ---
+
+## Orchestration and active development
+
+- [Active workstreams and execution order](docs/ORCHESTRATION/ACTIVE_WORKSTREAMS.md)
+- [Cross-subsystem integration matrix](docs/ORCHESTRATION/INTEGRATION_MATRIX.md)
+- [Machine-readable workstream registry](orchestration/WORKSTREAMS.yml)
+
+The orchestration registry tracks ten active product workstreams and the pinned GTC external integration. GTC source remains in its upstream repository under integrations/gtc; it is not copied or re-licensed. The registry does not approve or merge open PRs. Every subsystem remains isolated until exact-head CI, contract review, and owner approval.
 
 ## معرفی پروژه
 

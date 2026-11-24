@@ -38,7 +38,7 @@
 - Known limitations: import is text-only staging (not canonical ingestion); editor creates local drafts only; restore only stages validated ZIPs; no semantic/AI search, auth/multi-user, public deployment hardening, Android package, or full Decision/Execution Labs.
 - License remains undecided.
 - Graph coverage remains incomplete; never present graph export as a complete ontology.
-- PR #3 (integration/upds-documentation-architecture) is a separate open proposal. Its integration decision is PROPOSED pending explicit owner review; do not treat UPDS integration as approved or merged based only on the branch.
+- PR #3 (integration/upds-documentation-architecture) is CLOSED, NOT MERGED, and superseded by clean-mainline PR #23 (integration/upds-independent-continuity). UPDS integration remains PROPOSED pending owner review of EKTA-ADR-0003.
 - Validation passed on documentation PR head d1463eefe9e7ceb17c8fdf39b862a2a10c04e12c: docs validation, 29 tests, frontend structural/JavaScript validation, and graph export. Post-merge CI on main is tracked separately.
 - For a chat-independent continuation, this file plus README, Project Overview, Implementation Plan, Roadmap, Changelog, and current GitHub PR/Actions state are sufficient starting points.
 
@@ -73,3 +73,27 @@ Mark missing facts UNKNOWN. Do not guess. Conflicts between sources and decision
 
 ## Memory hierarchy
 Approved repository artifacts > accepted ADRs > verified sources and test evidence > issues/PRs > conversation summaries > unverified suggestions.
+
+
+## Parallel orchestration snapshot — 2026-11-24
+
+- Registry: `orchestration/WORKSTREAMS.yml`.
+- Execution plan: `docs/ORCHESTRATION/ACTIVE_WORKSTREAMS.md`.
+- Integration matrix: `docs/ORCHESTRATION/INTEGRATION_MATRIX.md`.
+- Validation: `tools/validate_orchestration.py`; tests: `tests/test_orchestration.py`; schema: `schemas/workstream-registry.schema.json`.
+- Ten active product workstreams are tracked in the YAML registry; PR #21 is the orchestration PR. No subsystem PR was merged by the orchestration setup.
+- Main revision observed during comparison: `7ea271e00ef2cb010c17bdaa553e1f27645f12ca`.
+- PR #3 is closed/unmerged and superseded by clean-mainline UPDS PR #23; its branch was 57 ahead / 35 behind. PR #23 is 75 ahead / 0 behind and latest exact-head CI run #408 passed.
+- Several subsystem PR branches remain one commit behind main; their exact-head CI passes do not remove the branch-freshness gate.
+- No unattended background process is active. GitHub registry, PRs, and Actions are durable continuation state.
+
+
+## GTC integration and archive identity conflict — 2026-11-24
+
+- EKTA main commit `7ea271e00ef2cb010c17bdaa553e1f27645f12ca` pins GTC at `integrations/gtc`, upstream commit `2f0229bd622de4e9ce22196e57fb986659dc7934`.
+- Integration audit: `docs/integrations/GTC_INTEGRATION.md`; canonical Hardware Knowledge Atlas record: `encyclopedia/concepts/EKTA-CON-000008-hardware-knowledge-atlas.md`.
+- PR #7 stages Operating System under the same ID `EKTA-CON-000008`. This is a confirmed collision; archive intake is BLOCKED pending owner-approved immutable ID correction. Do not promote the staged record or transfer the remaining 14 records until manifest and hash/provenance mapping are reconciled.
+- Machine-readable orchestration tracks the GTC pin and archive block in `orchestration/WORKSTREAMS.yml`.
+- Orchestration PR #21 latest exact head `ddca9dbe92edd5170d3e30bcd0b26773a067647a` passed Actions run #438; documentation, registry validation, unit/runtime tests, frontend checks, and graph export all passed.
+- PR #22 Engineering Organization Crosswalk exact head `bf759902809282713d2c2a9354070132d702a150` passed run #289; the 14-area map remains non-canonical.
+- PR #23 UPDS exact head `8453a2d179490969a5b2262c8d8e34ba957d3d5c` passed run #408; clean-clone recovery is still NOT RUN.

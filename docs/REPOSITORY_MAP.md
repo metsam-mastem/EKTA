@@ -8,6 +8,7 @@ EKTA/
 ├── CHANGELOG.md
 ├── LICENSE-STATUS.md
 ├── docs/
+│   └── ORCHESTRATION/    # active workstreams and subsystem integration matrix
 │   ├── USER_DOCUMENTATION_INDEX.md
 │   ├── PROJECT_OVERVIEW.md
 │   ├── USER_SETUP.md
@@ -18,10 +19,13 @@ EKTA/
 │   ├── TROUBLESHOOTING.md
 │   ├── AGENT_ONBOARDING.md
 │   └── architecture, governance, continuity, roadmap, handoff
+├── integrations/        # pinned independent projects (GTC submodule)
+├── orchestration/       # machine-readable parallel workstream registry
 ├── taxonomy/             # 26 territories, 25 operational domains, layers, types, relations
 ├── encyclopedia/         # canonical concepts and engineering knowledge
 ├── maps/                 # stack, domain, cross-layer and graph maps
 ├── schemas/              # machine-readable data contracts
+│   └── workstream-registry.schema.json
 ├── research/             # literature and source assessment
 ├── references/           # standards, tools and primary-source indexes
 ├── decision-lab/         # RFCs and ADRs
@@ -33,6 +37,7 @@ EKTA/
 ├── scripts/               # local launch scripts
 ├── templates/             # canonical record templates
 ├── tools/                 # validators and graph builder
+│   └── validate_orchestration.py
 ├── tests/                 # runtime, workspace API and repository tests
 └── .github/workflows/     # CI gates
 ```
