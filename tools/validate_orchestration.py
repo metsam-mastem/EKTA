@@ -37,14 +37,36 @@ def validate_registry(registry_path: Path = REGISTRY, schema_path: Path = SCHEMA
             errors.append(f"duplicate workstream {label}")
 
     known = set(ids)
+    graph: dict[str, list[str]] = {}
     for item in streams:
         if item["status"] not in allowed:
             errors.append(f"{item['id']}: unknown status {item['status']}")
+        graph[item["id"]] = []
         for dependency in item["dependencies"]:
             if dependency not in known:
                 errors.append(f"{item['id']}: unknown dependency {dependency}")
-            if dependency == item["id"]:
+            elif dependency == item["id"]:
                 errors.append(f"{item['id']}: self-dependency")
+            else:
+                graph[item["id"]].append(dependency)
+
+    visiting: set[str] = set()
+    visited: set[str] = set()
+
+    def visit(node: str, trail: tuple[str, ...] = ()) -> None:
+        if node in visiting:
+            errors.append("dependency cycle: " + " -> ".join((*trail, node)))
+            return
+        if node in visited:
+            return
+        visiting.add(node)
+        for dependency in graph.get(node, []):
+            visit(dependency, (*trail, node))
+        visiting.remove(node)
+        visited.add(node)
+
+    for node in graph:
+        visit(node)
     return errors
 
 
