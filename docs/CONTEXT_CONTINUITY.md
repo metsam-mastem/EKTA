@@ -81,10 +81,10 @@ Approved repository artifacts > accepted ADRs > verified sources and test eviden
 - Execution plan: `docs/ORCHESTRATION/ACTIVE_WORKSTREAMS.md`.
 - Integration matrix: `docs/ORCHESTRATION/INTEGRATION_MATRIX.md`.
 - Validation: `tools/validate_orchestration.py`; tests: `tests/test_orchestration.py`; schema: `schemas/workstream-registry.schema.json`.
-- Nine open workstreams are tracked independently; no PR was merged by the orchestration setup.
+- Ten active product workstreams are tracked in the YAML registry; PR #21 is the orchestration PR. No subsystem PR was merged by the orchestration setup.
 - Main revision observed during comparison: `7ea271e00ef2cb010c17bdaa553e1f27645f12ca`.
-- The UPDS branch is 57 commits ahead / 35 behind; it must be reconciled rather than merged directly.
-- Several PR branches are one commit behind main; exact-head CI must be rerun after rebasing.
+- PR #3 is closed/unmerged and superseded by clean-mainline UPDS PR #23; its branch was 57 ahead / 35 behind. PR #23 is 75 ahead / 0 behind and latest exact-head CI run #408 passed.
+- Several subsystem PR branches remain one commit behind main; their exact-head CI passes do not remove the branch-freshness gate.
 - No unattended background process is active. GitHub registry, PRs, and Actions are durable continuation state.
 
 
@@ -93,4 +93,4 @@ Approved repository artifacts > accepted ADRs > verified sources and test eviden
 - EKTA main commit `7ea271e00ef2cb010c17bdaa553e1f27645f12ca` pins GTC at `integrations/gtc`, upstream commit `2f0229bd622de4e9ce22196e57fb986659dc7934`.
 - Integration audit: `docs/integrations/GTC_INTEGRATION.md`; canonical Hardware Knowledge Atlas record: `encyclopedia/concepts/EKTA-CON-000008-hardware-knowledge-atlas.md`.
 - PR #7 stages Operating System under the same ID `EKTA-CON-000008`. This is a confirmed collision; archive intake is BLOCKED pending owner-approved immutable ID correction. Do not promote the staged record or transfer the remaining 14 records until manifest and hash/provenance mapping are reconciled.
-- Machine-readable orchestration tracks the GTC pin and archive block in `orchestration/WORKSTREAMS.yml`.
+- Machine-readable orchestration tracks the GTC pin and archive block in `orchestration/WORKSTREAMS.yml`.\n- Orchestration PR #21 latest exact head `ddca9dbe92edd5170d3e30bcd0b26773a067647a` passed Actions run #438; documentation, registry validation, unit/runtime tests, frontend checks, and graph export all passed.\n- PR #22 Engineering Organization Crosswalk exact head `bf759902809282713d2c2a9354070132d702a150` passed run #289; the 14-area map remains non-canonical.\n- PR #23 UPDS exact head `8453a2d179490969a5b2262c8d8e34ba957d3d5c` passed run #408; clean-clone recovery is still NOT RUN.
