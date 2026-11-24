@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/metsam-mastem/EKTA/blob/main/schemas/engineering-organization.schema.json",
+  "title": "EKTA Engineering Organization Crosswalk",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "title",
+    "status",
+    "purpose",
+    "classification_policy",
+    "macro_areas"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "PROPOSED",
+        "REVIEWED",
+        "APPROVED"
+      ]
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 10
+    },
+    "source_note": {
+      "type": "string"
+    },
+    "classification_policy": {
+      "type": "object",
+      "required": [
+        "canonical_axes",
+        "macro_view_role",
+        "no_new_territory_ids"
+      ],
+      "properties": {
+        "canonical_axes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "territory",
+              "domain",
+              "layer",
+              "knowledge_type"
+            ]
+          },
+          "minItems": 4,
+          "uniqueItems": true
+        },
+        "macro_view_role": {
+          "const": "crosswalk_only"
+        },
+        "no_new_territory_ids": {
+          "const": true
+        },
+        "no_inferred_domain_membership": {
+          "type": "boolean"
+        },
+        "ambiguous_terms": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "macro_areas": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "persian",
+          "territory_ids"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 3
+          },
+          "persian": {
+            "type": "string",
+            "minLength": 2
+          },
+          "territory_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
