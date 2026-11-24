@@ -153,3 +153,8 @@ Expected 3DCAP revision: `d0ca3a689631dda944a783d61562ef70564fcd2f`.
 ## 12. Audit limitations
 
 This is a source-tree, documentation, dependency-manifest and CI metadata review. It is not a legal opinion, device test, security audit, image-quality benchmark or proof of successful COLMAP reconstruction. Refresh the audit whenever the submodule pin changes.
+
+
+## Complete source inventory
+
+The pinned source tree contains a complete file-by-file index at [3DCAP Source Inventory](3DCAP_SOURCE_INVENTORY.md). The submodule itself remains the canonical source; this inventory is generated navigation, not copied source code.
