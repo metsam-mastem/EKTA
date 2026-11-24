@@ -137,3 +137,7 @@ After the initial archive was written:
 - GitHub Actions run [45304523297](https://github.com/metsam-mastem/EKTA/actions/runs/45304523297) completed SUCCESS on exact commit `11ac9b7689b366299e7856a814cae289c63b4e24`. Dependency installation, documentation validation, UPDS record validation, full unittest discovery, frontend validation and graph export all passed.
 - Several documentation/orchestration updates were committed after that tested SHA. Therefore latest-head CI remains NOT VERIFIED until a run for the current PR head is observed.
 - The new [orchestration plan](ORCHESTRATION_PLAN.md) divides continuity, schema, registry, traceability, UX, QA and research into dependency-aware work packages. It does not imply background execution.
+
+
+## 14. Runtime registry progress — 2026-11-24
+A first read-only UPDS registry slice was added: repository YAML loader, schema validation, duplicate-ID checks, list/get service methods, GET API routes and focused service/API tests. This is not a write-enabled document management system. CI for the current latest head must pass before this code is marked VERIFIED. The next implementation step is controlled draft creation and immutable revision/audit semantics after contract review.
