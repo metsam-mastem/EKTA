@@ -10,10 +10,12 @@ from fastapi.staticfiles import StaticFiles
 
 from .repository import AtlasRepository
 from .workspace import Workspace, WorkspaceError
+from .upds_registry import DocumentRegistry, RegistryError
 
 DEFAULT_ROOT = Path(os.environ.get("EKTA_ROOT", Path(__file__).resolve().parents[2]))
 repository = AtlasRepository(DEFAULT_ROOT)
 workspace = Workspace(DEFAULT_ROOT)
+upds_registry = DocumentRegistry(DEFAULT_ROOT)
 
 app = FastAPI(
     title="EKTA Knowledge Runtime",
@@ -99,6 +101,26 @@ def graph(
     if predicate:
         edges = [edge for edge in edges if edge["predicate"] == predicate]
     return {**data, "edges": edges, "returned_edge_count": len(edges)}
+
+
+@app.get("/api/v1/upds/documents", tags=["upds"])
+def upds_documents() -> dict:
+    try:
+        items = upds_registry.list_documents()
+    except RegistryError as exc:
+        raise HTTPException(status_code=503, detail="UPDS registry validation failed") from exc
+    return {"items": items, "count": len(items)}
+
+
+@app.get("/api/v1/upds/documents/{document_id}", tags=["upds"])
+def upds_document(document_id: str) -> dict:
+    try:
+        item = upds_registry.get_document(document_id)
+    except RegistryError as exc:
+        raise HTTPException(status_code=503, detail="UPDS registry validation failed") from exc
+    if item is None:
+        raise HTTPException(status_code=404, detail="UPDS document not found")
+    return item
 
 
 WEB_ROOT = DEFAULT_ROOT / "runtime" / "web"
