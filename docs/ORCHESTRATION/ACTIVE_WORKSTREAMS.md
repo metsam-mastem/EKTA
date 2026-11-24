@@ -27,14 +27,14 @@ Nine open PRs were inspected on 2026-11-24. None was merged as part of this orch
 | #20 | VES | project/ves-foundation-v0.1 | 9 / 0 | Exact-head CI; VES/VEL boundary ADR |
 | #19 | MUA | workbench/mua-foundation-0.1.0 | 6 / 1 | Rebase; latest schema/example tests |
 | #13 | USDO | knowledge/usdo-ontology-foundation | 5 / 1 | Review semantics; freeze v0.1 |
-| #11 | UMSF | architecture/umsf-coordinate-framework-v0.1 | 13 / 1 | Rebase; coordinate/relation invariants |
+| #11 | UMSF | architecture/umsf-coordinate-framework-v0.1 | 19 / 1 | Exact-head CI PASS (run 288); owner review and branch freshness reconciliation |
 | #10 | VEL | project/vel-language-v0.1 | 6 / 1 | Rebase; CI; taxonomy crosswalk |
 | #9 | Collaboration Atlas | feat/collaboration-organizational-atlas | 13 / 1 | CI; source edition/taxonomy checks |
 | #8 | GitHub Docs | integration/github-docs-source-v1 | 9 / 1 | CI; bounded collector proof |
 | #7 | Archive intake | archive-intake/ekta-concepts-2026-11-23 | 3 / 1 | Transfer 14 records; hashes and provenance |
 | #3 | UPDS | integration/upds-documentation-architecture | 57 / 35 | Scope reconciliation; rebase; CI |
 
-## Shared architecture decisions
+## Recent verified execution\n\n- UMSF PR #11 latest inspected head `fcf6ea61f01b23a0d410313fe6c3ef172e9bb4ca` passed Actions run [#288](https://github.com/metsam-mastem/EKTA/actions/runs/45304547566): documentation validation, unit/runtime tests, frontend validation, and graph export. The PR remains draft/unmerged.\n- Orchestration PR #21 revision `ef0de3f2fb00ca6d91ebf8f7af9686d4b072b8c9` passed Actions run [#296](https://github.com/metsam-mastem/EKTA/actions/runs/45304587324), including the new workstream registry validator and cycle-detection tests. Later registry evidence updates require a fresh CI run.\n\n## Shared architecture decisions
 
 1. EKTA remains canonical. Subsystems may own versioned contracts but reference EKTA stable IDs; they do not create competing knowledge stores.
 2. No taxonomy replacement. Territory, domain, layer, knowledge type, and relation registries retain distinct meanings. New facets are namespaced and reviewed.
