@@ -73,3 +73,16 @@ Mark missing facts UNKNOWN. Do not guess. Conflicts between sources and decision
 
 ## Memory hierarchy
 Approved repository artifacts > accepted ADRs > verified sources and test evidence > issues/PRs > conversation summaries > unverified suggestions.
+
+
+## Parallel orchestration snapshot — 2026-11-24
+
+- Registry: `orchestration/WORKSTREAMS.yml`.
+- Execution plan: `docs/ORCHESTRATION/ACTIVE_WORKSTREAMS.md`.
+- Integration matrix: `docs/ORCHESTRATION/INTEGRATION_MATRIX.md`.
+- Validation: `tools/validate_orchestration.py`; tests: `tests/test_orchestration.py`; schema: `schemas/workstream-registry.schema.json`.
+- Nine open workstreams are tracked independently; no PR was merged by the orchestration setup.
+- Main revision observed during comparison: `7ea271e00ef2cb010c17bdaa553e1f27645f12ca`.
+- The UPDS branch is 57 commits ahead / 35 behind; it must be reconciled rather than merged directly.
+- Several PR branches are one commit behind main; exact-head CI must be rerun after rebasing.
+- No unattended background process is active. GitHub registry, PRs, and Actions are durable continuation state.
