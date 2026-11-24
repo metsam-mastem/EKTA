@@ -12,6 +12,16 @@ class UPDSValidationTests(unittest.TestCase):
     def setUpClass(cls):
         cls.schema = json.loads((ROOT / "schemas" / "upds-document.schema.json").read_text(encoding="utf-8"))
 
+    def test_schema_definition_is_valid(self):
+        from jsonschema import Draft202012Validator
+        Draft202012Validator.check_schema(self.schema)
+
+    def test_repository_sample_record_is_valid(self):
+        import yaml
+        sample_path = ROOT / "upds" / "records" / "EKTA-DOC-000001.yml"
+        sample = yaml.safe_load(sample_path.read_text(encoding="utf-8"))
+        self.assertEqual(validate_records([sample], self.schema), [])
+
     def test_accepts_valid_document_record(self):
         record = {
             "id": "EKTA-DOC-000001",
