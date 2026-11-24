@@ -1,0 +1,22 @@
+id: EKTA-DOC-000001
+title: UPDS universal document-family catalog
+artifact_type: document_catalog
+family: documentation
+level: L1
+domain: systems-engineering
+project_id: EKTA
+status: PROPOSED
+version: 0.1.0
+owner: project-owner
+author: project-owner
+classification: internal
+applicability: REQUIRED
+source_ids: []
+parent_ids: []
+related_ids:
+  - EKTA-ADR-0003
+evidence_ids: []
+rationale: Establishes the reusable catalog of project documentation families integrated with EKTA.
+acceptance_criteria:
+  - All document families have an explicit applicability rule.
+  - Project-specific records remain distinct from reusable EKTA knowledge.
