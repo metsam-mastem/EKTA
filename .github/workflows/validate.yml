@@ -2,7 +2,7 @@ name: EKTA validation
 
 on:
   push:
-    branches: [main, "runtime/**", "workbench/**", "knowledge/**", "taxonomy/**", "docs/**"]
+    branches: [main, "runtime/**", "workbench/**", "knowledge/**", "taxonomy/**", "docs/**", "project/**"]
   pull_request:
   workflow_dispatch:
 
@@ -21,6 +21,22 @@ jobs:
         run: python tools/validate_docs.py
       - name: Run unit and runtime tests
         run: python -m unittest discover -s tests -v
+      - name: Run VES model tests
+        env:
+          PYTHONPATH: projects/ves/src
+        run: python -m unittest discover -s projects/ves/tests -v
+      - name: Validate VES schemas and browser script
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for schema in Path("projects/ves/schemas").glob("*.json"):
+              json.loads(schema.read_text(encoding="utf-8"))
+          html = Path("projects/ves/web/index.html").read_text(encoding="utf-8")
+          script = html.split("<script>", 1)[1].split("</script>", 1)[0]
+          Path("/tmp/ves-prototype.js").write_text(script, encoding="utf-8")
+          PY
+          node --check /tmp/ves-prototype.js
       - name: Validate explorer HTML and JavaScript
         run: python tools/validate_frontend.py
       - name: Export typed knowledge graph
