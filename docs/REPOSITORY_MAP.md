@@ -8,7 +8,7 @@ EKTA/
 ├── CHANGELOG.md
 ├── LICENSE-STATUS.md
 ├── docs/
-│   ├── USER_DOCUMENTATION_INDEX.md
+│   ├── INTEGRATION/          # UPDS architecture, contracts, roadmap and crosswalk\n│   ├── PROJECT_CONTINUITY/   # chat archive, agent onboarding, recovery runbook\n│   ├── USER_DOCUMENTATION_INDEX.md
 │   ├── PROJECT_OVERVIEW.md
 │   ├── USER_SETUP.md
 │   ├── USER_INSTALLATION.md
