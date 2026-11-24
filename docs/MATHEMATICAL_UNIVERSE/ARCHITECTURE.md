@@ -122,4 +122,4 @@ Included in the foundation slice: UMO and coordinate-frame JSON Schemas, depende
 
 Not included: symbolic/numerical computation, theorem proving, coordinate transforms, rendering, visual editor, AI reasoning, or persistence beyond Git-native files.
 
-Repository CI remains NOT_RUN until executed by GitHub Actions or a local test environment.
+CI evidence: the initial foundation commit (bc0a8eda507cb34894dc082b49c621b1dd0123bf) passed the repository GitHub Actions workflow, including documentation validation, unit/runtime tests, frontend validation, and knowledge-graph export (run 45303560150). Later schema/example test additions are being revalidated on the current pull-request head; consult PR #19 for the latest status.
