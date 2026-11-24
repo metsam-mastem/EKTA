@@ -15,32 +15,30 @@ The contract is intentionally small and implementation-neutral. The JSON Schema 
       "id": "EKTA-EXAMPLE-SYSTEM-0001",
       "type": "system",
       "name": "Example System",
-      "addresses": [
-        {
-          "x_layer_id": "application-agent",
-          "y_module_id": "EKTA-EXAMPLE-MODULE-0001",
-          "z_depth": 0,
-          "valid_from": "2026-01-01T00:00:00Z",
-          "valid_to": null
-        }
-      ],
-      "metadata": {
-        "domains": ["software-engineering"],
-        "scope": "Illustrative example only"
-      }
+      "addresses": [],
+      "metadata": {"scope": "Illustrative example only"}
     },
     {
       "id": "EKTA-EXAMPLE-MODULE-0001",
       "type": "module",
       "name": "Identity Module",
-      "addresses": []
+      "addresses": [
+        {
+          "x_layer_id": "application-agent",
+          "y_module_id": "EKTA-EXAMPLE-MODULE-0001",
+          "z_depth": 1,
+          "valid_from": "2026-01-01T00:00:00Z",
+          "valid_to": null
+        }
+      ],
+      "metadata": {"domains": ["software-engineering"]}
     }
   ],
   "relationships": [
     {
-      "source_id": "EKTA-EXAMPLE-SYSTEM-0001",
+      "source_id": "EKTA-EXAMPLE-MODULE-0001",
       "predicate": "PART_OF",
-      "target_id": "EKTA-EXAMPLE-MODULE-0001",
+      "target_id": "EKTA-EXAMPLE-SYSTEM-0001",
       "status": "PROPOSED"
     }
   ],
@@ -48,7 +46,7 @@ The contract is intentionally small and implementation-neutral. The JSON Schema 
 }
 ```
 
-The example is illustrative and does not claim that its sample IDs exist in EKTA's canonical encyclopedia. The relationship direction in production records must follow the documented predicate semantics; the example should be read as a schema illustration only.
+The example is illustrative and does not claim that its sample IDs exist in EKTA's canonical encyclopedia. The module-to-system edge uses the existing EKTA PART_OF predicate direction.
 
 ## Field semantics
 
@@ -81,4 +79,4 @@ The example is illustrative and does not claim that its sample IDs exist in EKTA
 
 ## Example coordinate interpretation
 
-`(application-agent, EKTA-EXAMPLE-MODULE-0001, 2, 2026-01-01T00:00:00Z…)` means: in this declared view, this entity is assigned to the application/agent architectural layer, associated with the identified functional module, appears at decomposition depth 2 relative to the declared root, and is valid from the given time. It does not mean the module is two physical units away or that the entity is two levels more complex in every context.
+`(application-agent, EKTA-EXAMPLE-MODULE-0001, 1, 2026-01-01T00:00:00Z…)` means: in this declared view, this module is assigned to the application/agent architectural layer, identified by its stable module ID, appears at decomposition depth 1 relative to the declared root, and is valid from the given time. It does not mean the module is one physical unit away or has one universal complexity level.
