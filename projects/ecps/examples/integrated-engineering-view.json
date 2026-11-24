@@ -1,0 +1,59 @@
+{
+  "schema": "ecps.projection-manifest",
+  "schemaVersion": "0.1.0",
+  "manifestId": "ECPS-MANIFEST-SMART-COMPUTING-DEVICE",
+  "name": "Federated Smart Computing Device Engineering Views",
+  "sourceModels": [
+    {
+      "id": "src.umsf",
+      "system": "UMSF",
+      "repositoryPath": "architecture/umsf/",
+      "sourceCommit": "a22267873d6c3ec670e2096fd5f7937fb8acb84c",
+      "authority": "semantic-system-model"
+    },
+    {
+      "id": "src.vel",
+      "system": "VEL",
+      "repositoryPath": "projects/vel/",
+      "sourceCommit": "874ba763fcc09d572cc0be0fd697d3d46d56defd",
+      "authority": "visual-engineering-language"
+    },
+    {
+      "id": "src.mua",
+      "system": "MUA",
+      "repositoryPath": "docs/MATHEMATICAL_UNIVERSE/",
+      "sourceCommit": "8233bb8dfbff2fc084c74938f45cceb820634158",
+      "authority": "mathematical-object-and-coordinate-frame"
+    },
+    {
+      "id": "src.ves",
+      "system": "VES",
+      "repositoryPath": "projects/ves/",
+      "sourceCommit": "1930b9d66fc59aadb43eab0eb62ecdf57c23c962",
+      "authority": "interactive-workbench-project-and-board"
+    }
+  ],
+  "coordinateSpaces": [
+    {"id": "space.semantic", "kind": "semantic-address", "authority": "UMSF", "description": "X layer ID, Y module ID, Z view-relative depth, T validity interval"},
+    {"id": "space.geometry", "kind": "geometric-frame", "authority": "MUA", "description": "Mathematical coordinate frame, axes, origin, basis and units policy"},
+    {"id": "space.board", "kind": "board-layout", "authority": "VES", "description": "Board-local x/y placement for UI arrangement only"},
+    {"id": "space.diagram", "kind": "diagram-topology", "authority": "VEL", "description": "Nodes, ports and typed connections; diagram layout is not physical geometry"},
+    {"id": "space.topology", "kind": "relationship-graph", "authority": "UMSF", "description": "Typed graph relations independent of coordinate adjacency"},
+    {"id": "space.temporal", "kind": "temporal-validity", "authority": "UMSF", "description": "Valid time and record revision; not an implicit Euclidean axis"},
+    {"id": "space.math", "kind": "mathematical-representation", "authority": "MUA", "description": "Symbolic, textual, tabular, 2D, 3D, graph and procedural mathematical representations"}
+  ],
+  "projections": [
+    {"id": "view.semantic", "viewType": "semantic-architecture", "sourceModelRef": "src.umsf", "coordinateSpaceRef": "space.semantic", "mutationPolicy": "read-only"},
+    {"id": "view.physical", "viewType": "geometry-3d", "sourceModelRef": "src.mua", "coordinateSpaceRef": "space.geometry", "mutationPolicy": "read-only"},
+    {"id": "view.board", "viewType": "workbench-board", "sourceModelRef": "src.ves", "coordinateSpaceRef": "space.board", "mutationPolicy": "view-state-only"},
+    {"id": "view.diagram", "viewType": "visual-diagram", "sourceModelRef": "src.vel", "coordinateSpaceRef": "space.diagram", "mutationPolicy": "read-only"},
+    {"id": "view.dependencies", "viewType": "dependency-matrix", "sourceModelRef": "src.umsf", "coordinateSpaceRef": "space.topology", "mutationPolicy": "read-only"},
+    {"id": "view.timeline", "viewType": "timeline", "sourceModelRef": "src.umsf", "coordinateSpaceRef": "space.temporal", "mutationPolicy": "read-only"},
+    {"id": "view.math", "viewType": "mathematical-plot", "sourceModelRef": "src.mua", "coordinateSpaceRef": "space.math", "mutationPolicy": "read-only"}
+  ],
+  "metadata": {
+    "status": "PROPOSED",
+    "note": "This manifest references draft workstream revisions for contract design. It does not claim that the four draft PRs are merged or that the adapters are implemented.",
+    "layoutInvariant": "Board and diagram layout coordinates are not physical geometry."
+  }
+}
