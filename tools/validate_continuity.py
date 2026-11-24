@@ -68,7 +68,7 @@ def validate(root: Path | str = ROOT) -> list[str]:
         fidelity = archive.get("fidelity", "")
         if not isinstance(archive_path, str) or not _safe_file(root, archive_path):
             errors.append("continuity archive path is missing or unsafe")
-        if not isinstance(fidelity, str) or "verbatim_transcript" in fidelity.lower():
+        if not isinstance(fidelity, str) or fidelity.lower() in {"verbatim", "verbatim_transcript", "raw_transcript"}:
             errors.append("archive fidelity must disclose that this is not a verbatim transcript")
 
     entries = manifest.get("canonical_entry_points")
