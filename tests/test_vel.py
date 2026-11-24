@@ -3,6 +3,8 @@ import sys
 import unittest
 from pathlib import Path
 
+import jsonschema
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "runtime"))
 
@@ -17,6 +19,12 @@ class VELModelTests(unittest.TestCase):
 
     def test_example_has_no_semantic_findings(self):
         self.assertEqual(validate_model(self.model), [])
+
+    def test_example_matches_json_schema(self):
+        schema = json.loads((ROOT / "schemas" / "vel-model.schema.json").read_text(encoding="utf-8"))
+        jsonschema.Draft202012Validator.check_schema(schema)
+        validator = jsonschema.Draft202012Validator(schema, format_checker=jsonschema.FormatChecker())
+        self.assertEqual(list(validator.iter_errors(self.model)), [])
 
     def test_duplicate_node_id_is_reported(self):
         model = json.loads(json.dumps(self.model))
@@ -42,6 +50,13 @@ class VELModelTests(unittest.TestCase):
         codes = {item["code"] for item in validate_model(model)}
         self.assertIn("CHANNEL_MISMATCH", codes)
 
+    def test_malformed_channels_are_reported_without_crashing(self):
+        model = json.loads(json.dumps(self.model))
+        model["nodes"][0]["ports"][0]["channels"] = None
+        codes = {item["code"] for item in validate_model(model)}
+        self.assertIn("PORT_CHANNELS", codes)
+        self.assertIn("CHANNEL_MISMATCH", codes)
+
     def test_unknown_group_member_is_reported(self):
         model = json.loads(json.dumps(self.model))
         model["groups"][0]["node_ids"].append("VEL-N-DOES-NOT-EXIST")
@@ -55,7 +70,8 @@ class VELModelTests(unittest.TestCase):
         self.assertIn("VEL-C-USER-UI", dot)
 
     def test_canonical_json_is_deterministic(self):
-        self.assertEqual(canonical_json(self.model), canonical_json(self.model))
+        reordered = dict(reversed(list(self.model.items())))
+        self.assertEqual(canonical_json(self.model), canonical_json(reordered))
         self.assertTrue(canonical_json(self.model).endswith("\n"))
 
 

@@ -148,8 +148,10 @@ def validate_model(model: dict[str, Any]) -> list[dict[str, str]]:
             if direction not in {"IN", "INOUT"}:
                 findings.append(_issue("TARGET_DIRECTION", f"{path}.target", "Target port must be IN or INOUT."))
         for endpoint_name, resolved in zip(("source", "target"), resolved_ports):
-            if resolved is not None and kind not in resolved[1].get("channels", []):
-                findings.append(_issue("CHANNEL_MISMATCH", f"{path}.{endpoint_name}.port_id", f"Port does not accept channel '{kind}'."))
+            if resolved is not None:
+                accepted_channels = resolved[1].get("channels", [])
+                if not isinstance(accepted_channels, list) or kind not in accepted_channels:
+                    findings.append(_issue("CHANNEL_MISMATCH", f"{path}.{endpoint_name}.port_id", f"Port does not accept channel '{kind}'."))
 
     group_ids: set[str] = set()
     for index, group in enumerate(groups):
