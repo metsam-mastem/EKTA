@@ -11,12 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
       - name: Install runtime and test dependencies
         run: python -m pip install -e ".[dev]"
+      - name: Verify pinned project submodules
+        shell: bash
+        run: |
+          git submodule status --recursive
+          if git submodule status --recursive | grep -E '^[+-U]'; then
+            echo "A submodule is missing, mismatched, or conflicted."
+            exit 1
+          fi
       - name: Validate documentation
         run: python tools/validate_docs.py
       - name: Run unit and runtime tests
