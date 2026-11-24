@@ -175,11 +175,13 @@ def model_to_dict(model: SystemModel) -> dict[str, Any]:
         ],
         "relationships": [
             {
-                "source_id": edge.source_id,
-                "predicate": edge.predicate,
-                "target_id": edge.target_id,
-                "context": edge.context,
-                "status": edge.status,
+                **{
+                    "source_id": edge.source_id,
+                    "predicate": edge.predicate,
+                    "target_id": edge.target_id,
+                    "status": edge.status,
+                },
+                **({"context": edge.context} if edge.context is not None else {}),
             }
             for edge in model.relationships
         ],
