@@ -102,6 +102,10 @@ def validate_model(
         if not isinstance(entity, Entity):
             errors.append(f"entities[{index}] must be an Entity")
             continue
+        if not _non_empty_string(entity.type):
+            errors.append(f"entities[{index}].type must be non-empty")
+        if not _non_empty_string(entity.name):
+            errors.append(f"entities[{index}].name must be non-empty")
         if not _non_empty_string(entity.id):
             errors.append(f"entities[{index}].id must be non-empty")
             continue
@@ -109,10 +113,6 @@ def validate_model(
             errors.append(f"duplicate entity id: {entity.id}")
         else:
             by_id[entity.id] = entity
-        if not _non_empty_string(entity.type):
-            errors.append(f"{entity.id}: type must be non-empty")
-        if not _non_empty_string(entity.name):
-            errors.append(f"{entity.id}: name must be non-empty")
         if not isinstance(entity.addresses, tuple):
             errors.append(f"{entity.id}: addresses must be a tuple")
             continue
