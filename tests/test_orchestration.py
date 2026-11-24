@@ -31,6 +31,14 @@ class OrchestrationRegistryTests(unittest.TestCase):
             path.write_text(yaml.safe_dump(registry, allow_unicode=True), encoding="utf-8")
             self.assertTrue(any("unknown dependency" in item for item in validate_registry(path)))
 
+    def test_dependency_cycle_is_rejected(self):
+        registry = yaml.safe_load((ROOT / "orchestration" / "WORKSTREAMS.yml").read_text(encoding="utf-8"))
+        registry["workstreams"][0]["dependencies"] = ["WS-UMSF"]
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "registry.yml"
+            path.write_text(yaml.safe_dump(registry, allow_unicode=True), encoding="utf-8")
+            self.assertTrue(any("dependency cycle" in item for item in validate_registry(path)))
+
 
 if __name__ == "__main__":
     unittest.main()
