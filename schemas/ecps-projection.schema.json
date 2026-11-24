@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/metsam-mastem/EKTA/blob/main/schemas/ecps-projection.schema.json",
+  "title": "ECPS Federated Projection Manifest",
+  "description": "A projection/orchestration manifest referencing authoritative UMSF, VEL, MUA and VES models without duplicating their domain records.",
+  "type": "object",
+  "required": ["schema", "schemaVersion", "manifestId", "name", "sourceModels", "coordinateSpaces", "projections"],
+  "properties": {
+    "schema": {"const": "ecps.projection-manifest"},
+    "schemaVersion": {"const": "0.1.0"},
+    "manifestId": {"type": "string", "minLength": 3},
+    "name": {"type": "string", "minLength": 1},
+    "sourceModels": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/sourceModel"}},
+    "coordinateSpaces": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/coordinateSpace"}},
+    "projections": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/projection"}},
+    "metadata": {"type": "object"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "sourceModel": {
+      "type": "object",
+      "required": ["id", "system", "repositoryPath", "sourceCommit", "authority"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "system": {"enum": ["UMSF", "VEL", "MUA", "VES"]},
+        "repositoryPath": {"type": "string", "minLength": 1},
+        "sourceCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "authority": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "coordinateSpace": {
+      "type": "object",
+      "required": ["id", "kind", "authority", "description"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["semantic-address", "geometric-frame", "board-layout", "diagram-topology", "relationship-graph", "temporal-validity", "mathematical-representation"]},
+        "authority": {"enum": ["UMSF", "VEL", "MUA", "VES"]},
+        "description": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "projection": {
+      "type": "object",
+      "required": ["id", "viewType", "sourceModelRef", "coordinateSpaceRef", "mutationPolicy"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "viewType": {"enum": ["semantic-architecture", "geometry-3d", "workbench-board", "visual-diagram", "dependency-matrix", "timeline", "mathematical-plot"]},
+        "sourceModelRef": {"type": "string", "minLength": 1},
+        "coordinateSpaceRef": {"type": "string", "minLength": 1},
+        "mutationPolicy": {"enum": ["read-only", "view-state-only", "explicit-model-edit"]},
+        "metadata": {"type": "object"}
+      },
+      "additionalProperties": false
+    }
+  }
+}
