@@ -13,29 +13,31 @@
 - مدل دامنه مستقل از Renderer برای Project، Entity، Relationship، Board و Placement
 - اعتبارسنجی قطعی و گزارش Finding با کد و شدت
 - Import/Export JSON نسخه‌دار و حفظ شناسه‌ها در Round-trip
+- SQLite local persistence با تراکنش و کنترل optimistic concurrency
+- فرم‌های typed و اعتبارسنجی فیلدهای اجباری، نوع، محدوده و enum
+- رجیستری اولیه 14 نوع کارت، 12 نوع بورد، 10 حالت نمایش و 5 Deck آماده
 - نمونه اولیه مرورگری بدون وابستگی خارجی: کارت‌های قابل جابه‌جایی، Inspector، ذخیره محلی و خروجی JSON
-- قراردادهای JSON Schema، تست واحد، معماری، UX، کتابخانه کارت‌ها، فهرست OSS و اسناد کاربری
+- قراردادهای JSON Schema، تست واحد و اسناد مهندسی و کاربری
 
 ## اجرای سریع
 از مسیر projects/ves:
-    
+
     python -m unittest discover -s tests -v
 
 برای نمونه بصری، فایل web/index.html را در مرورگر مدرن باز کن. در صورت محدودیت مرورگر:
-    
+
     python -m http.server 8000 --directory web
 
 سپس http://127.0.0.1:8000 را باز کن.
-
-## مرزهای نسخه 0.1
-این نسخه یک vertical slice اولیه است؛ هنوز پشتیبانی کامل SysML v2، UML، BPMN، EDA/CAD، شبیه‌سازی، همکاری چندکاربره، Plugin Sandbox، بسته Windows/Android و QA خودکار مرورگر پیاده‌سازی نشده‌اند.
 
 ## نقشه اسناد
 - docs/PRODUCT_SPEC.md — مشخصات محصول
 - docs/ARCHITECTURE.md — معماری
 - docs/DATA_MODEL.md — مدل داده
 - docs/UX_SYSTEM.md — UX و تعامل
-- docs/CARD_LIBRARY.md — کتابخانه کارت و بورد
+- docs/CARD_LIBRARY.md و docs/CATALOG.md — کارت، بورد، View و Deck
+- docs/FORMS.md — فرم‌ساز و اعتبارسنجی
+- docs/PERSISTENCE.md — ذخیره‌سازی محلی
 - docs/MVP_PLAN.md — برنامه MVP و معیار پذیرش
 - docs/OPEN_SOURCE_REGISTER.md — مخازن متن‌باز و استانداردها
 - docs/EKTA_INTEGRATION.md — اتصال به EKTA

@@ -9,11 +9,12 @@
 | Python domain core | IMPLEMENTED - INITIAL | src/ves_core.py |
 | SQLite local persistence | IMPLEMENTED - INITIAL | src/ves_storage.py |
 | Typed form validation | IMPLEMENTED - INITIAL | src/ves_forms.py |
-| Unit tests | LOCAL PASS | 12 tests across test_core.py, test_storage.py and test_forms.py |
+| Card, board, view and Deck catalog | IMPLEMENTED - INITIAL | src/ves_catalog.py |
+| Unit tests | LOCAL PASS | 15 tests across four test modules |
 | JSON Schemas | ADDED; full runtime schema wiring pending | schemas/ |
 | Browser prototype | IMPLEMENTED - PROTOTYPE | web/index.html |
 | GitHub Actions on initial branch head | PASS | run 45303701277; all job steps succeeded |
-| GitHub Actions on latest synchronized head | IN PROGRESS | run 45303917798 |
+| GitHub Actions on latest synchronized head | PENDING | verify latest PR head run |
 | EKTA project registry | ADDED IN THIS BRANCH | projects/README.md |
 | EKTA taxonomy ID crosswalk | NOT RUN | exact registry reconciliation pending |
 | Browser runtime/manual QA | NOT RUN | no browser automation evidence |
