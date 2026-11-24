@@ -126,3 +126,14 @@ A clean branch `integration/upds-independent-continuity` was created from main a
 
 ## 12. Deletion safety statement
 Deleting this ChatGPT conversation will not delete GitHub files or commits already pushed to EKTA. However, any content not captured in repository files, source attachments, external evidence or another durable store may be lost. This archive is a structured summary of available context, not a guarantee that every raw message or attachment has been copied. Before deleting the chat, use the recovery runbook and ensure the new branch/PR and a separate backup are accessible.
+
+
+## 13. Post-archive execution update — 2026-11-24
+
+After the initial archive was written:
+- A clean replacement PR was opened: [PR #23](https://github.com/metsam-mastem/EKTA/pull/23), branch `integration/upds-independent-continuity`, based on current main.
+- The prior PR #3 was closed without merging and marked superseded by PR #23. Its old branch and history remain preserved.
+- The clean branch was compared against main and reported 48 commits ahead, 0 behind at the last comparison.
+- GitHub Actions run [45304523297](https://github.com/metsam-mastem/EKTA/actions/runs/45304523297) completed SUCCESS on exact commit `11ac9b7689b366299e7856a814cae289c63b4e24`. Dependency installation, documentation validation, UPDS record validation, full unittest discovery, frontend validation and graph export all passed.
+- Several documentation/orchestration updates were committed after that tested SHA. Therefore latest-head CI remains NOT VERIFIED until a run for the current PR head is observed.
+- The new [orchestration plan](ORCHESTRATION_PLAN.md) divides continuity, schema, registry, traceability, UX, QA and research into dependency-aware work packages. It does not imply background execution.
