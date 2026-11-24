@@ -34,7 +34,18 @@ Nine open PRs were inspected on 2026-11-24. None was merged as part of this orch
 | #7 | Archive intake | archive-intake/ekta-concepts-2026-11-23 | 3 / 1 | BLOCKED: staged EKTA-CON-000008 conflicts with canonical Hardware Knowledge Atlas ID; resolve immutable ID allocation before transfer |
 | #3 | UPDS | integration/upds-documentation-architecture | 57 / 35 | Scope reconciliation; rebase; CI |
 
-## Recent verified execution\n\n- UMSF PR #11 latest inspected head `fcf6ea61f01b23a0d410313fe6c3ef172e9bb4ca` passed Actions run [#288](https://github.com/metsam-mastem/EKTA/actions/runs/45304547566): documentation validation, unit/runtime tests, frontend validation, and graph export. The PR remains draft/unmerged.\n- Orchestration PR #21 revision `ef0de3f2fb00ca6d91ebf8f7af9686d4b072b8c9` passed Actions run [#296](https://github.com/metsam-mastem/EKTA/actions/runs/45304587324), including the new workstream registry validator and cycle-detection tests. Later registry evidence updates require a fresh CI run.\n\n## New integration and integrity finding\n\n- GTC is pinned at `integrations/gtc` to upstream commit `2f0229bd622de4e9ce22196e57fb986659dc7934`. EKTA main includes the integration audit and the canonical Hardware Knowledge Atlas concept record `EKTA-CON-000008`.\n- PR #7's staging manifest assigns `EKTA-CON-000008` to Operating System. This is a confirmed stable-ID collision, not a theoretical risk. The archive branch must remain blocked until the source record receives an owner-approved new immutable ID and the manifest/hash/provenance mapping is updated.\n- GTC submodule pinning does not mean EKTA runtime ingestion or cross-schema graph mapping is implemented.\n\n## Shared architecture decisions
+## Recent verified execution
+
+- UMSF PR #11 latest inspected head `fcf6ea61f01b23a0d410313fe6c3ef172e9bb4ca` passed Actions run [#288](https://github.com/metsam-mastem/EKTA/actions/runs/45304547566): documentation validation, unit/runtime tests, frontend validation, and graph export. The PR remains draft/unmerged.
+- Orchestration PR #21 revision `ef0de3f2fb00ca6d91ebf8f7af9686d4b072b8c9` passed Actions run [#296](https://github.com/metsam-mastem/EKTA/actions/runs/45304587324), including the new workstream registry validator and cycle-detection tests. Later registry evidence updates require a fresh CI run.
+
+## New integration and integrity finding
+
+- GTC is pinned at `integrations/gtc` to upstream commit `2f0229bd622de4e9ce22196e57fb986659dc7934`. EKTA main includes the integration audit and the canonical Hardware Knowledge Atlas concept record `EKTA-CON-000008`.
+- PR #7's staging manifest assigns `EKTA-CON-000008` to Operating System. This is a confirmed stable-ID collision, not a theoretical risk. The archive branch must remain blocked until the source record receives an owner-approved new immutable ID and the manifest/hash/provenance mapping is updated.
+- GTC submodule pinning does not mean EKTA runtime ingestion or cross-schema graph mapping is implemented.
+
+## Shared architecture decisions
 
 1. EKTA remains canonical. Subsystems may own versioned contracts but reference EKTA stable IDs; they do not create competing knowledge stores.
 2. No taxonomy replacement. Territory, domain, layer, knowledge type, and relation registries retain distinct meanings. New facets are namespaced and reviewed.
