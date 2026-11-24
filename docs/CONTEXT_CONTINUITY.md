@@ -38,7 +38,7 @@
 - Known limitations: import is text-only staging (not canonical ingestion); editor creates local drafts only; restore only stages validated ZIPs; no semantic/AI search, auth/multi-user, public deployment hardening, Android package, or full Decision/Execution Labs.
 - License remains undecided.
 - Graph coverage remains incomplete; never present graph export as a complete ontology.
-- PR #3 (integration/upds-documentation-architecture) is a separate open proposal. Its integration decision is PROPOSED pending explicit owner review; do not treat UPDS integration as approved or merged based only on the branch.
+- PR #3 (integration/upds-documentation-architecture) is CLOSED, NOT MERGED, and superseded by clean-mainline PR #23 (integration/upds-independent-continuity). UPDS integration remains PROPOSED pending owner review of EKTA-ADR-0003.
 - Validation passed on documentation PR head d1463eefe9e7ceb17c8fdf39b862a2a10c04e12c: docs validation, 29 tests, frontend structural/JavaScript validation, and graph export. Post-merge CI on main is tracked separately.
 - For a chat-independent continuation, this file plus README, Project Overview, Implementation Plan, Roadmap, Changelog, and current GitHub PR/Actions state are sufficient starting points.
 
