@@ -79,7 +79,7 @@ For every work package:
 ## 7. Current state
 - ORCH-00: documentation foundation IMPLEMENTED; clean-clone and backup drills NOT RUN.
 - ORCH-01: initial schema IMPLEMENTED; status/relation contract review BLOCKED pending owner.
-- ORCH-02: read-only registry list/get service and API IMPLEMENTED on branch; latest CI pending. Write/update/revision lifecycle remains NOT IMPLEMENTED.
+- ORCH-02: read-only registry list/get service and API VERIFIED by CI run 45304968576 on commit 1c06074a8d31b87602b4426cb70640a8b26571aa. Write/update/revision lifecycle remains NOT IMPLEMENTED.
 - ORCH-03: NOT IMPLEMENTED.
 - ORCH-04: NOT IMPLEMENTED.
 - ORCH-05: UPDS validator added to CI; current workflow must finish on exact PR head.
