@@ -154,3 +154,10 @@ The first UPDS runtime vertical slice is now implemented on the clean branch:
 An initial CI run (45304839153) failed two assertions because tests expected a stale title not matching the canonical sample record. The workflow logs were inspected; assertions were corrected. CI run 45304878493 then passed on commit `491fdca28995837e69c7f0403bd2da0a2db57d7b`.
 
 The complete CI run 45304968576 passed on commit `1c06074a8d31b87602b4426cb70640a8b26571aa`, including documentation/link validation, UPDS schema/record validation, all unit/runtime/API tests, frontend validation and typed graph export. This is the latest fully observed passing run at the time of this update; any later commit requires fresh verification.
+
+
+## 16. Chat-independent integrity gate — 2026-11-24
+
+Added `tools/validate_continuity.py` and `tests/test_continuity.py`. The validator checks that required canonical handoff documents exist, the continuity manifest parses, archive and manifest paths resolve safely within the repository, canonical entry points exist, and `recovery.clean_clone_required` is true. The CI workflow now runs this validator as a separate gate.
+
+The first run exposed malformed YAML caused by literal escaped newline characters in the manifest. The failure was inspected from the GitHub Actions log, the manifest was corrected, and run 45305319405 passed on exact commit `8453a2d179490969a5b2262c8d8e34ba957d3d5c`. This verifies structural continuity checks; it does not replace the still-pending human clean-clone recovery and independent backup-restore drills.
