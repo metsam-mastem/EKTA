@@ -66,3 +66,7 @@ EKTA remains the canonical engineering knowledge atlas. UPDS owns project-scoped
 | Clean-clone recovery drill and backup restore | NOT RUN |
 
 The current EKTA runtime/workspace capabilities are described in the user documentation. A design document must never be presented as proof of a working feature.
+
+
+## 14. Runtime registry progress — 2026-11-24
+A first read-only UPDS registry slice was added: repository YAML loader, schema validation, duplicate-ID checks, list/get service methods, GET API routes and focused service/API tests. This is not a write-enabled document management system. CI for the current latest head must pass before this code is marked VERIFIED. The next implementation step is controlled draft creation and immutable revision/audit semantics after contract review.
