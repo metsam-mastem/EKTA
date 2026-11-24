@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import sys
+import jsonschema
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +18,14 @@ def validate() -> list[str]:
         data = json.loads(REGISTRY.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         return [f"cannot load organization registry: {exc}"]
+
+    try:
+        schema_path = ROOT / "schemas" / "engineering-organization.schema.json"
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+        jsonschema.Draft202012Validator.check_schema(schema)
+        jsonschema.Draft202012Validator(schema).validate(data)
+    except (OSError, json.JSONDecodeError, jsonschema.SchemaError, jsonschema.ValidationError) as exc:
+        return [f"organization registry schema validation failed: {exc}"]
 
     try:
         import yaml
