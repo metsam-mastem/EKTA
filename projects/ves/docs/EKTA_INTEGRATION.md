@@ -20,7 +20,7 @@ Register VES as an independent engineering project in EKTA while preserving the 
 - This integration is additive; no existing project, taxonomy or runtime file is removed or overwritten.
 
 ## Taxonomy integration
-The machine-readable mapping is maintained in integration/ekta-taxonomy-crosswalk.json. The current identifier membership was checked against EKTA territories, domains, layers, knowledge types and relations on 2026-11-24. See docs/TAXONOMY_CROSSWALK.md for exact mapping and semantic limitations. EKTA domain entries are currently marked proposed; the crosswalk does not approve them.
+The machine-readable mapping is maintained in integration/ekta-taxonomy-crosswalk.json. Current identifier membership was checked against EKTA territories, domains, layers, knowledge types and relations on 2026-11-24. See docs/TAXONOMY_CROSSWALK.md for exact mapping and semantic limitations. EKTA domain entries remain at their existing proposed status; the crosswalk does not approve them.
 
 ## Provenance
 External source/asset records must retain URI, publisher, version/revision, retrieval date, license and checksum when applicable.
@@ -29,4 +29,4 @@ External source/asset records must retain URI, publisher, version/revision, retr
 Repository-level, review-driven exchange. VES may submit reviewed knowledge candidates through staged records/PRs. EKTA may provide curated references without becoming a hard runtime dependency.
 
 ## Current state
-This integration adds a project namespace, registry and contract. It does not merge VES into EKTA main and does not claim a live runtime connector.
+This integration adds a project namespace, registry, crosswalk and contract. It does not merge VES into EKTA main and does not claim a live runtime connector.

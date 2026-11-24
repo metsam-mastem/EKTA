@@ -10,12 +10,12 @@
 | SQLite local persistence | IMPLEMENTED - INITIAL | src/ves_storage.py |
 | Typed form validation | IMPLEMENTED - INITIAL | src/ves_forms.py |
 | Card, board, view and Deck catalog | IMPLEMENTED - INITIAL | src/ves_catalog.py |
-| Unit tests | LOCAL PASS | 15 tests across five test modules before crosswalk test |
+| EKTA taxonomy identifier crosswalk | VERIFIED AGAINST REGISTRIES | integration/ekta-taxonomy-crosswalk.json |
+| Unit tests | LOCAL PASS | 17 tests across five test modules in development workspace |
 | JSON Schemas | ADDED; full runtime schema wiring pending | schemas/ |
 | Browser prototype | IMPLEMENTED - PROTOTYPE | web/index.html |
-| EKTA taxonomy identifier crosswalk | VERIFIED AGAINST REGISTRIES | integration/ekta-taxonomy-crosswalk.json; semantic review remains |
-| GitHub Actions on initial branch head | PASS | run 45303701277; all job steps succeeded |
-| GitHub Actions on current PR head | PENDING | verify latest workflow run |
+| GitHub Actions on earlier VES head | PASS | runs 45303701277, 45303917798, 45304020203, 45304114726 |
+| GitHub Actions on latest crosswalk head | IN PROGRESS | runs 45304206018 and 45304213142 |
 | EKTA project registry | ADDED IN THIS BRANCH | projects/README.md |
 | Browser runtime/manual QA | NOT RUN | no browser automation evidence |
 | Windows package | NOT RUN | not implemented |

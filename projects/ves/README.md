@@ -16,11 +16,16 @@
 - SQLite local persistence با تراکنش و کنترل optimistic concurrency
 - فرم‌های typed و اعتبارسنجی فیلدهای اجباری، نوع، محدوده و enum
 - رجیستری اولیه 14 نوع کارت، 12 نوع بورد، 10 حالت نمایش و 5 Deck آماده
+- crosswalk ماشین‌خوان شناسه‌های EKTA با تست تطبیق رجیستری
 - نمونه اولیه مرورگری بدون وابستگی خارجی: کارت‌های قابل جابه‌جایی، Inspector، ذخیره محلی و خروجی JSON
 - قراردادهای JSON Schema، تست واحد و اسناد مهندسی و کاربری
 
 ## اجرای سریع
-از مسیر projects/ves:
+از مسیر projects/ves ابتدا وابستگی تست را نصب کن:
+
+    python -m pip install -e ".[dev]"
+
+سپس:
 
     python -m unittest discover -s tests -v
 
@@ -38,6 +43,7 @@
 - docs/CARD_LIBRARY.md و docs/CATALOG.md — کارت، بورد، View و Deck
 - docs/FORMS.md — فرم‌ساز و اعتبارسنجی
 - docs/PERSISTENCE.md — ذخیره‌سازی محلی
+- docs/TAXONOMY_CROSSWALK.md — اتصال taxonomy به EKTA
 - docs/MVP_PLAN.md — برنامه MVP و معیار پذیرش
 - docs/OPEN_SOURCE_REGISTER.md — مخازن متن‌باز و استانداردها
 - docs/EKTA_INTEGRATION.md — اتصال به EKTA
