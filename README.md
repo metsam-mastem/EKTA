@@ -408,3 +408,16 @@ Multiple words are AND-matched. Query fields can be combined, for example:
 ### Taxonomy clarification
 
 EKTA now separates **26 top-level Engineering Territories** from **25 operational domain tags**. Territories are the navigation/portfolio layer; operational domains are more granular classification values. The explicit mapping is in [taxonomy/territories.yml](taxonomy/territories.yml), and domain identifiers remain in [taxonomy/domains.yml](taxonomy/domains.yml). This removes the earlier 22-vs-26 ambiguity without treating the two lists as interchangeable.
+
+
+---
+
+## Collaboration & Organizational Engineering
+
+EKTA now includes a proposed collaboration-engineering knowledge area covering individual, pair, group, team, business partnership, inter-organizational, community, open-source, and human–AI collaboration.
+
+- [Collaboration Engineering Atlas](encyclopedia/methods/EKTA-MTH-000001-collaboration-engineering.md)
+- [Collaboration Standards & Sources](references/COLLABORATION_STANDARDS_AND_SOURCES.md)
+- [Collaboration document templates](templates/collaboration/README.md)
+
+The material is a proposed knowledge baseline. Standards editions, taxonomy mappings, and source records require verification before being treated as canonical or operationally approved.
