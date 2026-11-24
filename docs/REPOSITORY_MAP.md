@@ -29,5 +29,7 @@ Use stable IDs in canonical filenames, e.g. EKTA-CON-000001-runtime.md. IDs are 
 - [Engineering Documentation System](ENGINEERING_DOCUMENTATION_SYSTEM.md)
 - [Engineering Lifecycle Crosswalk](ENGINEERING_LIFECYCLE_CROSSWALK.md)
 - [Handwritten Note Analysis](../research/HANDWRITTEN_NOTE_ANALYSIS_2021.md)
+- [Development Orchestration Contract](../workflows/ENGINEERING_ORGANIZATION_ORCHESTRATION.md)
+- JSON Schema: schemas/engineering-organization.schema.json
 
 The macro-area JSON is a navigation/crosswalk view only. It does not alter the canonical 26 territories, 25 operational domains, 10 layers, 30 knowledge types, or controlled relation predicates.
