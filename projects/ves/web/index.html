@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="VES local-first visual engineering workbench prototype"><title>VES · Visual Engineering Studio</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="top"><div class="brand">VES</div><div><strong>Visual Engineering Studio</strong><div class="sub">UNIVERSAL ENGINEERING WORKBENCH · LOCAL PROTOTYPE</div></div><div class="actions"><button id="export">Export JSON</button><button id="reset">Reset demo</button></div></header>
+<main class="layout">
+<aside class="left"><div class="label">WORKSPACE</div><button class="nav active" data-view="board">▦ Architecture Board</button><button class="nav" data-view="gallery">▤ Card Gallery</button><button class="nav" data-view="decks">▧ Deck Library</button><button class="nav" data-view="validation">⌘ Validation Lab</button><div class="label" style="margin-top:26px">QUICK ADD</div><div class="palette"><button id="add">＋ Add System Module</button></div><p class="sub">Use the Gallery to search and reuse engineering card types.</p></aside>
+<section class="center"><div class="head"><div><div class="sub">PROJECT / SYSTEM DESIGN</div><h1 id="viewTitle">Architecture Board</h1><p>One model · Multiple views · Traceable engineering</p></div><div class="tools"><button id="validate">Run validation</button></div></div>
+<div class="view board" id="boardView"><svg class="edges" id="edges"></svg><div class="nodes" id="nodes"></div></div>
+<div class="view gallery" id="galleryView" hidden><div class="filters"><input id="gallerySearch" placeholder="Search card types…"><select id="galleryCategory"><option value="">All categories</option></select></div><div class="gallery-grid" id="galleryGrid"></div></div>
+<div class="view gallery" id="decksView" hidden><div class="deck-grid" id="deckGrid"></div></div>
+<div class="view gallery" id="validationView" hidden><div class="validation-panel"><h2>Model validation</h2><p>Run deterministic checks against the current project model.</p><button class="primary" id="validateAgain">Run checks</button><div id="findings"></div></div></div>
+<div class="status"><span id="counts">0 entities</span><span id="relations">0 relationships</span><span id="saved">Local session</span></div></section>
+<aside class="right"><div class="label">INSPECTOR</div><div id="inspector" class="empty">Select a card to inspect its engineering properties.</div></aside>
+</main><script src="catalog.js"></script><script src="app.js"></script></body></html>

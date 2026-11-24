@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ekta.example/projects/ves/schemas/project.schema.json",
+  "title": "VES Project Interchange",
+  "type": "object",
+  "required": ["schema_version", "project", "entities", "relationships", "boards"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "project": {"type": "object", "required": ["id", "name", "metadata"], "properties": {"id": {"type": "string"}, "name": {"type": "string"}, "metadata": {"type": "object"}}, "additionalProperties": false},
+    "entities": {"type": "array", "items": {"type": "object", "required": ["id", "type", "name", "properties", "tags", "status", "version", "created_at", "updated_at"], "properties": {"id": {"type": "string"}, "type": {"type": "string"}, "name": {"type": "string"}, "properties": {"type": "object"}, "tags": {"type": "array", "items": {"type": "string"}}, "status": {"enum": ["draft", "proposed", "review", "verified", "deprecated"]}, "version": {"type": "integer", "minimum": 1}, "created_at": {"type": "string"}, "updated_at": {"type": "string"}}, "additionalProperties": false}},
+    "relationships": {"type": "array", "items": {"type": "object", "required": ["id", "source_id", "target_id", "type", "properties"], "properties": {"id": {"type": "string"}, "source_id": {"type": "string"}, "target_id": {"type": "string"}, "type": {"type": "string"}, "properties": {"type": "object"}}, "additionalProperties": false}},
+    "boards": {"type": "array", "items": {"type": "object", "required": ["id", "name", "board_type", "placements"], "properties": {"id": {"type": "string"}, "name": {"type": "string"}, "board_type": {"type": "string"}, "placements": {"type": "array", "items": {"type": "object", "required": ["entity_id", "x", "y", "card_view"], "properties": {"entity_id": {"type": "string"}, "x": {"type": "number"}, "y": {"type": "number"}, "card_view": {"type": "string"}}, "additionalProperties": false}}}, "additionalProperties": false}}
+  },
+  "additionalProperties": false
+}

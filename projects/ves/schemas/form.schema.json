@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ekta.example/projects/ves/schemas/form.schema.json",
+  "title": "VES Form Definition",
+  "type": "object",
+  "required": ["id", "fields"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "allow_extra": {"type": "boolean"},
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "type"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "label": {"type": "string", "minLength": 1},
+          "type": {"enum": ["text", "number", "integer", "boolean", "enum"]},
+          "required": {"type": "boolean"},
+          "minimum": {"type": "number"},
+          "maximum": {"type": "number"},
+          "choices": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "pattern": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
