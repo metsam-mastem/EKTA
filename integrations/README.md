@@ -15,7 +15,7 @@ The submodule preserves GTC as an independent project and exposes its complete s
 
 - Canonical upstream: https://github.com/metsam-mastem/3DCAP
 - Local path: `integrations/3dcap`
-- Pinned commit: `b72561384a2a5a1b838167e534bb32eac756c9be`
+- Pinned commit: `001f2dc2cf6947244db89e640e39749ff07eceec`
 - Upstream branch: `feat/android-guided-capture-mvp`
 - Upstream PR: [#1](https://github.com/metsam-mastem/3DCAP/pull/1), Draft
 - Audit: [3DCAP integration record](../docs/integrations/3DCAP_INTEGRATION.md)

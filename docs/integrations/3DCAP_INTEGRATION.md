@@ -3,7 +3,7 @@
 **Audit:** 2026-11-24 | **Status:** PROPOSED — integration PR review pending  
 **Upstream:** https://github.com/metsam-mastem/3DCAP  
 **Pinned branch:** `feat/android-guided-capture-mvp`  
-**Pinned commit:** `b72561384a2a5a1b838167e534bb32eac756c9be`  
+**Pinned commit:** `001f2dc2cf6947244db89e640e39749ff07eceec`  
 **Upstream PR:** [#1 — Android guided-capture MVP](https://github.com/metsam-mastem/3DCAP/pull/1), open/Draft  
 **EKTA source path:** `integrations/3dcap`
 
@@ -104,7 +104,7 @@ The repository has no checked-in Gradle wrapper; CI provisions Gradle 8.11.1. Ex
 
 ## 8. Current maturity and verification
 
-At pinned commit `b72561384a2a5a1b838167e534bb32eac756c9be`:
+At pinned commit `001f2dc2cf6947244db89e640e39749ff07eceec`:
 - Capture planning, camera UI, local session storage, metadata extraction, Passport contracts/analysis, ZIP export and Windows COLMAP handoff code are present.
 - Latest observed CI: [run 45303631813](https://github.com/metsam-mastem/3DCAP/actions/runs/45303631813), overall **FAIL**.
 - PowerShell 5.1 and PowerShell 7 syntax: **PASS**.
@@ -136,7 +136,7 @@ git submodule update --init --recursive
 git -C integrations/3dcap rev-parse HEAD
 ```
 
-Expected 3DCAP revision: `b72561384a2a5a1b838167e534bb32eac756c9be`.
+Expected 3DCAP revision: `001f2dc2cf6947244db89e640e39749ff07eceec`.
 
 ## 11. Integration work packages
 
