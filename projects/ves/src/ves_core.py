@@ -94,8 +94,11 @@ class Project:
             "project": {"id": self.id, "name": self.name, "metadata": self.metadata},
             "entities": [asdict(v) for v in self.entities.values()],
             "relationships": [asdict(v) for v in self.relationships.values()],
-            "boards": [{"id": b.id, "name": b.name, "board_type": b.board_type,
-                        "placements": [asdict(p) for p in b.placements} for b in self.boards.values()],
+            "boards": [
+                {"id": b.id, "name": b.name, "board_type": b.board_type,
+                 "placements": [asdict(p) for p in b.placements]}
+                for b in self.boards.values()
+            ],
         }
 
     @classmethod
