@@ -19,14 +19,14 @@ class UMSFValidationTests(unittest.TestCase):
             z_depth=1,
             valid_from="2026-01-01T00:00:00Z",
         )
-        self.root = Entity("system.root", "system", "Example System", (self.address,))
-        self.module = Entity("module.identity", "module", "Identity Module")
+        self.root = Entity("system.root", "system", "Example System")
+        self.module = Entity("module.identity", "module", "Identity Module", (self.address,))
         self.model = SystemModel(
             "model.example",
             "system.root",
             "view.system-context",
             (self.root, self.module),
-            (Relationship("system.root", "PART_OF", "module.identity"),),
+            (Relationship("module.identity", "PART_OF", "system.root"),),
         )
 
     def test_accepts_valid_model_with_known_registries(self):
@@ -37,8 +37,7 @@ class UMSFValidationTests(unittest.TestCase):
 
     def test_rejects_negative_depth(self):
         bad = SemanticAddress("application-agent", "module.identity", -1, "2026-01-01T00:00:00Z")
-        errors = bad.validate()
-        self.assertIn("z_depth must be a non-negative integer", errors)
+        self.assertIn("z_depth must be a non-negative integer", bad.validate())
 
     def test_rejects_boolean_depth_even_though_bool_is_an_int_subclass(self):
         bad = SemanticAddress("application-agent", "module.identity", True, "2026-01-01T00:00:00Z")
@@ -86,8 +85,8 @@ class UMSFValidationTests(unittest.TestCase):
 
     def test_serializes_without_changing_identity(self):
         data = model_to_dict(self.model)
-        self.assertEqual(data["entities"][0]["id"], "system.root")
-        self.assertEqual(data["entities"][0]["addresses"][0]["z_depth"], 1)
+        self.assertEqual(data["entities"][1]["id"], "module.identity")
+        self.assertEqual(data["entities"][1]["addresses"][0]["z_depth"], 1)
         self.assertEqual(data["schema_version"], "0.1.0")
 
 
