@@ -10,6 +10,7 @@ from ekta_runtime.umsf import (
     Relationship,
     SemanticAddress,
     SystemModel,
+    model_from_dict,
     model_to_dict,
     validate_model,
 )
@@ -105,6 +106,37 @@ class UMSFValidationTests(unittest.TestCase):
         self.assertEqual(data["entities"][1]["id"], "module.identity")
         self.assertEqual(data["entities"][1]["addresses"][0]["z_depth"], 1)
         self.assertEqual(data["schema_version"], "0.1.0")
+
+    def test_round_trip_preserves_identity_relationships_and_provenance(self):
+        source = SystemModel(
+            "model.example", "system.root", "view.system-context",
+            (self.root, self.module),
+            (Relationship("module.identity", "PART_OF", "system.root", "architecture", "VERIFIED"),),
+            ({"source_id": "EKTA-SRC-000001", "retrieved_at": "2026-11-24"},),
+        )
+        restored = model_from_dict(model_to_dict(source))
+        self.assertEqual(model_to_dict(restored), model_to_dict(source))
+        self.assertEqual(validate_model(restored, {"application-agent"}, {"PART_OF"}), [])
+
+    def test_import_rejects_unsupported_schema_version(self):
+        with self.assertRaisesRegex(ValueError, "unsupported UMSF schema_version"):
+            model_from_dict({"schema_version": "9.9.9"})
+
+    def test_import_rejects_malformed_nested_entity(self):
+        payload = model_to_dict(self.model)
+        payload["entities"][1]["addresses"] = [{"x_layer_id": "x"}]
+        with self.assertRaisesRegex(ValueError, "missing y_module_id"):
+            model_from_dict(payload)
+
+    def test_validator_reports_malformed_runtime_objects_without_crashing(self):
+        malformed = SystemModel(
+            "model.example", "system.root", "view.system-context",
+            (Entity(None, None, None),),  # type: ignore[arg-type]
+        )
+        errors = validate_model(malformed)
+        self.assertTrue(any("id must be non-empty" in item for item in errors))
+        self.assertTrue(any("type must be non-empty" in item for item in errors))
+        self.assertTrue(any("name must be non-empty" in item for item in errors))
 
     def test_serialized_model_matches_json_schema(self):
         schema_path = Path(__file__).resolve().parents[1] / "schemas" / "umsf.schema.json"
