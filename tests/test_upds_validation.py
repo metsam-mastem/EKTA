@@ -1,10 +1,11 @@
 import json
+import sys
 import unittest
 from pathlib import Path
 
-from upds_validation import validate_records
-
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from upds_validation import validate_records  # noqa: E402
 
 
 class UPDSValidationTests(unittest.TestCase):
