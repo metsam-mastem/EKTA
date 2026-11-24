@@ -27,7 +27,7 @@ EKTA یک اطلس مهندسی رابطه‌مند، چندلایه و مبتن
 - [Cross-subsystem integration matrix](docs/ORCHESTRATION/INTEGRATION_MATRIX.md)
 - [Machine-readable workstream registry](orchestration/WORKSTREAMS.yml)
 
-The orchestration registry tracks nine open PR workstreams and the pinned GTC external integration. GTC source remains in its upstream repository under integrations/gtc; it is not copied or re-licensed. The registry does not approve or merge open PRs. Every subsystem remains isolated until exact-head CI, contract review, and owner approval.
+The orchestration registry tracks ten active product workstreams and the pinned GTC external integration. GTC source remains in its upstream repository under integrations/gtc; it is not copied or re-licensed. The registry does not approve or merge open PRs. Every subsystem remains isolated until exact-head CI, contract review, and owner approval.
 
 ## معرفی پروژه
 
