@@ -7,7 +7,8 @@ EKTA/
 ├── GOVERNANCE.md
 ├── CHANGELOG.md
 ├── LICENSE-STATUS.md
-├── docs/\n│   └── ORCHESTRATION/    # active workstreams and subsystem integration matrix
+├── docs/
+│   └── ORCHESTRATION/    # active workstreams and subsystem integration matrix
 │   ├── USER_DOCUMENTATION_INDEX.md
 │   ├── PROJECT_OVERVIEW.md
 │   ├── USER_SETUP.md
@@ -18,10 +19,12 @@ EKTA/
 │   ├── TROUBLESHOOTING.md
 │   ├── AGENT_ONBOARDING.md
 │   └── architecture, governance, continuity, roadmap, handoff
-├── orchestration/       # machine-readable parallel workstream registry\n├── taxonomy/             # 26 territories, 25 operational domains, layers, types, relations
+├── orchestration/       # machine-readable parallel workstream registry
+├── taxonomy/             # 26 territories, 25 operational domains, layers, types, relations
 ├── encyclopedia/         # canonical concepts and engineering knowledge
 ├── maps/                 # stack, domain, cross-layer and graph maps
-├── schemas/              # machine-readable data contracts\n│   └── workstream-registry.schema.json
+├── schemas/              # machine-readable data contracts
+│   └── workstream-registry.schema.json
 ├── research/             # literature and source assessment
 ├── references/           # standards, tools and primary-source indexes
 ├── decision-lab/         # RFCs and ADRs
@@ -32,7 +35,8 @@ EKTA/
 │   └── web/               # Persian RTL browser workbench
 ├── scripts/               # local launch scripts
 ├── templates/             # canonical record templates
-├── tools/                 # validators and graph builder\n│   └── validate_orchestration.py
+├── tools/                 # validators and graph builder
+│   └── validate_orchestration.py
 ├── tests/                 # runtime, workspace API and repository tests
 └── .github/workflows/     # CI gates
 ```
