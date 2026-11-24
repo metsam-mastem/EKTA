@@ -56,3 +56,11 @@ EKTA/
 
 ## Naming
 Use stable IDs in canonical filenames, e.g. EKTA-CON-000001-runtime.md. IDs are immutable and never recycled. Use lowercase kebab-case for scripts and assets. Do not silently rename a stable ID.
+
+## Collaboration engineering knowledge area
+
+- `encyclopedia/methods/EKTA-MTH-000001-collaboration-engineering.md` — collaboration engineering domain atlas and artifact taxonomy.
+- `references/COLLABORATION_STANDARDS_AND_SOURCES.md` — standards, methods, primary sources, and open-source evaluation candidates.
+- `templates/collaboration/` — charter, working agreement, RACI, meeting record, and partnership due-diligence templates.
+
+These files are proposed knowledge and reusable templates. Their presence does not imply certification, legal approval, complete source verification, or runtime support.

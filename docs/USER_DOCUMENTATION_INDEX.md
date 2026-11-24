@@ -20,6 +20,18 @@
 | رفع خطاهای رایج | [Troubleshooting](TROUBLESHOOTING.md) |
 | ادامه توسعه توسط انسان یا AI Agent | [Agent Onboarding](AGENT_ONBOARDING.md) |
 
+
+## دانش همکاری، تیم و سازمان
+
+| هدف | سند |
+|---|---|
+| شناخت مهندسی همکاری و انواع آن از فرد تا سازمان و اکوسیستم | [Collaboration Engineering Atlas](../encyclopedia/methods/EKTA-MTH-000001-collaboration-engineering.md) |
+| دسترسی به استانداردها، روش‌ها و منابع اولیه | [Collaboration Standards & Sources](../references/COLLABORATION_STANDARDS_AND_SOURCES.md) |
+| استفاده از قالب منشور همکاری، توافق تیمی، RACI و صورت‌جلسه | [Collaboration Templates](../templates/collaboration/README.md) |
+
+این مجموعه در وضعیت PROPOSED است؛ پیش از استفاده حقوقی یا استناد به وضعیت جاری استانداردها، بررسی مستقل و متناسب با حوزه قضایی لازم است.
+
+
 ## وضعیت قابلیت‌ها در Runtime 0.2 + Workspace 0.4
 
 | قابلیت | وضعیت |
