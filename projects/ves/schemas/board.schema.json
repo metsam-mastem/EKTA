@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ekta.example/projects/ves/schemas/board.schema.json",
+  "title": "VES Board",
+  "type": "object",
+  "required": ["id", "name", "board_type", "placements"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "board_type": {"type": "string", "minLength": 1},
+    "placements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["entity_id", "x", "y", "card_view"],
+        "properties": {
+          "entity_id": {"type": "string", "minLength": 1},
+          "x": {"type": "number"},
+          "y": {"type": "number"},
+          "card_view": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ekta.example/projects/ves/schemas/entity.schema.json",
+  "title": "VES Entity",
+  "type": "object",
+  "required": ["id", "type", "name", "properties", "tags", "status", "version", "created_at", "updated_at"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "type": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*\\.[a-z][a-z0-9_-]*$"},
+    "name": {"type": "string", "minLength": 1},
+    "properties": {"type": "object"},
+    "tags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "status": {"enum": ["draft", "proposed", "review", "verified", "deprecated"]},
+    "version": {"type": "integer", "minimum": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"}
+  },
+  "additionalProperties": false
+}
