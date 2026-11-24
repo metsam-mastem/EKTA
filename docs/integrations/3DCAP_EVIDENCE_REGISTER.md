@@ -54,3 +54,10 @@ Earlier run [45303631813](https://github.com/metsam-mastem/3DCAP/actions/runs/45
 **Calibration:** measure sensor-to-JPEG mapping with a calibration target and record reprojection error before exporting intrinsics to COLMAP.
 
 All claims refer to the exact source revision stated. This register is an EKTA audit snapshot, not a substitute for upstream CI.
+
+
+## EKTA current-pin validation
+
+The current EKTA integration head `242be3743d5312010ff320378700a384f8bd5217` passed [EKTA validation run 45308430619](https://github.com/metsam-mastem/EKTA/actions/runs/45308430619).
+
+The workflow completed recursive submodule checkout, pinned-project verification, documentation validation, EKTA unit/runtime tests, explorer HTML/JavaScript validation and typed knowledge-graph export. This run validates the EKTA-side connection to the current 3DCAP gitlink `001f2dc2cf6947244db89e640e39749ff07eceec`. It does not validate the Android app or real reconstruction.
