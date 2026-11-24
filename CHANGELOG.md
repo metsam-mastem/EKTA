@@ -54,3 +54,14 @@
 - Enforced the canonical `EKTA-CON-######` draft ID format and blocked collisions with existing canonical concept IDs.
 - Added metadata bounds, malformed YAML rejection, restore traversal regression coverage, and workspace UI JavaScript/structure validation.
 - Replaced HTML string interpolation in documentation listing and backup-link rendering with DOM text nodes.
+
+
+## 0.4.1 — UPDS and chat-independent continuity foundation (proposed branch)
+
+- Ported UPDS architecture, document universe, EKTA crosswalk, metadata standard, input/artifact model, runtime execution blueprint and implementation roadmap onto a clean branch based on current main.
+- Added base UPDS document JSON Schema, sample YAML record, validation primitives, repository validator and focused unit tests.
+- Added an UPDS CI validation step and push trigger for integration branches.
+- Added project state, active work, decisions, constraints, open issues, evidence and session handoff registers.
+- Added a structured conversation-context archive, continuity manifest, AI-agent onboarding contract and clean-clone/backup recovery runbook.
+- Connected the new architecture and continuity entry points from README and the Persian-first user documentation index.
+- This is a proposed integration branch; no merge to main or architecture approval is implied. Registry/API, full graph traceability, dashboard, project starter, clean-clone drill and backup restore remain outstanding.
