@@ -22,7 +22,12 @@ A collaboration system should enable participants to align on purpose and scope;
 - **Layers:** Mission/business/requirements; human/experience/interaction; workflow/orchestration/process; service/API/data; application/agent/domain logic; organizational context.
 - **Knowledge types:** method, framework, process, workflow, model, standard, specification, metric, playbook, checklist, evidence, decision.
 
-These are candidate mappings. Confirm exact canonical IDs against the YAML registries before publishing typed links.
+Validated against the current registries on 2026-11-24. Canonical IDs:
+- **Territories:** systems-engineering; workflow-process-engineering; project-engineering-development-management; documentation-standards-engineering-governance; product-engineering; ux-ui-human-machine-interaction; applied-interdisciplinary-engineering.
+- **Domains:** systems-engineering; workflow-process-engineering; product-project-engineering; human-factors-ux; documentation-standards-governance.
+- **Layers:** mission-requirements; human-experience; application-agent; workflow-orchestration; service-data.
+- **Knowledge type:** method (primary); related supporting types include framework, process, workflow, model, standard, specification, metric, playbook, checklist, evidence, and decision.
+Recheck these IDs whenever the canonical taxonomy changes.
 
 ## 4. Classification dimensions
 
@@ -185,16 +190,16 @@ Treat an AI agent as a bounded technical actor, not as an unaccountable employee
 
 ## 15. EKTA graph integration
 
-Candidate typed links:
-- RELATED_TO: collaboration engineering ↔ systems, workflow, project engineering, governance, human factors.
-- USES: collaboration system → communication and decision methods.
-- GOVERNED_BY: collaboration arrangement → policies, standards, contracts.
-- PART_OF: collaboration lifecycle → phases and operating model.
-- MEASURED_BY: collaboration performance → defined metrics.
-- VERIFIED_BY: deliverables and controls → acceptance tests and audit evidence.
-- IMPLEMENTS: organizational practice → selected framework or method.
+Use only currently registered predicates:
+- RELATED_TO: this knowledge area ↔ systems, workflow, project engineering, governance, and human factors.
+- USES: a collaboration practice → communication, facilitation, or decision method.
+- PART_OF: a collaboration lifecycle activity → lifecycle or operating model.
+- VERIFIED_BY: a deliverable or control → acceptance test or audit evidence.
+- IMPLEMENTS: an organizational practice → a selected method or framework.
+- DEFINED_BY: a term or policy → its governing definition record.
+- DERIVED_FROM: a practice record → its documented source or research record.
 
-Only use predicates present in taxonomy/relations.yml. Validate canonical identifiers; never invent IDs. If a predicate is missing, propose it through the normal taxonomy review process.
+The current registry does not contain GOVERNED_BY or MEASURED_BY; do not use those predicates. Add a new predicate only through a reviewed taxonomy change. Validate every node ID and source before publishing an edge.
 
 ## 16. Acceptance criteria
 
