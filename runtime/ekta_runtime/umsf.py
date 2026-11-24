@@ -1,6 +1,7 @@
 """Small, dependency-free semantic model validator for EKTA UMSF 0.1."""
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any, Iterable
@@ -25,9 +26,7 @@ class SemanticAddress:
         if isinstance(self.z_depth, bool) or not isinstance(self.z_depth, int) or self.z_depth < 0:
             errors.append("z_depth must be a non-negative integer")
         start = _parse_aware_datetime(self.valid_from, "valid_from", errors)
-        end = None
-        if self.valid_to is not None:
-            end = _parse_aware_datetime(self.valid_to, "valid_to", errors)
+        end = _parse_aware_datetime(self.valid_to, "valid_to", errors) if self.valid_to is not None else None
         if start is not None and end is not None and end <= start:
             errors.append("valid_to must be later than valid_from")
         return errors
@@ -58,9 +57,10 @@ class SystemModel:
     view_id: str
     entities: tuple[Entity, ...]
     relationships: tuple[Relationship, ...] = ()
+    provenance: tuple[dict[str, Any], ...] = ()
 
 
-def _parse_aware_datetime(value: str, field_name: str, errors: list[str]) -> datetime | None:
+def _parse_aware_datetime(value: Any, field_name: str, errors: list[str]) -> datetime | None:
     if not isinstance(value, str) or not value.strip():
         errors.append(f"{field_name} must be a non-empty ISO 8601 timestamp")
         return None
@@ -75,50 +75,70 @@ def _parse_aware_datetime(value: str, field_name: str, errors: list[str]) -> dat
     return parsed
 
 
+def _non_empty_string(value: Any) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+
 def validate_model(
     model: SystemModel,
     known_layer_ids: Iterable[str] | None = None,
     known_predicates: Iterable[str] | None = None,
 ) -> list[str]:
-    """Return deterministic validation errors; never mutate or promote source data."""
+    """Return deterministic validation errors; malformed input must not crash validation."""
+    if not isinstance(model, SystemModel):
+        return ["model must be a SystemModel instance"]
+
     errors: list[str] = []
-    if not model.model_id.strip():
-        errors.append("model_id must be non-empty")
-    if not model.root_entity_id.strip():
-        errors.append("root_entity_id must be non-empty")
-    if not model.view_id.strip():
-        errors.append("view_id must be non-empty")
+    for field_name in ("model_id", "root_entity_id", "view_id"):
+        if not _non_empty_string(getattr(model, field_name)):
+            errors.append(f"{field_name} must be non-empty")
 
     layer_ids = set(known_layer_ids) if known_layer_ids is not None else None
     predicates = set(known_predicates) if known_predicates is not None else None
+    if not isinstance(model.entities, tuple):
+        return errors + ["entities must be a tuple"]
     by_id: dict[str, Entity] = {}
-    for entity in model.entities:
-        if not entity.id.strip():
-            errors.append("entity id must be non-empty")
+    for index, entity in enumerate(model.entities):
+        if not isinstance(entity, Entity):
+            errors.append(f"entities[{index}] must be an Entity")
+            continue
+        if not _non_empty_string(entity.id):
+            errors.append(f"entities[{index}].id must be non-empty")
             continue
         if entity.id in by_id:
             errors.append(f"duplicate entity id: {entity.id}")
         else:
             by_id[entity.id] = entity
-        if not entity.type.strip():
+        if not _non_empty_string(entity.type):
             errors.append(f"{entity.id}: type must be non-empty")
-        if not entity.name.strip():
+        if not _non_empty_string(entity.name):
             errors.append(f"{entity.id}: name must be non-empty")
-        for index, address in enumerate(entity.addresses):
+        if not isinstance(entity.addresses, tuple):
+            errors.append(f"{entity.id}: addresses must be a tuple")
+            continue
+        for address_index, address in enumerate(entity.addresses):
+            if not isinstance(address, SemanticAddress):
+                errors.append(f"{entity.id}: address[{address_index}] must be a SemanticAddress")
+                continue
             for problem in address.validate():
-                errors.append(f"{entity.id}: address[{index}]: {problem}")
-            if layer_ids is not None and address.x_layer_id not in layer_ids:
+                errors.append(f"{entity.id}: address[{address_index}]: {problem}")
+            if layer_ids is not None and _non_empty_string(address.x_layer_id) and address.x_layer_id not in layer_ids:
                 errors.append(f"{entity.id}: unknown layer id: {address.x_layer_id}")
 
-    if model.root_entity_id not in by_id:
+    if _non_empty_string(model.root_entity_id) and model.root_entity_id not in by_id:
         errors.append(f"root entity not found: {model.root_entity_id}")
 
+    if not isinstance(model.relationships, tuple):
+        return errors + ["relationships must be a tuple"]
     for index, relation in enumerate(model.relationships):
+        if not isinstance(relation, Relationship):
+            errors.append(f"relationships[{index}] must be a Relationship")
+            continue
         if relation.source_id not in by_id:
             errors.append(f"relationship[{index}]: source not found: {relation.source_id}")
         if relation.target_id not in by_id:
             errors.append(f"relationship[{index}]: target not found: {relation.target_id}")
-        if not relation.predicate.strip():
+        if not _non_empty_string(relation.predicate):
             errors.append(f"relationship[{index}]: predicate must be non-empty")
         elif predicates is not None and relation.predicate not in predicates:
             errors.append(f"relationship[{index}]: unknown predicate: {relation.predicate}")
@@ -127,6 +147,8 @@ def validate_model(
 
 def model_to_dict(model: SystemModel) -> dict[str, Any]:
     """Serialize the model into the UMSF 0.1 JSON-compatible shape."""
+    if not isinstance(model, SystemModel):
+        raise TypeError("model must be a SystemModel instance")
     return {
         "schema_version": "0.1.0",
         "model_id": model.model_id,
@@ -161,5 +183,67 @@ def model_to_dict(model: SystemModel) -> dict[str, Any]:
             }
             for edge in model.relationships
         ],
-        "provenance": [],
+        "provenance": [dict(item) for item in model.provenance],
     }
+
+
+def model_from_dict(data: Mapping[str, Any]) -> SystemModel:
+    """Parse a UMSF JSON-compatible mapping without discarding provenance."""
+    if not isinstance(data, Mapping):
+        raise TypeError("UMSF model data must be a mapping")
+    if data.get("schema_version") != "0.1.0":
+        raise ValueError("unsupported UMSF schema_version; expected 0.1.0")
+    for key in ("model_id", "root_entity_id", "view_id", "entities", "relationships"):
+        if key not in data:
+            raise ValueError(f"missing required UMSF field: {key}")
+    if not all(_non_empty_string(data[key]) for key in ("model_id", "root_entity_id", "view_id")):
+        raise ValueError("model_id, root_entity_id, and view_id must be non-empty strings")
+    if not isinstance(data["entities"], list) or not isinstance(data["relationships"], list):
+        raise ValueError("entities and relationships must be arrays")
+
+    entities: list[Entity] = []
+    for index, item in enumerate(data["entities"]):
+        if not isinstance(item, Mapping):
+            raise ValueError(f"entities[{index}] must be an object")
+        for key in ("id", "type", "name", "addresses"):
+            if key not in item:
+                raise ValueError(f"entities[{index}] is missing {key}")
+        if not all(_non_empty_string(item[key]) for key in ("id", "type", "name")):
+            raise ValueError(f"entities[{index}] id, type, and name must be non-empty strings")
+        if not isinstance(item["addresses"], list):
+            raise ValueError(f"entities[{index}].addresses must be an array")
+        addresses: list[SemanticAddress] = []
+        for address_index, raw in enumerate(item["addresses"]):
+            if not isinstance(raw, Mapping):
+                raise ValueError(f"entities[{index}].addresses[{address_index}] must be an object")
+            for key in ("x_layer_id", "y_module_id", "z_depth", "valid_from"):
+                if key not in raw:
+                    raise ValueError(f"entities[{index}].addresses[{address_index}] is missing {key}")
+            addresses.append(SemanticAddress(
+                raw["x_layer_id"], raw["y_module_id"], raw["z_depth"],
+                raw["valid_from"], raw.get("valid_to"),
+            ))
+        metadata = item.get("metadata", {})
+        if not isinstance(metadata, Mapping):
+            raise ValueError(f"entities[{index}].metadata must be an object")
+        entities.append(Entity(item["id"], item["type"], item["name"], tuple(addresses), dict(metadata)))
+
+    relationships: list[Relationship] = []
+    for index, item in enumerate(data["relationships"]):
+        if not isinstance(item, Mapping):
+            raise ValueError(f"relationships[{index}] must be an object")
+        for key in ("source_id", "predicate", "target_id"):
+            if key not in item:
+                raise ValueError(f"relationships[{index}] is missing {key}")
+        relationships.append(Relationship(
+            item["source_id"], item["predicate"], item["target_id"],
+            item.get("context"), item.get("status", "PROPOSED"),
+        ))
+
+    provenance = data.get("provenance", [])
+    if not isinstance(provenance, list) or any(not isinstance(item, Mapping) for item in provenance):
+        raise ValueError("provenance must be an array of objects")
+    return SystemModel(
+        data["model_id"], data["root_entity_id"], data["view_id"],
+        tuple(entities), tuple(relationships), tuple(dict(item) for item in provenance),
+    )
