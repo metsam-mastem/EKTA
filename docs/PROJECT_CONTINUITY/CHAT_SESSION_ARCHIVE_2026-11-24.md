@@ -161,3 +161,8 @@ The complete CI run 45304968576 passed on commit `1c06074a8d31b87602b4426cb70640
 Added `tools/validate_continuity.py` and `tests/test_continuity.py`. The validator checks that required canonical handoff documents exist, the continuity manifest parses, archive and manifest paths resolve safely within the repository, canonical entry points exist, and `recovery.clean_clone_required` is true. The CI workflow now runs this validator as a separate gate.
 
 The first run exposed malformed YAML caused by literal escaped newline characters in the manifest. The failure was inspected from the GitHub Actions log, the manifest was corrected, and run 45305319405 passed on exact commit `8453a2d179490969a5b2262c8d8e34ba957d3d5c`. This verifies structural continuity checks; it does not replace the still-pending human clean-clone recovery and independent backup-restore drills.
+
+
+## 17. Final manifest correction — 2026-11-24
+
+After the successful run 45305319405, a later edit to the continuity manifest introduced duplicate keys and incorrect indentation. CI run 45305440281 exposed that error. The manifest was then rewritten as a clean YAML document in commit `7577f43f20de2ec166257a79cc2a238fea79c470`. Its contents were parsed successfully with PyYAML in the current work session, but no GitHub Actions pass has yet been observed for that exact commit. The manifest correctly marks the latest head as requiring re-verification. Do not claim the latest branch head is fully CI-verified until a run passes on it.
