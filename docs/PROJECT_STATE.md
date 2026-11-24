@@ -14,32 +14,32 @@ Current documented baseline: Runtime 0.2 + Operational Workspace 0.4. Workspace 
 ## UPDS integration
 UPDS is proposed as a bounded, cross-cutting, separable subsystem for project-scoped documents, requirements, decisions, architecture records, risks/changes, evidence, configuration, traceability and durable project memory.
 - Architecture/catalog/crosswalk/roadmap/input model/runtime blueprint: DOCUMENTED.
-- Base JSON Schema, sample record, validator and tests: IMPLEMENTED.
-- Read-only repository Document Registry (list/get) and GET API endpoints: IMPLEMENTED and VERIFIED by CI on exact SHA below.
+- Base JSON Schema, sample record, validator and tests: VERIFIED.
+- Read-only repository Document Registry (list/get) and GET API endpoints: VERIFIED.
+- Chat-independent continuity manifest validator and tests: VERIFIED.
 - Registry write/update lifecycle, audit history, full graph traceability, dashboard and project starter: NOT IMPLEMENTED.
-- Clean-clone recovery and independent backup restore: NOT RUN.
+- Clean-clone human recovery and independent backup restore: NOT RUN.
 - Integration ADR: PROPOSED; owner review required.
 
 ## Branch and PR status
 - Old branch integration/upds-documentation-architecture: diverged 57 ahead / 35 behind main at comparison; do not merge.
 - Old PR #3: CLOSED, NOT MERGED; superseded by PR #23. Old branch/history preserved.
-- New branch integration/upds-independent-continuity: based on main; last compare 68 commits ahead, 0 behind.
+- New branch integration/upds-independent-continuity: created from main and remained based on main in the latest comparison.
 - PR #23: OPEN, DRAFT, not merged.
 - PR #4 user docs: CLOSED; Persian-first docs are present in main and linked from this branch.
-- Other EKTA proposal streams remain separate; inspect live status before action.
+- Other EKTA proposal streams remain separate; inspect their live status before action.
 
 ## Verification evidence
-GitHub Actions run 45304968576 completed SUCCESS on exact commit 1c06074a8d31b87602b4426cb70640a8b26571aa. Passed: dependency installation, documentation/link validation, UPDS record validation, full unittest discovery (including registry/API tests), frontend validation and typed graph export.
-Run 45304878493 also passed on 491fdca28995837e69c7f0403bd2da0a2db57d7b after correcting the sample-title assertion.
-An earlier run 45304839153 failed only because two test assertions used an outdated sample title; the failure was diagnosed from logs and corrected. The later successful runs supersede that failed run.
-These results apply only to their exact SHAs.
+GitHub Actions run 45305319405 completed SUCCESS on exact commit 8453a2d179490969a5b2262c8d8e34ba957d3d5c. Passed: dependency installation, documentation/link validation, UPDS record validation, chat-independent continuity manifest validation, full unittest discovery (including registry and continuity tests), frontend validation and typed graph export.
+Run 45304968576 also passed on exact commit 1c06074a8d31b87602b4426cb70640a8b26571aa, verifying the registry slice before the continuity validator was added.
+Run 45305226654 failed because the continuity manifest contained literal escaped newlines; this was diagnosed from logs, corrected, and superseded by the successful run above.
 
 ## Constraints
 Do not merge PR #23 or promote ADR-0003 without explicit owner approval. Do not alter license/taxonomy silently, add hosted dependencies without ADR, merge unrelated projects, delete canonical content or claim unverified behavior. Use TDD for code changes.
 
 ## Next actions
 1. Review proposed EKTA-ADR-0003.
-2. Run clean-clone recovery without chat.
+2. Run clean-clone human recovery without chat.
 3. Create a portable backup, checksum it, restore to a new directory and rerun validation.
 4. Design controlled draft/write/revision lifecycle with TDD.
 5. Implement typed traceability vertical slice.
