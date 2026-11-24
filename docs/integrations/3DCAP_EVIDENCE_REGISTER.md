@@ -64,3 +64,16 @@ The workflow completed recursive submodule checkout, pinned-project verification
 
 
 The evidence-register update itself was validated by [EKTA run 45308528055](https://github.com/metsam-mastem/EKTA/actions/runs/45308528055) on commit `21e6ba8654b1d45eb58f60018f2386cff2d0e31b`: recursive submodule checkout, exact pin verification, documentation, unit/runtime tests, frontend checks and graph export all **PASS**.
+
+
+## 3DCAP current-head CI progress
+
+Run [45308358035](https://github.com/metsam-mastem/3DCAP/actions/runs/45308358035) on current pinned source `001f2dc2cf6947244db89e640e39749ff07eceec`:
+- Windows PowerShell 5.1 parse: PASS.
+- PowerShell 7 parse: PASS.
+- Android unit tests: PASS.
+- Android Lint: PASS after the AndroidX opt-in annotation correction.
+- Debug APK build: IN_PROGRESS at the last observation.
+- Artifact upload: pending.
+
+This is partial CI evidence. Do not claim a complete Android build or downloadable APK until the workflow and artifact-upload step both finish successfully.
