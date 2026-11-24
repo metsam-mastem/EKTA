@@ -61,3 +61,6 @@ All claims refer to the exact source revision stated. This register is an EKTA a
 The current EKTA integration head `242be3743d5312010ff320378700a384f8bd5217` passed [EKTA validation run 45308430619](https://github.com/metsam-mastem/EKTA/actions/runs/45308430619).
 
 The workflow completed recursive submodule checkout, pinned-project verification, documentation validation, EKTA unit/runtime tests, explorer HTML/JavaScript validation and typed knowledge-graph export. This run validates the EKTA-side connection to the current 3DCAP gitlink `001f2dc2cf6947244db89e640e39749ff07eceec`. It does not validate the Android app or real reconstruction.
+
+
+The evidence-register update itself was validated by [EKTA run 45308528055](https://github.com/metsam-mastem/EKTA/actions/runs/45308528055) on commit `21e6ba8654b1d45eb58f60018f2386cff2d0e31b`: recursive submodule checkout, exact pin verification, documentation, unit/runtime tests, frontend checks and graph export all **PASS**.
