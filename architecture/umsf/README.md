@@ -66,8 +66,8 @@ UMSF v0.1 is a data contract and a small pure-Python validation core. It does no
 - [RESEARCH_REGISTER.md](RESEARCH_REGISTER.md) — standards and open technical foundations.
 - [ADR-0001-coordinate-semantics.md](ADR-0001-coordinate-semantics.md) — key architectural decision.
 - [../../schemas/umsf.schema.json](../../schemas/umsf.schema.json) — JSON Schema.
-- [../../runtime/ekta_runtime/umsf.py](../../runtime/ekta_runtime/umsf.py) — validation core.
-- [../../tests/test_umsf.py](../../tests/test_umsf.py) — unit tests.
+- [../../runtime/ekta_runtime/umsf.py](../../runtime/ekta_runtime/umsf.py) — validation core and JSON-compatible import/export.
+- [../../tests/test_umsf.py](../../tests/test_umsf.py) — unit tests, round-trip, provenance, and malformed-input regression coverage.
 
 ## Status discipline
 
