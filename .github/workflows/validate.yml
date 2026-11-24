@@ -2,7 +2,7 @@ name: EKTA validation
 
 on:
   push:
-    branches: [main, "runtime/**", "workbench/**", "knowledge/**", "taxonomy/**", "docs/**"]
+    branches: [main, "runtime/**", "workbench/**", "knowledge/**", "taxonomy/**", "docs/**", "project/**"]
   pull_request:
   workflow_dispatch:
 
@@ -23,5 +23,7 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Validate explorer HTML and JavaScript
         run: python tools/validate_frontend.py
+      - name: Validate VEL models
+        run: python tools/validate_vel.py
       - name: Export typed knowledge graph
         run: python tools/build_graph.py
