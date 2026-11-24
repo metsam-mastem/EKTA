@@ -56,3 +56,26 @@ class MathematicalObjectTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class MathematicalSchemaTests(unittest.TestCase):
+    def test_umo_schema_is_valid_and_example_conforms(self):
+        import json
+        from pathlib import Path
+        import jsonschema
+
+        root = Path(__file__).resolve().parents[1]
+        schema = json.loads((root / "schemas" / "mathematical-object.schema.json").read_text(encoding="utf-8"))
+        instance = json.loads((root / "examples" / "mathematical-universe" / "quadratic-function.umo.json").read_text(encoding="utf-8"))
+        jsonschema.Draft202012Validator.check_schema(schema)
+        validator = jsonschema.Draft202012Validator(schema, format_checker=jsonschema.FormatChecker())
+        self.assertEqual(list(validator.iter_errors(instance)), [])
+
+    def test_coordinate_frame_schema_is_valid(self):
+        import json
+        from pathlib import Path
+        import jsonschema
+
+        root = Path(__file__).resolve().parents[1]
+        schema = json.loads((root / "schemas" / "coordinate-frame.schema.json").read_text(encoding="utf-8"))
+        jsonschema.Draft202012Validator.check_schema(schema)
