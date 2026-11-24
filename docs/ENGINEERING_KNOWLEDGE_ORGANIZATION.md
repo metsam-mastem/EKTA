@@ -6,7 +6,7 @@ Status: PROPOSED. Scope: a cross-domain organization view for EKTA, not a replac
 
 EKTA's canonical classification remains 26 Engineering Territories for navigation and portfolio coverage, 25 Operational Domains for granular tagging, 10 Engineering Layers, 30 Knowledge Types, and controlled relationship predicates.
 
-The 14 macro-areas below are a crosswalk for organizing material. They are not new territories, exclusive disciplines, or mutually exclusive project phases. Their machine-readable mappings are in taxonomy/ENGINEERING_ORGANIZATION_VIEW.json.
+The 14 macro-areas below are a crosswalk for organizing material. They are not new territories, exclusive disciplines, or mutually exclusive project phases. Their machine-readable mappings are in ../taxonomy/ENGINEERING_ORGANIZATION_VIEW.json.
 
 ## 2. Fourteen macro-areas
 
