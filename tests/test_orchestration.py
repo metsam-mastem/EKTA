@@ -15,6 +15,18 @@ class OrchestrationRegistryTests(unittest.TestCase):
     def test_current_registry_is_valid(self):
         self.assertEqual(validate_registry(), [])
 
+    def test_gtc_integration_is_pinned_and_registered(self):
+        registry = yaml.safe_load((ROOT / "orchestration" / "WORKSTREAMS.yml").read_text(encoding="utf-8"))
+        integration = next(item for item in registry["integrations"] if item["id"] == "INT-GTC")
+        self.assertEqual(integration["status"], "PINNED")
+        self.assertEqual(integration["pinned_commit"], "2f0229bd622de4e9ce22196e57fb986659dc7934")
+
+    def test_archive_collision_is_explicitly_blocked(self):
+        registry = yaml.safe_load((ROOT / "orchestration" / "WORKSTREAMS.yml").read_text(encoding="utf-8"))
+        archive = next(item for item in registry["workstreams"] if item["id"] == "WS-ARCHIVE")
+        self.assertEqual(archive["status"], "BLOCKED")
+        self.assertIn("000008 collision", archive["evidence"])
+
     def test_duplicate_workstream_id_is_rejected(self):
         registry = yaml.safe_load((ROOT / "orchestration" / "WORKSTREAMS.yml").read_text(encoding="utf-8"))
         registry["workstreams"][1]["id"] = registry["workstreams"][0]["id"]
