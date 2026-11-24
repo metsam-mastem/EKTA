@@ -2,35 +2,32 @@
 **Snapshot:** 2026-11-24  
 **Repository:** https://github.com/metsam-mastem/EKTA  
 **Working branch:** integration/upds-independent-continuity  
+**Replacement PR:** https://github.com/metsam-mastem/EKTA/pull/23  
 **Branch origin:** main at 7ea271e00ef2cb010c17bdaa553e1f27645f12ca
 
 ## Objective
-Preserve the complete available project context from this chat in EKTA, port UPDS architecture and validation assets onto the current mainline, and make future work independent of ChatGPT conversation history.
+Preserve the available context from this conversation in EKTA, port UPDS onto current mainline, and make continuation independent of chat history.
 
-## Changes on this branch
-- UPDS integration architecture, document universe, crosswalk, template standard, input/artifact model, runtime blueprint, roadmap and project memory protocol.
-- Base JSON Schema, sample YAML record, validation module, repository validator and unit tests.
-- Project state, active work, decision, constraint, issue, evidence and session handoff registers.
-- Chat session archive, continuity manifest, agent onboarding and recovery runbook.
-- README, user documentation index, repository map and CI workflow links/validation integration.
+## Branch contents
+UPDS architecture/catalog/crosswalk/template standard/input model/runtime blueprint/roadmap/memory protocol; JSON Schema, sample record, validator, repository validation CLI and tests; project state/decision/work/constraint/issue/evidence/handoff registers; chat archive, manifest, agent onboarding, recovery runbook and orchestration plan; README/user index/repository map/context continuity/master handoff/changelog/CI links.
 
-## Branch history and stale work
-The former branch integration/upds-documentation-architecture diverged from current main (57 commits ahead, 35 behind at 2026-11-24 comparison). Do not merge it as-is. PR #3 remains open and is to be superseded after this clean port is published. Its history is preserved.
+## Superseded work
+Old branch `integration/upds-documentation-architecture` diverged from main (57 ahead / 35 behind at comparison). PR #3 is now CLOSED, NOT MERGED, and points to replacement PR #23. The old branch is preserved; do not resume it as the active integration path.
 
 ## Verification
-No CI result is yet recorded for the latest head of this branch. The historical run 45124354424 passed only at d7b1fed9e52ba10a792ab18bbfd7fae6dc44e781 and does not validate this branch. Clean-clone recovery and backup restore remain NOT RUN.
+CI run 45304523297 passed on exact commit 11ac9b7689b366299e7856a814cae289c63b4e24: dependency installation, docs/link validation, UPDS validation, unittest suite, frontend validation and graph export. Later docs/orchestration commits are outside that tested SHA. Latest PR #23 head CI remains NOT VERIFIED. Clean-clone recovery and independent backup restore remain NOT RUN.
 
 ## Next actions
-1. Inspect latest branch commit and GitHub Actions workflow result.
-2. Fix any CI failures; verify docs links, schema, validator and full test suite.
-3. Open a replacement PR from this branch to main and mark PR #3 as superseded.
-4. Review EKTA-ADR-0003 with the owner; do not merge before approval.
-5. Run clean-clone recovery from the new branch without access to chat.
-6. Produce a portable archive, checksum it, restore to a new directory and rerun validation.
-7. Implement registry service/API and traceability vertical slice with TDD.
+1. Inspect PR #23 latest head SHA and its Actions result.
+2. Fix any CI failures and record exact passing SHA.
+3. Review EKTA-ADR-0003 with the owner; no merge before approval.
+4. Execute clean-clone recovery without chat.
+5. Create an independent archive, compute SHA-256, restore into a new directory and rerun checks.
+6. Implement registry service/API with TDD.
+7. Implement typed traceability, then dashboard and project starter.
 
-## Resume order
-README → USER_DOCUMENTATION_INDEX → CONTEXT_CONTINUITY → MASTER_HANDOFF → PROJECT_STATE → UPDS_INTEGRATION_INDEX → CHAT_SESSION_ARCHIVE → AGENT_ONBOARDING → ACTIVE_WORK → DECISION_REGISTER → CONSTRAINTS_AND_ASSUMPTIONS → OPEN_ISSUES → EVIDENCE_INDEX → SESSION_HANDOFF → relevant code/tests/CI.
+## Recovery reading order
+README → USER_DOCUMENTATION_INDEX → CONTEXT_CONTINUITY → MASTER_HANDOFF → PROJECT_STATE → INTEGRATION/UPDS_INTEGRATION_INDEX → PROJECT_CONTINUITY/CHAT_SESSION_ARCHIVE → AGENT_ONBOARDING → ORCHESTRATION_PLAN → ACTIVE_WORK → DECISION_REGISTER → CONSTRAINTS_AND_ASSUMPTIONS → OPEN_ISSUES → EVIDENCE_INDEX → SESSION_HANDOFF → relevant code/tests/CI.
 
-## Explicit limitations
-The archive is a structured summary of available context, not a verbatim ChatGPT transcript. UPDS registry/API, full graph traceability, dashboard and project starter are not implemented. No clean-clone or backup restore test is claimed.
+## Fidelity and limits
+The conversation archive is a structured summary of available context, not a verbatim raw ChatGPT transcript. Registry/API, full traceability, dashboard and starter generator are not implemented. No clean-clone or backup restore pass is claimed.
