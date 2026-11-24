@@ -14,3 +14,6 @@
 12. **External standards:** verify edition/status/rights before asserting conformance.
 13. **Archive fidelity:** session archive is a structured context summary, not a verbatim raw ChatGPT transcript.
 14. **PR status:** PR #23 remains draft and unmerged pending review; old PR #3 is closed, not merged.
+
+
+15. **Latest manifest CI:** corrected manifest at commit `7577f43f20de2ec166257a79cc2a238fea79c470` parses as YAML, but no full CI pass has been observed on that exact head after the prior manifest-format failure.
