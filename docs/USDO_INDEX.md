@@ -14,6 +14,7 @@ USDO is a cross-domain descriptive model for representing an entity or system th
 - [Entity template](../templates/USDO_ENTITY_TEMPLATE.yml)
 - [Validator](../tools/validate_usdo.py)
 - [Tests](../tests/test_usdo.py)
+- [Parallel development orchestration](../workflows/USDO_ORCHESTRATION.md)
 
 ## Design contract
 
