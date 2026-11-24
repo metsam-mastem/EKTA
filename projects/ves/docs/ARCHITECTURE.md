@@ -8,7 +8,7 @@ The canonical model is the source of truth. A card is a view of an entity; a pla
 ## Logical layers
 1. Platform runtime — browser, desktop shell, Android shell and local filesystem.
 2. Integration — importers, exporters, external-tool adapters and plugin contracts.
-3. Storage/versioning — local project package, SQLite index, assets and optional Git snapshots.
+3. Storage/versioning — SQLite local store, versioned JSON interchange, asset files and optional Git snapshots.
 4. Engineering services — validation, traceability, compatibility, search and provenance.
 5. Domain engines — systems, software, hardware, electronics, data, network, process and materials.
 6. Language adapters — SysML v2/KerML, UML, C4, BPMN, ERD, OpenAPI, EDA/HDL.
@@ -17,10 +17,7 @@ The canonical model is the source of truth. A card is a view of an entity; a pla
 9. Experience — workspace, boards, cards, decks, gallery, forms and reports.
 
 ## v0.1 implementation
-The domain core is a Python standard-library module. The visual proof-of-concept is a dependency-free browser app. A later production client may adopt React + TypeScript, XYFlow, a schema-driven form engine and desktop/mobile shells. These are replaceable adapters, not domain dependencies.
-
-## Storage evolution
-v0.1: versioned JSON interchange and in-memory model; browser demo uses localStorage for disposable demo state. v0.2 candidate: SQLite-backed local project store and asset directory. Git is an optional reviewable history mechanism, not a live database. PostgreSQL is considered only for an explicit multi-user requirement.
+The domain core is a Python standard-library module. SQLite provides initial local persistence with transactional writes and optional optimistic revision checks. The visual proof-of-concept is a dependency-free browser app using localStorage for its demo state. A later production client may adopt React + TypeScript, XYFlow, a schema-driven form engine and desktop/mobile shells. These are replaceable adapters, not domain dependencies.
 
 ## Integration boundaries
 - EKTA integration is knowledge registration and taxonomy crosswalk, not a runtime dependency.
