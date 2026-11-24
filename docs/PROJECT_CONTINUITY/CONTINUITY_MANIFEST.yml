@@ -6,6 +6,11 @@ canonical_repository: "https://github.com/metsam-mastem/EKTA"
 default_branch: "main"
 integration_branch: "integration/upds-independent-continuity"
 replacement_pull_request: 23
+replacement_pull_request_url: "https://github.com/metsam-mastem/EKTA/pull/23"
+superseded_pull_request_state: "closed_not_merged"
+last_verified_ci_run: 45304523297
+last_verified_ci_sha: "11ac9b7689b366299e7856a814cae289c63b4e24"
+latest_head_ci: "NOT_VERIFIED"
 superseded_pull_request: 3
 archive:
   path: "docs/PROJECT_CONTINUITY/CHAT_SESSION_ARCHIVE_2026-11-24.md"
