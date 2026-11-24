@@ -25,7 +25,8 @@ class OrchestrationRegistryTests(unittest.TestCase):
         registry = yaml.safe_load((ROOT / "orchestration" / "WORKSTREAMS.yml").read_text(encoding="utf-8"))
         archive = next(item for item in registry["workstreams"] if item["id"] == "WS-ARCHIVE")
         self.assertEqual(archive["status"], "BLOCKED")
-        self.assertIn("000008 collision", archive["evidence"])
+        self.assertIn("EKTA-CON-000008", archive["evidence"])
+        self.assertIn("Operating System", archive["evidence"])
 
     def test_duplicate_workstream_id_is_rejected(self):
         registry = yaml.safe_load((ROOT / "orchestration" / "WORKSTREAMS.yml").read_text(encoding="utf-8"))
