@@ -32,7 +32,7 @@ class VELModelTests(unittest.TestCase):
 
     def test_invalid_source_direction_is_reported(self):
         model = json.loads(json.dumps(self.model))
-        model["connections"][0]["source"]["port_id"] = "request-in"
+        model["nodes"][0]["ports"][0]["direction"] = "IN"
         codes = {item["code"] for item in validate_model(model)}
         self.assertIn("SOURCE_DIRECTION", codes)
 
