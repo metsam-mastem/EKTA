@@ -80,3 +80,13 @@ The example is illustrative and does not claim that its sample IDs exist in EKTA
 ## Example coordinate interpretation
 
 `(application-agent, EKTA-EXAMPLE-MODULE-0001, 1, 2026-01-01T00:00:00Z…)` means: in this declared view, this module is assigned to the application/agent architectural layer, identified by its stable module ID, appears at decomposition depth 1 relative to the declared root, and is valid from the given time. It does not mean the module is one physical unit away or has one universal complexity level.
+
+
+## Python import/export behavior (implemented in this branch)
+
+- `model_from_dict` parses the 0.1.0 JSON-compatible mapping into typed immutable model records.
+- `model_to_dict` exports the same model shape and preserves provenance entries.
+- Optional relationship context is omitted when absent, matching the JSON Schema optional-string contract.
+- Import rejects unsupported schema versions, missing required fields, invalid nested container types, and malformed provenance containers.
+- Structural parsing is not semantic approval. Call `validate_model` with the known layer and predicate registries before using the imported model.
+- Round-trip equivalence and malformed-input behavior are covered by unit tests.
