@@ -408,3 +408,8 @@ Multiple words are AND-matched. Query fields can be combined, for example:
 ### Taxonomy clarification
 
 EKTA now separates **26 top-level Engineering Territories** from **25 operational domain tags**. Territories are the navigation/portfolio layer; operational domains are more granular classification values. The explicit mapping is in [taxonomy/territories.yml](taxonomy/territories.yml), and domain identifiers remain in [taxonomy/domains.yml](taxonomy/domains.yml). This removes the earlier 22-vs-26 ambiguity without treating the two lists as interchangeable.
+
+
+## Visual Engineering Language (VEL)
+
+EKTA includes the VEL subproject: a visual engineering language for modeling systems through typed cards, ports, connections, groups, and evidence. See [VEL overview](projects/vel/README.md), [specification](projects/vel/SPECIFICATION.md), and [EKTA integration boundary](docs/VEL_INTEGRATION.md). VEL is a model/interchange layer; it does not replace EKTA's canonical knowledge records.

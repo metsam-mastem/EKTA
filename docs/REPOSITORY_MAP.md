@@ -2,6 +2,7 @@
 
 ```text
 EKTA/
+├── projects/vel/         # Visual Engineering Language specification, examples, and research
 ├── README.md
 ├── CONTRIBUTING.md
 ├── GOVERNANCE.md
@@ -56,3 +57,11 @@ EKTA/
 
 ## Naming
 Use stable IDs in canonical filenames, e.g. EKTA-CON-000001-runtime.md. IDs are immutable and never recycled. Use lowercase kebab-case for scripts and assets. Do not silently rename a stable ID.
+
+## VEL files
+- projects/vel: VEL specification, card catalog, research register, roadmap, and example models.
+- schemas/vel-model.schema.json: machine-readable VEL model contract.
+- runtime/ekta_runtime/vel.py: local semantic validator and DOT exporter.
+- tests/test_vel.py: VEL conformance and regression tests.
+- tools/validate_vel.py: schema and semantic validation command.
+- docs/VEL_INTEGRATION.md: boundary and integration policy between EKTA and VEL.
