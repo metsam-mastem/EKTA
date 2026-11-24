@@ -86,3 +86,11 @@ Approved repository artifacts > accepted ADRs > verified sources and test eviden
 - The UPDS branch is 57 commits ahead / 35 behind; it must be reconciled rather than merged directly.
 - Several PR branches are one commit behind main; exact-head CI must be rerun after rebasing.
 - No unattended background process is active. GitHub registry, PRs, and Actions are durable continuation state.
+
+
+## GTC integration and archive identity conflict — 2026-11-24
+
+- EKTA main commit `7ea271e00ef2cb010c17bdaa553e1f27645f12ca` pins GTC at `integrations/gtc`, upstream commit `2f0229bd622de4e9ce22196e57fb986659dc7934`.
+- Integration audit: `docs/integrations/GTC_INTEGRATION.md`; canonical Hardware Knowledge Atlas record: `encyclopedia/concepts/EKTA-CON-000008-hardware-knowledge-atlas.md`.
+- PR #7 stages Operating System under the same ID `EKTA-CON-000008`. This is a confirmed collision; archive intake is BLOCKED pending owner-approved immutable ID correction. Do not promote the staged record or transfer the remaining 14 records until manifest and hash/provenance mapping are reconciled.
+- Machine-readable orchestration tracks the GTC pin and archive block in `orchestration/WORKSTREAMS.yml`.
