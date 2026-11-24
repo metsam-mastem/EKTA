@@ -4,10 +4,34 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from fastapi.testclient import TestClient
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "runtime"))
 
+from ekta_runtime.api import app  # noqa: E402
 from ekta_runtime.upds_registry import DocumentRegistry, RegistryError  # noqa: E402
+
+
+class UPDSRegistryApiTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.client = TestClient(app)
+
+    def test_api_lists_validated_upds_documents(self):
+        response = self.client.get("/api/v1/upds/documents")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["count"], 1)
+        self.assertEqual(response.json()["items"][0]["id"], "EKTA-DOC-000001")
+
+    def test_api_gets_document_by_id(self):
+        response = self.client.get("/api/v1/upds/documents/EKTA-DOC-000001")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["title"], "UPDS document universe")
+
+    def test_api_returns_404_for_unknown_document(self):
+        response = self.client.get("/api/v1/upds/documents/EKTA-DOC-999999")
+        self.assertEqual(response.status_code, 404)
 
 
 class UPDSRegistryTests(unittest.TestCase):
