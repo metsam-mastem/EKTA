@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "title": "Universal Engineering Organization View",
+  "status": "PROPOSED",
+  "purpose": "Crosswalk view organizing the 2021 handwritten note and a later 14-area synthesis against EKTA's canonical 26 engineering territories. This is not a replacement taxonomy axis.",
+  "source_note": "The handwritten note is dated 2021-05-19. Legible terms include SDK, LIB, IDL, JDK, Programming Language, Library, Framework, Documents, Manual (User Manual), Guide (Maintenance/Developer/User), Plan (Executive/Technical/Financial/Management), Project (Management/Execution/Architecture/Pyramid), and Structure/Architecture. Lower-page Persian handwriting is partially ambiguous.",
+  "classification_policy": {
+    "canonical_axes": [
+      "territory",
+      "domain",
+      "layer",
+      "knowledge_type"
+    ],
+    "macro_view_role": "crosswalk_only",
+    "no_new_territory_ids": true,
+    "no_inferred_domain_membership": true,
+    "ambiguous_terms": "retain_as_candidate_until_reviewed"
+  },
+  "macro_areas": [
+    {
+      "id": "foundations",
+      "label": "Foundations and Engineering Sciences",
+      "persian": "مبانی و علوم مهندسی",
+      "territory_ids": [
+        "engineering-sciences-mathematics",
+        "systems-engineering",
+        "computer-science"
+      ]
+    },
+    {
+      "id": "strategy-governance",
+      "label": "Strategy and Governance",
+      "persian": "استراتژی و حکمرانی",
+      "territory_ids": [
+        "systems-engineering",
+        "project-engineering-development-management",
+        "documentation-standards-engineering-governance"
+      ]
+    },
+    {
+      "id": "requirements",
+      "label": "Requirements Engineering",
+      "persian": "مهندسی نیازمندی‌ها",
+      "territory_ids": [
+        "systems-engineering",
+        "software-engineering",
+        "product-engineering"
+      ]
+    },
+    {
+      "id": "architecture",
+      "label": "Architecture Engineering",
+      "persian": "مهندسی معماری",
+      "territory_ids": [
+        "systems-engineering",
+        "software-engineering",
+        "computer-architecture-processors",
+        "distributed-systems-cloud-infrastructure",
+        "electronics-semiconductors",
+        "mechanical-materials-manufacturing"
+      ]
+    },
+    {
+      "id": "design",
+      "label": "Engineering Design",
+      "persian": "طراحی مهندسی",
+      "territory_ids": [
+        "software-engineering",
+        "chip-design",
+        "pcb-electronic-systems",
+        "mechanical-materials-manufacturing",
+        "ux-ui-human-machine-interaction"
+      ]
+    },
+    {
+      "id": "construction",
+      "label": "Construction and Implementation",
+      "persian": "ساخت و پیاده‌سازی",
+      "territory_ids": [
+        "software-engineering",
+        "electronics-semiconductors",
+        "firmware-embedded-systems",
+        "mechanical-materials-manufacturing",
+        "robotics-control-mechatronics"
+      ]
+    },
+    {
+      "id": "verification-validation",
+      "label": "Verification, Validation and Test",
+      "persian": "راستی‌آزمایی، اعتبارسنجی و آزمون",
+      "territory_ids": [
+        "testing-verification-validation-quality",
+        "security-safety-resilience",
+        "systems-engineering"
+      ]
+    },
+    {
+      "id": "deployment-operations",
+      "label": "Deployment and Operations",
+      "persian": "استقرار و عملیات",
+      "territory_ids": [
+        "operating-systems-platform-engineering",
+        "distributed-systems-cloud-infrastructure",
+        "operations-reliability-engineering",
+        "automation-engineering"
+      ]
+    },
+    {
+      "id": "maintenance-evolution",
+      "label": "Maintenance and Evolution",
+      "persian": "نگهداری و تکامل",
+      "territory_ids": [
+        "software-engineering",
+        "operations-reliability-engineering",
+        "firmware-embedded-systems",
+        "mechanical-materials-manufacturing"
+      ]
+    },
+    {
+      "id": "documentation-knowledge",
+      "label": "Documentation and Knowledge",
+      "persian": "مستندسازی و دانش",
+      "territory_ids": [
+        "documentation-standards-engineering-governance",
+        "software-engineering",
+        "systems-engineering"
+      ]
+    },
+    {
+      "id": "project-product-management",
+      "label": "Project and Product Management",
+      "persian": "مدیریت پروژه و محصول",
+      "territory_ids": [
+        "product-engineering",
+        "project-engineering-development-management",
+        "workflow-process-engineering"
+      ]
+    },
+    {
+      "id": "quality-security-risk",
+      "label": "Quality, Security and Risk",
+      "persian": "کیفیت، امنیت و ریسک",
+      "territory_ids": [
+        "security-safety-resilience",
+        "testing-verification-validation-quality",
+        "operations-reliability-engineering"
+      ]
+    },
+    {
+      "id": "tools-resources",
+      "label": "Tools and Engineering Resources",
+      "persian": "ابزارها و منابع مهندسی",
+      "territory_ids": [
+        "software-engineering",
+        "computer-science",
+        "operating-systems-platform-engineering",
+        "electronics-semiconductors",
+        "documentation-standards-engineering-governance"
+      ]
+    },
+    {
+      "id": "economics-delivery",
+      "label": "Engineering Economics and Value Delivery",
+      "persian": "اقتصاد مهندسی و تحویل ارزش",
+      "territory_ids": [
+        "product-engineering",
+        "project-engineering-development-management",
+        "systems-engineering"
+      ]
+    }
+  ]
+}
