@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased — Engineering Knowledge Organization
+
+- Added source-bounded analysis of the handwritten engineering note dated 2021-05-19, separating legible transcription from uncertain readings and later analytical expansion.
+- Added a 14-area engineering organization crosswalk mapped to existing EKTA territories without introducing a competing canonical taxonomy.
+- Added terminology boundaries for software development assets, architecture, planning, documentation, standards, evidence, quality, and lifecycle concepts.
+- Added role-oriented documentation architecture and a lifecycle crosswalk.
+- Added a deterministic validator and regression tests for macro-area IDs and canonical territory references.
+- Updated the repository map and CI validation workflow.
+- Added primary-source links for SWEBOK V4.0a, ISO/IEC/IEEE 15288:2023, ISO/IEC/IEEE 42010:2022, NASA Systems Engineering Handbook, and Diátaxis.
+
 ## 0.2.0 — Search and Explore Workbench
 
 - Added unified deterministic search across concept identities and selected repository Markdown/YAML/JSON records.
@@ -45,12 +55,6 @@
 - Added first-run onboarding and repository self-test.
 - Added bounded Markdown/YAML/JSON import staging; canonical knowledge remains unchanged.
 - Added a Git-separated draft editor for proposed concept records.
-- Added allowlisted ZIP backup export and safe restore preview staging; no automatic overwrite.
+- Added allowlisted ZIP backup export and safe restore preview staging.
 - Added a Markdown documentation center.
 - Added API tests and user/security documentation for the new workflows.
-
-### Workspace verification hardening
-
-- Enforced the canonical `EKTA-CON-######` draft ID format and blocked collisions with existing canonical concept IDs.
-- Added metadata bounds, malformed YAML rejection, restore traversal regression coverage, and workspace UI JavaScript/structure validation.
-- Replaced HTML string interpolation in documentation listing and backup-link rendering with DOM text nodes.
