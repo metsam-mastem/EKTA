@@ -10,7 +10,9 @@ replacement_pull_request_url: "https://github.com/metsam-mastem/EKTA/pull/23"
 superseded_pull_request_state: "closed_not_merged"
 last_verified_ci_run: 45304523297
 last_verified_ci_sha: "11ac9b7689b366299e7856a814cae289c63b4e24"
-latest_verified_ci_run: 45304968576\nlatest_verified_ci_sha: "1c06074a8d31b87602b4426cb70640a8b26571aa"\nlatest_head_ci: "PENDING_AFTER_CONTINUITY_VALIDATOR_FIX"
+latest_verified_ci_run: 45304968576
+latest_verified_ci_sha: "1c06074a8d31b87602b4426cb70640a8b26571aa"
+latest_head_ci: "PENDING_AFTER_CONTINUITY_VALIDATOR_FIX"
 superseded_pull_request: 3
 archive:
   path: "docs/PROJECT_CONTINUITY/CHAT_SESSION_ARCHIVE_2026-11-24.md"
@@ -44,7 +46,9 @@ upds:
   integration_style: "cross_cutting_separable_subsystem"
   runtime_registry: "READ_ONLY_IMPLEMENTED"
   typed_traceability: "NOT_IMPLEMENTED"
-  readonly_registry_api: "VERIFIED"\n  registry_write_lifecycle: "NOT_IMPLEMENTED"\n  dashboard: "NOT_IMPLEMENTED"
+  readonly_registry_api: "VERIFIED"
+  registry_write_lifecycle: "NOT_IMPLEMENTED"
+  dashboard: "NOT_IMPLEMENTED"
   project_starter_generator: "NOT_IMPLEMENTED"
   clean_clone_recovery: "NOT_RUN"
   backup_restore: "NOT_RUN"
