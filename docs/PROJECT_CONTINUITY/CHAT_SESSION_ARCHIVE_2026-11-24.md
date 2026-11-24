@@ -141,3 +141,16 @@ After the initial archive was written:
 
 ## 14. Runtime registry progress — 2026-11-24
 A first read-only UPDS registry slice was added: repository YAML loader, schema validation, duplicate-ID checks, list/get service methods, GET API routes and focused service/API tests. This is not a write-enabled document management system. CI for the current latest head must pass before this code is marked VERIFIED. The next implementation step is controlled draft creation and immutable revision/audit semantics after contract review.
+
+
+## 15. Registry implementation and verification update — 2026-11-24
+
+The first UPDS runtime vertical slice is now implemented on the clean branch:
+- `runtime/ekta_runtime/upds_registry.py`: read-only repository-backed loader, schema validation, duplicate-ID detection, list/get.
+- `runtime/ekta_runtime/api.py`: GET `/api/v1/upds/documents` and GET `/api/v1/upds/documents/{document_id}`.
+- `tests/test_upds_registry.py`: service and API tests for listing, lookup, missing ID, duplicate ID, invalid schema and malformed YAML.
+- The API is read-only and does not accept arbitrary filesystem paths or mutate canonical records.
+
+An initial CI run (45304839153) failed two assertions because tests expected a stale title not matching the canonical sample record. The workflow logs were inspected; assertions were corrected. CI run 45304878493 then passed on commit `491fdca28995837e69c7f0403bd2da0a2db57d7b`.
+
+The complete CI run 45304968576 passed on commit `1c06074a8d31b87602b4426cb70640a8b26571aa`, including documentation/link validation, UPDS schema/record validation, all unit/runtime/API tests, frontend validation and typed graph export. This is the latest fully observed passing run at the time of this update; any later commit requires fresh verification.
