@@ -60,3 +60,14 @@ The validator uses the existing EKTA runtime dependencies. The core semantic che
 - [Integration with EKTA](../../docs/VEL_INTEGRATION.md)
 - [Example model](examples/local-ai-workstation.json)
 - [JSON Schema](../../schemas/vel-model.schema.json)
+
+## Execution and orchestration
+
+The active delivery board is [VEL Program Board — issue #18](https://github.com/metsam-mastem/EKTA/issues/18). The foundation is proposed in [PR #10](https://github.com/metsam-mastem/EKTA/pull/10). Parallel workstreams are tracked independently:
+
+- [#14 — Meta-model and conformance suite](https://github.com/metsam-mastem/EKTA/issues/14)
+- [#15 — Digital canvas spike](https://github.com/metsam-mastem/EKTA/issues/15)
+- [#16 — Physical card kit and QR pilot](https://github.com/metsam-mastem/EKTA/issues/16)
+- [#17 — External architecture adapters](https://github.com/metsam-mastem/EKTA/issues/17)
+
+Workstream completion requires reviewable artifacts and test evidence. GitHub Actions and local test results must be reported separately; an empty check list is NOT RUN, not PASS.
