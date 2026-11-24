@@ -177,3 +177,8 @@ Do not add a graph database, cloud database, authentication, multi-user editing,
 Status: ORCHESTRATED; subsystem PRs remain independently proposed/review-pending.
 
 The active work queue is maintained in `orchestration/WORKSTREAMS.yml` and documented in `docs/ORCHESTRATION/ACTIVE_WORKSTREAMS.md`. Nine open PRs are tracked: USDO #13, UMSF #11, MUA #19, VEL #10, VES #20, Collaboration Atlas #9, GitHub Docs #8, archive intake #7, and UPDS #3. No subsystem is approved by inclusion in the registry. Exact-head CI, schema/semantic review, and owner approval remain required.
+
+
+### External integration baseline — GTC
+
+Status: PINNED on main at commit `7ea271e00ef2cb010c17bdaa553e1f27645f12ca`. The independent GTC repository is linked as a Git submodule at `integrations/gtc`, pinned to upstream commit `2f0229bd622de4e9ce22196e57fb986659dc7934`. EKTA includes an audit and a RESEARCHED Hardware Knowledge Atlas concept record. Runtime ingestion, claim/schema crosswalk, graph projection, and recursive clone validation remain NOT RUN / NOT IMPLEMENTED. See `docs/integrations/GTC_INTEGRATION.md` and `docs/ORCHESTRATION/INTEGRATION_MATRIX.md`.
