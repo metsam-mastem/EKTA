@@ -22,11 +22,14 @@ EKTA/
 ├── encyclopedia/         # canonical concepts and engineering knowledge
 ├── maps/                 # stack, domain, cross-layer and graph maps
 ├── schemas/              # machine-readable data contracts
-├── research/             # literature and source assessment
+├── research/             # literature, source records and provenance
+│   └── sources/           # canonical external source records
 ├── references/           # standards, tools and primary-source indexes
+│   └── sources/           # source-specific routing and crosswalk metadata
 ├── decision-lab/         # RFCs and ADRs
 ├── execution-lab/        # playbooks, checklists and workflows
 ├── workflows/            # knowledge intake and maintenance procedures
+│   └── INGEST_GITHUB_DOCS.md
 ├── runtime/
 │   ├── ekta_runtime/      # Python services, search, API and repository facade
 │   └── web/               # Persian RTL browser workbench
@@ -56,3 +59,9 @@ EKTA/
 
 ## Naming
 Use stable IDs in canonical filenames, e.g. EKTA-CON-000001-runtime.md. IDs are immutable and never recycled. Use lowercase kebab-case for scripts and assets. Do not silently rename a stable ID.
+
+## GitHub Docs source integration
+- `docs/GITHUB_DOCS_INTEGRATION.md`: integration decision, boundaries and status.
+- `research/sources/EKTA-SRC-000009-github-docs.md`: canonical source/provenance record.
+- `references/sources/github-docs-taxonomy-map.yml`: proposed many-to-many routing crosswalk.
+- `workflows/INGEST_GITHUB_DOCS.md`: staged intake, review, verification and maintenance procedure.

@@ -1,6 +1,6 @@
 # Research Register
 
-Initial discovery leads only; each source requires individual evaluation.
+Initial discovery leads and source registrations. Each source requires individual evaluation; registration is not blanket endorsement.
 
 | ID | Source | Type | Relevance | Initial assessment |
 |---|---|---|---|---|
@@ -12,6 +12,7 @@ Initial discovery leads only; each source requires individual evaluation.
 | EKTA-SRC-000006 | GitLab Orbit / Knowledge Graph | GitLab design docs | Typed SDLC/code graph | Architecture reference |
 | EKTA-SRC-000007 | GitLab Knowledge Graph topic index | Discovery index | Candidate projects | Discovery only |
 | EKTA-SRC-000008 | Literature Review of the Digital Thread | Open-access review | Digital thread and industrial digitization | Relevant review |
+| EKTA-SRC-000009 | GitHub Docs — Official Product and Platform Documentation | Official documentation | Git, repositories, collaboration, Actions, APIs, security, administration, developer environments | Primary documentation source; version-aware; curated intake |
 
 ## Links
 1. https://www.nature.com/nature-index/topics/l4/ontology-engineering-and-semantic-knowledge-systems
@@ -22,3 +23,4 @@ Initial discovery leads only; each source requires individual evaluation.
 6. https://handbook.gitlab.com/handbook/engineering/architecture/design-documents/orbit/
 7. https://gitlab.com/explore/projects/topics/knowledge-graph
 8. https://doi.org/10.3390/systems12030070
+9. https://docs.github.com/en

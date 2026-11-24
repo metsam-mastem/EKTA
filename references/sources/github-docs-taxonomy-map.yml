@@ -1,0 +1,49 @@
+schema_version: 1
+source_id: EKTA-SRC-000009
+mapping_status: PROPOSED
+mapping_policy: >
+  Many-to-many source-topic routing only. A page is assigned to a territory/domain
+  only after reviewing its title, breadcrumbs, body, and intended engineering use.
+  Do not create concepts solely because a page exists.
+default_review_required: true
+
+topic_routes:
+  - topic: repositories-and-git
+    territories: [software-engineering, computer-science]
+    domains: [software-engineering]
+    knowledge_types: [concept, tool, method, process, implementation]
+  - topic: collaboration-and-code-review
+    territories: [software-engineering, workflow-process-engineering, project-engineering-development-management]
+    domains: [software-engineering, workflow-process-engineering, product-project-engineering]
+    knowledge_types: [method, pattern, process, workflow, tool]
+  - topic: github-actions-and-automation
+    territories: [software-engineering, automation-engineering, workflow-process-engineering, operations-reliability-engineering]
+    domains: [software-engineering, workflow-process-engineering, control-automation, devops-sre]
+    knowledge_types: [architecture, method, workflow, tool, implementation]
+  - topic: rest-graphql-and-webhooks
+    territories: [software-engineering, networking-telecommunications, distributed-systems-cloud-infrastructure]
+    domains: [software-engineering, networking-telecommunications]
+    knowledge_types: [interface, tool, implementation, standard, specification]
+  - topic: security-and-supply-chain
+    territories: [security-safety-resilience, software-engineering, operations-reliability-engineering]
+    domains: [security-privacy, software-engineering, devops-sre]
+    knowledge_types: [principle, method, standard, tool, failure-mode, process]
+  - topic: administration-and-enterprise
+    territories: [systems-engineering, software-engineering, documentation-standards-engineering-governance]
+    domains: [systems-engineering, software-engineering, documentation-standards-governance]
+    knowledge_types: [architecture, process, method, tool, framework]
+  - topic: copilot-and-ai-assisted-development
+    territories: [ai-ml-agents, software-engineering, ux-ui-human-machine-interaction]
+    domains: [ai-ml-systems, software-engineering, human-factors-ux]
+    knowledge_types: [tool, workflow, method, architecture, implementation]
+  - topic: codespaces-and-development-environments
+    territories: [software-engineering, operating-systems-platform-engineering, distributed-systems-cloud-infrastructure]
+    domains: [software-engineering, operating-systems-platforms, devops-sre]
+    knowledge_types: [architecture, component, tool, implementation, workflow]
+
+validation:
+  - "All territory IDs must exist in taxonomy/territories.yml."
+  - "All domain IDs must exist in taxonomy/domains.yml."
+  - "All knowledge type values must exist in taxonomy/knowledge-types.yml."
+  - "Mappings are routing hints, not canonical classification decisions."
+  - "Unknown or ambiguous pages remain unclassified and enter DISCOVERY review."
