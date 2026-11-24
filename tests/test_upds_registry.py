@@ -27,7 +27,7 @@ class UPDSRegistryApiTests(unittest.TestCase):
     def test_api_gets_document_by_id(self):
         response = self.client.get("/api/v1/upds/documents/EKTA-DOC-000001")
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["title"], "UPDS document universe")
+        self.assertEqual(response.json()["title"], "UPDS universal document-family catalog")
 
     def test_api_returns_404_for_unknown_document(self):
         response = self.client.get("/api/v1/upds/documents/EKTA-DOC-999999")
@@ -57,7 +57,7 @@ class UPDSRegistryTests(unittest.TestCase):
     def test_gets_document_by_stable_id(self):
         item = self.registry.get_document("EKTA-DOC-000001")
         self.assertIsNotNone(item)
-        self.assertEqual(item["title"], "UPDS document universe")
+        self.assertEqual(item["title"], "UPDS universal document-family catalog")
 
     def test_returns_none_for_unknown_id(self):
         self.assertIsNone(self.registry.get_document("EKTA-DOC-999999"))
